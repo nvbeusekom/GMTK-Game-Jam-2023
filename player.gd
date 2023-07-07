@@ -1,7 +1,13 @@
 extends CharacterBody2D
 
-@export var speed = 80 # How fast the player will move (pixels/sec).
+@export var SPEED = 80 # How fast the player will move (pixels/sec).
+@export var KB_DIST = 3
+@export var KB_DURATION = 16
+@export var KB_REDUCTION = 0.5
 var screen_size # Size of the game window.
+
+var knockback_velocity = Vector2(0,0)
+var knockback_counter = 0
 
 var health = 3
 var power = 1
@@ -34,10 +40,7 @@ func _process(delta):
 	$BodySpriteAnimation.play()
 	
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-	
-	
-	move_and_slide()
+		velocity = velocity.normalized() * SPEED
 	
 	if velocity.length() > 0:
 		$BodySpriteAnimation.animation = "walk"
@@ -51,6 +54,15 @@ func _process(delta):
 			$SwordSprite.position.x = -6
 		elif velocity.x < 0:
 			$SwordSprite.position.x = 6
+	
+	if knockback_counter > 0:
+		knockback_counter -= 1
+		velocity += knockback_velocity
+		knockback_velocity *= 1
+			
+	move_and_slide()
+	
+	
 	
 func swordSwing(delta):
 	var swingSpeed = 1
@@ -86,8 +98,12 @@ func swordSwing(delta):
 				lockDirection = false
 	
 
-func _on_body_entered(body):
+func damaged(origin):
 	health -= 1
-	$CollisionShape2D.set_deferred("disabled", true)
-	# Some knockback
-	$CollisionShape2D.set_deferred("disabled", false)
+	print(health)
+	var knockback = (position - origin) 
+	knockback_velocity = knockback.normalized() * KB_DIST * SPEED
+	knockback_counter = KB_DURATION
+	
+	
+	
