@@ -29,14 +29,13 @@ func _process(delta):
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-	if velocity.x != 0:
+	if velocity.length() > 0:
 		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
+	else:
+		$AnimatedSprite2D.animation = "idle"
+	if velocity.x != 0:
 	# See the note below about boolean assignment.
 		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = velocity.y > 0
 
 
 func _on_body_entered(body):
