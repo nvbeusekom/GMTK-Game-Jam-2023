@@ -1,4 +1,5 @@
-extends RigidBody2D
+extends CharacterBody2D
+
 @export var speed = 80 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
@@ -14,7 +15,7 @@ func _ready():
 	
 
 func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
+	velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("move_left"):
@@ -35,9 +36,9 @@ func _process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 	
-	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+	
+	move_and_slide()
+	
 	if velocity.length() > 0:
 		$BodySpriteAnimation.animation = "walk"
 	else:

@@ -1,28 +1,28 @@
 [gd_scene load_steps=17 format=3 uid="uid://c2qbi5sqj3jpi"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_xbm4n"]
-[ext_resource type="Texture2D" uid="uid://0iby0t2hi17d" path="res://art/KnightIdle1.png" id="2_sy515"]
-[ext_resource type="Texture2D" uid="uid://y4kvne84j5au" path="res://art/KnightIdle2.png" id="3_2gvrd"]
-[ext_resource type="Texture2D" uid="uid://dwy5ljuqlhy4o" path="res://art/KnightWalk1.png" id="4_i8wsl"]
-[ext_resource type="Texture2D" uid="uid://bm0a85e8air02" path="res://art/KnightWalk2.png" id="5_mfn2r"]
-[ext_resource type="Texture2D" uid="uid://dv16aotxg7i43" path="res://art/KnightWalk3.png" id="6_fjang"]
-[ext_resource type="Texture2D" uid="uid://chan4gvfvgad0" path="res://art/KnightWalk4.png" id="7_1mtjj"]
+[ext_resource type="Script" path="res://player.gd" id="1_k4wsb"]
+[ext_resource type="Texture2D" uid="uid://0iby0t2hi17d" path="res://art/KnightIdle1.png" id="2_1kifn"]
+[ext_resource type="Texture2D" uid="uid://y4kvne84j5au" path="res://art/KnightIdle2.png" id="3_u4xnr"]
+[ext_resource type="Texture2D" uid="uid://dwy5ljuqlhy4o" path="res://art/KnightWalk1.png" id="4_jopfn"]
+[ext_resource type="Texture2D" uid="uid://bm0a85e8air02" path="res://art/KnightWalk2.png" id="5_mkc0g"]
+[ext_resource type="Texture2D" uid="uid://dv16aotxg7i43" path="res://art/KnightWalk3.png" id="6_pdwse"]
+[ext_resource type="Texture2D" uid="uid://chan4gvfvgad0" path="res://art/KnightWalk4.png" id="7_lcno7"]
+[ext_resource type="Texture2D" uid="uid://dbneatgfonvf" path="res://art/Sword.png" id="8_8bf3j"]
 [ext_resource type="Texture2D" uid="uid://cn0rkqk4oulgs" path="res://art/Sword1.png" id="8_lmp8m"]
-[ext_resource type="Texture2D" uid="uid://dbneatgfonvf" path="res://art/Sword.png" id="8_u7bd2"]
 [ext_resource type="Texture2D" uid="uid://d0nsm78ccpdwk" path="res://art/Sword2.png" id="9_eumqo"]
 [ext_resource type="Texture2D" uid="uid://dexrvaf2l13fi" path="res://art/Sword3.png" id="10_v41ky"]
 [ext_resource type="Texture2D" uid="uid://c1wn02ugqtibn" path="res://art/Sword4.png" id="11_l3jwk"]
 [ext_resource type="Texture2D" uid="uid://bfykcwxsvb7v8" path="res://art/Sword5.png" id="12_nhtc6"]
 [ext_resource type="Texture2D" uid="uid://doj3gbwijfhik" path="res://art/Sword6.png" id="13_rb17w"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1ikww"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wvoj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sy515")
+"texture": ExtResource("2_1kifn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_2gvrd")
+"texture": ExtResource("3_u4xnr")
 }],
 "loop": true,
 "name": &"idle",
@@ -30,23 +30,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_i8wsl")
+"texture": ExtResource("4_jopfn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_mfn2r")
+"texture": ExtResource("5_mkc0g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_fjang")
+"texture": ExtResource("6_pdwse")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_1mtjj")
+"texture": ExtResource("7_lcno7")
 }],
 "loop": true,
 "name": &"walk",
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_h1x88"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsvkl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -68,31 +68,27 @@ animations = [{
 "texture": ExtResource("13_rb17w")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_u7bd2")
+"texture": ExtResource("8_8bf3j")
 }],
 "loop": false,
 "name": &"swing",
 "speed": 60.0
 }]
 
-[node name="Player" type="RigidBody2D"]
-gravity_scale = 0.0
-script = ExtResource("1_xbm4n")
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_k4wsb")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_1ikww")
+sprite_frames = SubResource("SpriteFrames_8wvoj")
 animation = &"walk"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
 [node name="SwordSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-6, 0)
-sprite_frames = SubResource("SpriteFrames_h1x88")
+sprite_frames = SubResource("SpriteFrames_gsvkl")
 animation = &"swing"
-frame = 6
-frame_progress = 1.0
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

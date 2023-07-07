@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ppiux8usd81l"]
 
 [ext_resource type="PackedScene" uid="uid://blwdek4my56mj" path="res://dungeon.tscn" id="1_w785d"]
-[ext_resource type="PackedScene" uid="uid://c2qbi5sqj3jpi" path="res://player.tscn" id="2_qhef8"]
+[ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_lytl7"]
 
 [node name="dungeoncrawl" type="Node"]
 
 [node name="Dungeon" parent="." instance=ExtResource("1_w785d")]
 
-[node name="Player" parent="." instance=ExtResource("2_qhef8")]
+[node name="Player2" parent="." instance=ExtResource("2_lytl7")]
