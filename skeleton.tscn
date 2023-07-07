@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://bloethnkcb15e"]
+
+[ext_resource type="Script" path="res://skeleton.gd" id="1_fxo8b"]
+[ext_resource type="Texture2D" uid="uid://cjuusuaqo07ql" path="res://art/KnightIdle1.png" id="1_sshf8"]
+[ext_resource type="Texture2D" uid="uid://7pnl3aygs1no" path="res://art/KnightIdle2.png" id="2_2d4p8"]
+[ext_resource type="Texture2D" uid="uid://lp1j06afijh4" path="res://art/KnightWalk1.png" id="3_wavhc"]
+[ext_resource type="Texture2D" uid="uid://djc1pdopuy3m8" path="res://art/KnightWalk2.png" id="4_4nawr"]
+[ext_resource type="Texture2D" uid="uid://cimi0sb7bg2mf" path="res://art/KnightWalk3.png" id="5_202bp"]
+[ext_resource type="Texture2D" uid="uid://biyiyb0os5qdm" path="res://art/KnightWalk4.png" id="6_ea88n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bop5i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sshf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2d4p8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wavhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4nawr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_202bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ea88n")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Skeleton" type="Area2D"]
+script = ExtResource("1_fxo8b")
+
+[node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bop5i")
+animation = &"walk"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

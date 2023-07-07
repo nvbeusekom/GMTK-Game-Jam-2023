@@ -50,9 +50,6 @@ animation = &"walk"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-
 [node name="SwordSprite" type="Sprite2D" parent="."]
 position = Vector2(-6, 0)
 texture = ExtResource("8_8bf3j")
