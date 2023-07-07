@@ -1,30 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2qbi5sqj3jpi"]
+[gd_scene load_steps=10 format=3 uid="uid://c2qbi5sqj3jpi"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xbm4n"]
-[ext_resource type="Texture2D" uid="uid://cjj7c07c54fod" path="res://art/playerGrey_up1.png" id="2_5l50n"]
-[ext_resource type="Texture2D" uid="uid://carmytmgvj66h" path="res://art/playerGrey_walk1.png" id="2_u1h37"]
-[ext_resource type="Texture2D" uid="uid://bg6agtn2t5m3r" path="res://art/playerGrey_walk2.png" id="3_4isps"]
-[ext_resource type="Texture2D" uid="uid://mkr8mc63xvx8" path="res://art/playerGrey_up2.png" id="3_kdtmp"]
+[ext_resource type="Texture2D" uid="uid://0iby0t2hi17d" path="res://art/KnightIdle1.png" id="2_sy515"]
+[ext_resource type="Texture2D" uid="uid://y4kvne84j5au" path="res://art/KnightIdle2.png" id="3_2gvrd"]
+[ext_resource type="Texture2D" uid="uid://dwy5ljuqlhy4o" path="res://art/KnightWalk1.png" id="4_i8wsl"]
+[ext_resource type="Texture2D" uid="uid://bm0a85e8air02" path="res://art/KnightWalk2.png" id="5_mfn2r"]
+[ext_resource type="Texture2D" uid="uid://dv16aotxg7i43" path="res://art/KnightWalk3.png" id="6_fjang"]
+[ext_resource type="Texture2D" uid="uid://chan4gvfvgad0" path="res://art/KnightWalk4.png" id="7_1mtjj"]
+[ext_resource type="Texture2D" uid="uid://dbneatgfonvf" path="res://art/Sword.png" id="8_u7bd2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ikww"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_5l50n")
+"texture": ExtResource("2_sy515")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_kdtmp")
+"texture": ExtResource("3_2gvrd")
 }],
 "loop": true,
-"name": &"up",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_u1h37")
+"texture": ExtResource("4_i8wsl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_4isps")
+"texture": ExtResource("5_mfn2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fjang")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1mtjj")
 }],
 "loop": true,
 "name": &"walk",
@@ -35,13 +44,18 @@ animations = [{
 gravity_scale = 0.0
 script = ExtResource("1_xbm4n")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1ikww")
-animation = &"up"
+animation = &"walk"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-56, -71, 59, -71, 59, 70, -59, 68)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="SwordSprite" type="Sprite2D" parent="."]
+position = Vector2(-6, 0)
+texture = ExtResource("8_u7bd2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

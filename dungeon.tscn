@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://blwdek4my56mj"]
 
-[ext_resource type="Texture2D" uid="uid://dfchodt72kqo0" path="res://art/Tileset.png" id="1_voajq"]
+[ext_resource type="Texture2D" uid="uid://b0rxgol5w8mki" path="res://art/Tileset.png" id="1_voajq"]
 [ext_resource type="Script" path="res://Dungeon.gd" id="1_w6hqe"]
+[ext_resource type="Texture2D" uid="uid://bx06jrm6edkr8" path="res://art/DungeonGroundTile.png" id="2_rm4de"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dtliq"]
 resource_name = "Dungeon Tiles"
