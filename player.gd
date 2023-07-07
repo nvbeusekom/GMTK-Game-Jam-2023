@@ -14,10 +14,11 @@ var power = 1
 var swingReady = true
 var swingUp = false
 var swingDown = false
+var lockDirection = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-
+	
 
 func _process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
@@ -30,6 +31,7 @@ func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 	if Input.is_action_just_pressed("Attack") and swingReady == true:
+		lockDirection = true
 		swingReady = false
 		swingUp = true
 		
@@ -44,10 +46,14 @@ func _process(delta):
 		$BodySpriteAnimation.animation = "walk"
 	else:
 		$BodySpriteAnimation.animation = "idle"
-	if velocity.x != 0:
+	if velocity.x != 0 and lockDirection == false:
 	# See the note below about boolean assignment.
 		$BodySpriteAnimation.flip_h = velocity.x < 0
 		$SwordSprite.flip_h = velocity.x < 0
+		if velocity.x > 0:
+			$SwordSprite.position.x = -6
+		elif velocity.x < 0:
+			$SwordSprite.position.x = 6
 	
 	if knockback_counter > 0:
 		knockback_counter -= 1
@@ -58,20 +64,38 @@ func _process(delta):
 	
 	
 	
-	
-
 func swordSwing(delta):
-	
-	if swingUp:
-		$SwordSprite.rotation -= delta * 10
-		if $SwordSprite.rotation < -.5 * PI:
-			swingUp = false
-			swingDown = true
-	if swingDown:
-		$SwordSprite.rotation += delta * 30
-		if $SwordSprite.rotation > 0:
-			swingDown = false
-			swingReady = true
+	var swingSpeed = 1
+	if $BodySpriteAnimation.flip_h:
+		if swingUp:
+			$SwordSprite.rotation += delta * 20 * swingSpeed
+			if $SwordSprite.rotation > .75 * PI:
+				swingUp = false
+				swingDown = true
+		if swingDown:
+			$SwordSprite.play()
+			$SwordSprite.animation = "swing"
+			$SwordSprite.rotation -= delta * 30 * swingSpeed
+			if $SwordSprite.rotation < 0:
+				$SwordSprite.rotation = 0
+				swingDown = false
+				swingReady = true
+				lockDirection = false
+	else:
+		if swingUp:
+			$SwordSprite.rotation -= delta * 20 * swingSpeed
+			if $SwordSprite.rotation < -.75 * PI:
+				swingUp = false
+				swingDown = true
+		if swingDown:
+			$SwordSprite.play()
+			$SwordSprite.animation = "swing"
+			$SwordSprite.rotation += delta * 30 * swingSpeed
+			if $SwordSprite.rotation > 0:
+				$SwordSprite.rotation = 0
+				swingDown = false
+				swingReady = true
+				lockDirection = false
 	
 
 func damaged(origin):
