@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 @export var SPEED = 80 # How fast the player will move (pixels/sec).
-@export var KB_DIST = 15
+@export var KB_DIST = 3
 @export var KB_DURATION = 16
-@export var KB_REDUCTION = 0.3
+@export var KB_REDUCTION = 0.5
 var screen_size # Size of the game window.
 
 var knockback_velocity = Vector2(0,0)
@@ -101,8 +101,8 @@ func swordSwing(delta):
 func damaged(origin):
 	health -= 1
 	print(health)
-	var knockback = (position - origin) * KB_DIST
-	knockback_velocity = knockback
+	var knockback = (position - origin) 
+	knockback_velocity = knockback.normalized() * KB_DIST * SPEED
 	knockback_counter = KB_DURATION
 	
 	

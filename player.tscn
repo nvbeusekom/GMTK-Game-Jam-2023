@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1b4p5ddswqy0"]
+[gd_scene load_steps=17 format=3 uid="uid://c1b4p5ddswqy0"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k4wsb"]
 [ext_resource type="Texture2D" uid="uid://cjuusuaqo07ql" path="res://art/KnightIdle1.png" id="2_1kifn"]
@@ -8,6 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cimi0sb7bg2mf" path="res://art/KnightWalk3.png" id="6_pdwse"]
 [ext_resource type="Texture2D" uid="uid://biyiyb0os5qdm" path="res://art/KnightWalk4.png" id="7_lcno7"]
 [ext_resource type="Texture2D" uid="uid://b4fc0fdwk24lf" path="res://art/Sword.png" id="8_8bf3j"]
+[ext_resource type="Texture2D" uid="uid://dbky517g12pq3" path="res://art/Sword1.png" id="8_wwhbk"]
+[ext_resource type="Texture2D" uid="uid://ceacxntqr18ms" path="res://art/Sword2.png" id="9_2y5j6"]
+[ext_resource type="Texture2D" uid="uid://og0avk1xy4sa" path="res://art/Sword3.png" id="10_qhkoy"]
+[ext_resource type="Texture2D" uid="uid://dfk3ly5074ve3" path="res://art/Sword4.png" id="11_qpbqc"]
+[ext_resource type="Texture2D" uid="uid://dsfscq4pk1quo" path="res://art/Sword5.png" id="12_vpvfv"]
+[ext_resource type="Texture2D" uid="uid://b46ei2jfw8h0s" path="res://art/Sword6.png" id="13_f1lv5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wvoj"]
 animations = [{
@@ -40,6 +46,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wxcic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_wwhbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2y5j6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qhkoy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_qpbqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vpvfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_f1lv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8bf3j")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 60.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_k4wsb")
 
@@ -50,6 +85,7 @@ animation = &"walk"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
 
-[node name="SwordSprite" type="Sprite2D" parent="."]
+[node name="SwordSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-6, 0)
-texture = ExtResource("8_8bf3j")
+sprite_frames = SubResource("SpriteFrames_wxcic")
+animation = &"swing"
