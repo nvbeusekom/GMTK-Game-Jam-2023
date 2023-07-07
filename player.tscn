@@ -23,9 +23,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_cl7nw")
-}, {
-"duration": 1.0,
 "texture": ExtResource("5_r7mdq")
 }, {
 "duration": 1.0,
@@ -33,6 +30,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_wj05t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cl7nw")
 }],
 "loop": true,
 "name": &"walk",

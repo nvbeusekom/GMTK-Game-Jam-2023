@@ -1,5 +1,5 @@
 extends RigidBody2D
-@export var speed = 400 # How fast the player will move (pixels/sec).
+@export var speed = 80 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
 var health = 3
@@ -20,15 +20,16 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
-
+	
+	$AnimatedSprite2D.play()
+	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
+	
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
+	print(velocity.length())
 	if velocity.length() > 0:
 		$AnimatedSprite2D.animation = "walk"
 	else:
