@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://blwdek4my56mj"]
+
+[ext_resource type="Script" path="res://Dungeon.gd" id="1_w6hqe"]
+
+[node name="Dungeon" type="TileMap"]
+format = 2
+script = ExtResource("1_w6hqe")

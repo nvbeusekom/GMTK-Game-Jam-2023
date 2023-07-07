@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2qbi5sqj3jpi"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_xbm4n"]
+[ext_resource type="Texture2D" uid="uid://dx5ob32itvepm" path="res://art/playerGrey_up1.png" id="2_5l50n"]
+[ext_resource type="Texture2D" uid="uid://b4k34m0fa6fpx" path="res://art/playerGrey_walk1.png" id="2_u1h37"]
+[ext_resource type="Texture2D" uid="uid://bsifsfda2d5rt" path="res://art/playerGrey_walk2.png" id="3_4isps"]
+[ext_resource type="Texture2D" uid="uid://e4yy2fdm36ar" path="res://art/playerGrey_up2.png" id="3_kdtmp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ikww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5l50n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kdtmp")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_u1h37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4isps")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_xbm4n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1ikww")
+animation = &"up"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
