@@ -4,7 +4,9 @@ var screen_size # Size of the game window.
 
 var health = 3
 var power = 1
-
+var swingReady = true
+var swingUp = false
+var swingDown = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -20,8 +22,13 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	if Input.is_action_just_pressed("Attack") and swingReady == true:
+		swingReady = false
+		swingUp = true
+		
+	swordSwing(delta)
 	
-	$AnimatedSprite2D.play()
+	$BodySpriteAnimation.play()
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -31,13 +38,29 @@ func _process(delta):
 	position.y = clamp(position.y, 0, screen_size.y)
 	print(velocity.length())
 	if velocity.length() > 0:
-		$AnimatedSprite2D.animation = "walk"
+		$BodySpriteAnimation.animation = "walk"
 	else:
-		$AnimatedSprite2D.animation = "idle"
+		$BodySpriteAnimation.animation = "idle"
 	if velocity.x != 0:
 	# See the note below about boolean assignment.
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+		$BodySpriteAnimation.flip_h = velocity.x < 0
+		$SwordSprite.flip_h = velocity.x < 0
+	
+	
 
+func swordSwing(delta):
+	
+	if swingUp:
+		$SwordSprite.rotation -= delta * 10
+		if $SwordSprite.rotation < -.5 * PI:
+			swingUp = false
+			swingDown = true
+	if swingDown:
+		$SwordSprite.rotation += delta * 30
+		if $SwordSprite.rotation > 0:
+			swingDown = false
+			swingReady = true
+	
 
 func _on_body_entered(body):
 	health -= 1
