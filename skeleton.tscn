@@ -1,21 +1,47 @@
-[gd_scene load_steps=9 format=3 uid="uid://bloethnkcb15e"]
+[gd_scene load_steps=15 format=3 uid="uid://bloethnkcb15e"]
 
 [ext_resource type="Script" path="res://skeleton.gd" id="1_fxo8b"]
-[ext_resource type="Texture2D" uid="uid://cjuusuaqo07ql" path="res://art/KnightIdle1.png" id="1_sshf8"]
-[ext_resource type="Texture2D" uid="uid://7pnl3aygs1no" path="res://art/KnightIdle2.png" id="2_2d4p8"]
-[ext_resource type="Texture2D" uid="uid://lp1j06afijh4" path="res://art/KnightWalk1.png" id="3_wavhc"]
-[ext_resource type="Texture2D" uid="uid://djc1pdopuy3m8" path="res://art/KnightWalk2.png" id="4_4nawr"]
-[ext_resource type="Texture2D" uid="uid://cimi0sb7bg2mf" path="res://art/KnightWalk3.png" id="5_202bp"]
-[ext_resource type="Texture2D" uid="uid://biyiyb0os5qdm" path="res://art/KnightWalk4.png" id="6_ea88n"]
+[ext_resource type="Texture2D" uid="uid://dsywjntr0enx6" path="res://art/SkeletonBowAttack1.png" id="2_m3xdt"]
+[ext_resource type="Texture2D" uid="uid://seyxdbtmd85f" path="res://art/SkeletonBowAttack2.png" id="3_gvtnd"]
+[ext_resource type="Texture2D" uid="uid://bfdc2oejwsr01" path="res://art/SkeletonBowAttack3.png" id="4_bxaij"]
+[ext_resource type="Texture2D" uid="uid://dooel0w04b4oa" path="res://art/SkeletonBowAttack4.png" id="5_834do"]
+[ext_resource type="Texture2D" uid="uid://dgan7gwcuyalo" path="res://art/SkeletonBowAttack5.png" id="6_thubc"]
+[ext_resource type="Texture2D" uid="uid://cyinmhy22uwsn" path="res://art/SkeletonBowIdle1.png" id="7_3xjp0"]
+[ext_resource type="Texture2D" uid="uid://f2djj5pwkff" path="res://art/SkeletonBowIdle2.png" id="8_3lskg"]
+[ext_resource type="Texture2D" uid="uid://bybmuv4krp22c" path="res://art/SkeletonBowWalk1.png" id="9_7k83b"]
+[ext_resource type="Texture2D" uid="uid://bto2j2567xxif" path="res://art/SkeletonBowWalk2.png" id="10_71qlh"]
+[ext_resource type="Texture2D" uid="uid://nukrd5cc3j1o" path="res://art/SkeletonBowWalk3.png" id="11_4k0e3"]
+[ext_resource type="Texture2D" uid="uid://fy1hmivpw3im" path="res://art/SkeletonBowWalk4.png" id="12_u8ix4"]
+[ext_resource type="Texture2D" uid="uid://b5xramla1grcg" path="res://art/SkeletonBowWalk5.png" id="13_x1lj3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bop5i"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_sshf8")
+"texture": ExtResource("2_m3xdt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_2d4p8")
+"texture": ExtResource("3_gvtnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bxaij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_834do")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_thubc")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3xjp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3lskg")
 }],
 "loop": true,
 "name": &"idle",
@@ -23,16 +49,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_wavhc")
+"texture": ExtResource("9_7k83b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_4nawr")
+"texture": ExtResource("10_71qlh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_202bp")
+"texture": ExtResource("11_4k0e3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ea88n")
+"texture": ExtResource("12_u8ix4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_x1lj3")
 }],
 "loop": true,
 "name": &"walk",
@@ -44,10 +73,13 @@ script = ExtResource("1_fxo8b")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bop5i")
-animation = &"walk"
+animation = &"attack"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
