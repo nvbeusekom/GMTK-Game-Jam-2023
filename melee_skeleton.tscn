@@ -1,5 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwjvssl5pwhqm"]
-
+[gd_scene load_steps=14 format=3 uid="uid://bahp6w83mspqm"]
 
 [ext_resource type="Script" path="res://melee_skeleton.gd" id="1_k7dtq"]
 [ext_resource type="Texture2D" uid="uid://de7tsl10almeu" path="res://art/SkeletonBowAttack1.png" id="2_dyv8q"]
@@ -18,19 +17,19 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sjf10")
+"texture": ExtResource("2_dyv8q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ijbee")
+"texture": ExtResource("3_t7o6x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_lwjfo")
+"texture": ExtResource("4_vpj01")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_6vdtv")
+"texture": ExtResource("5_8b524")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_3axk7")
+"texture": ExtResource("6_n10iv")
 }],
 "loop": false,
 "name": &"attack",
@@ -38,10 +37,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_7hi6w")
+"texture": ExtResource("7_wq0cg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_oe3wh")
+"texture": ExtResource("8_q3jhg")
 }],
 "loop": true,
 "name": &"idle",
@@ -49,16 +48,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_uflxq")
+"texture": ExtResource("9_43lhe")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_3qqeq")
+"texture": ExtResource("10_h2s1h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_hg6hh")
+"texture": ExtResource("11_f4fi0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_13u80")
+"texture": ExtResource("12_mgt4l")
 }],
 "loop": true,
 "name": &"walk",
@@ -66,7 +65,7 @@ animations = [{
 }]
 
 [node name="MeleeSkeleton" type="Area2D" groups=["Enemy"]]
-script = ExtResource("1_745b4")
+script = ExtResource("1_k7dtq")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h1li2")
