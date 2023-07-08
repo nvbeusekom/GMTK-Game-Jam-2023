@@ -17,6 +17,8 @@ func _ready():
 	coins = 0
 	$DungeonBuilderInterface/CanvasLayer.set_process(buildMode)
 	$DungeonBuilderInterface/CanvasLayer.visible = buildMode
+	$crawl_HUD.set_health($Player.health)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -54,3 +56,8 @@ func addCoin():
 	
 func updateCoins():
 	$DungeonBuilderInterface/CanvasLayer/CoinCountLabel.text = str(coins)
+	print(coins)
+
+
+func _on_player_hit():
+	$crawl_HUD.set_health($Player.healths)

@@ -89,3 +89,10 @@ polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
 position = Vector2(-6, 0)
 sprite_frames = SubResource("SpriteFrames_wxcic")
 animation = &"swing"
+
+[node name="SwordSwing" type="Area2D" parent="."]
+
+[node name="SwordCollision" type="CollisionPolygon2D" parent="SwordSwing"]
+polygon = PackedVector2Array(6, -33, 6, 7, 21, 12, 27, 12, 31, 9, 33, 3, 33, -3, 29, -13, 24, -22, 17, -30, 13, -33)
+
+[connection signal="area_entered" from="SwordSwing" to="." method="_on_sword_swing_area_entered"]
