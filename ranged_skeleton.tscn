@@ -64,7 +64,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="RangedSkeleton" type="Area2D" groups=["Enemy"]]
+[node name="RangedSkeleton" type="Area2D" groups=["Enemy", "EnemyOfHero"]]
 script = ExtResource("1_qsjdr")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
