@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://dungeon.gd" id="1_m1qic"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pcg7n"]
-vertices = PackedVector2Array(98, 62, 126, 2, 127, 64, 97, 99, 66, 2, 61, 61, 0, 29, 30, 2, 2, 128, 384, -1, 575, 0, 560, 240, 384, 64, -31, 29, -31, -31, 29, -31, 62, 99, 383, 125, 400, 272, 848, 272, 720, 240, 848, 16, 720, 16)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 7, 4, 5, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(6, 13, 14, 15, 7), PackedInt32Array(8, 5, 16), PackedInt32Array(17, 8, 16, 3), PackedInt32Array(17, 3, 2, 12), PackedInt32Array(17, 12, 11, 18), PackedInt32Array(19, 18, 11, 20), PackedInt32Array(21, 19, 20, 22)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(2, 128, 383, 125, 400, 272, 848, 272, 848, 16, 720, 16, 720, 240, 560, 240, 575, 0, 384, -1, 384, 64, 127, 64, 126, 2, 66, 2, 30, 2, 29, -31, -31, -31, -31, 29, 0, 29), PackedVector2Array(98, 62, 97, 99, 62, 99, 61, 61)])
+vertices = PackedVector2Array(98, 62, 113, 15, 112, 80, 97, 99, 18, 15, 61, 61, 15, 17, 400, 80, 400, 16, 560, 16, 560, 241, 720, 240, 720, 16, 848, 16, 848, 272, 400, 272, 400, 112, -17, 16, -16, -17, 16, -17, 16, 112, 62, 99)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5, 6), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(11, 14, 15, 10), PackedInt32Array(10, 15, 16), PackedInt32Array(7, 10, 16), PackedInt32Array(2, 7, 16, 3), PackedInt32Array(6, 17, 18, 19, 4), PackedInt32Array(20, 6, 5, 21), PackedInt32Array(16, 20, 21, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(16, 112, 400, 112, 400, 272, 848, 272, 848, 16, 720, 16, 720, 240, 560, 241, 560, 16, 400, 16, 400, 80, 112, 80, 113, 15, 18, 15, 16, -17, -16, -17, -17, 16, 15, 17), PackedVector2Array(98, 62, 97, 99, 62, 99, 61, 61)])
 
 [node name="Dungeon" type="Node"]
 script = ExtResource("1_m1qic")

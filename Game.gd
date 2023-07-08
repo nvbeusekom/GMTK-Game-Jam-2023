@@ -9,7 +9,7 @@ var dungeon_node = null
 var building_scene = preload("res://building_state.tscn")
 #var main_menu_scene = preload("res://main_menu.tscn")
 var crawling_scene = preload("res://crawling_state.tscn")
-#var shop_scene = preload("res://my_scene.tscn")
+var shop_scene = preload("res://shoppe_scene.tscn")
 
 var main_menu_node = null
 var building_node = null
@@ -21,6 +21,9 @@ var playerpos = Vector2(0,0)
 var dungeon_coins = starting_coins
 
 var crawling_coins = 0
+
+var player_max_hp = 3
+var player_power = 1
 
 # (Minus cutscenes)
 # Game states: Main menu -> Building -> Crawling <-> Shop
@@ -64,7 +67,11 @@ func process_crawling(delta):
 	pass
 	
 func process_shop(delta):
-	pass
+	if shop_node == null:
+		shop_node = shop_scene.instantiate()
+		add_child(shop_node)
+		updateCoins()
+		
 
 
 func addCoin():
@@ -74,3 +81,5 @@ func addCoin():
 func updateCoins():
 	if building_node != null:
 		$BuildingState.updateCoins(dungeon_coins)
+	if shop_node != null:
+		$ShoppeScene.updateCoins(dungeon_coins)
