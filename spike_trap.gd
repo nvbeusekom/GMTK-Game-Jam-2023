@@ -2,6 +2,8 @@ extends Node2D
 
 var bodiesList = []
 
+var power = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -28,4 +30,4 @@ func _on_area_2d_body_exited(body):
 func _on_timer_timeout():
 	$AnimatedSprite2D.play()
 	for body in bodiesList:
-		body.damaged(position,false)
+		body.damaged(position,power,false)

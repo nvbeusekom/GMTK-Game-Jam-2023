@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_lytl7"]
 [ext_resource type="PackedScene" uid="uid://bloethnkcb15e" path="res://skeleton.tscn" id="4_01umc"]
 [ext_resource type="PackedScene" uid="uid://b32q3pi12wwcc" path="res://money_printer.tscn" id="5_ba7iu"]
-[ext_resource type="PackedScene" uid="uid://bioj0g8ubs3mr" path="res://spike_trap.tscn" id="5_hk1lm"]
+[ext_resource type="PackedScene" path="res://spike_trap.tscn" id="5_hk1lm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n14ln"]
 vertices = PackedVector2Array(1, 67, -29, -23, 66, 2, 61, 61, 98, 62, 126, 2, 127, 64, 97, 99, 62, 99, 2, 128, 387, 130, 383, 67)
