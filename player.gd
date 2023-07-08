@@ -13,7 +13,7 @@ var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0
 
 var health = 30
-var power = 1
+var power = 5
 var swingReady = true
 var swingUp = false
 var swingDown = false

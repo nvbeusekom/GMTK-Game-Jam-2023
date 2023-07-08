@@ -11,6 +11,7 @@ func _ready():
 	playerpos = $Player.position
 	coins = 0
 	$crawl_HUD.set_health($Player.health)
+	$crawl_HUD.set_strength($Player.power)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-
+var heartArray = []
+var swordArray = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,12 +14,25 @@ func _process(delta):
 
 
 func set_health(health):
-	for n in get_children().size():
+	for n in heartArray.size():
 		if n > 0:
-			get_children()[n].queue_free()
+			heartArray[1].queue_free()
+			heartArray.remove_at(1)
 	for n in range(health):
 		var heart = $Heart.duplicate()
 		heart.position.x -= 32 * n
 		heart.show()
 		add_child(heart)
-	
+		heartArray.append(heart)
+
+func set_strength(power):
+	for n in swordArray.size():
+		if n > 0:
+			swordArray[1].queue_free()
+			swordArray.remove_at(1)
+	for n in range(power):
+		var sword = $Sword.duplicate()
+		sword.position.x -= 32 * n
+		sword.show()
+		add_child(sword)
+		swordArray.append(sword)
