@@ -8,12 +8,13 @@ signal heal
 @export var KB_DIST = 3
 @export var KB_DURATION = 16
 @export var KB_REDUCTION = 0.99
+@export var MAX_HEALTH = 20
 var screen_size # Size of the game window.
 
 var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0
 
-var health = 30
+var health = MAX_HEALTH
 var power = 5
 var swingReady = true
 var swingUp = false
@@ -146,7 +147,10 @@ func damaged(origin, damage, KBbool):
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
 
 func healed(healAmount):
-	health += healAmount
+	if health < MAX_HEALTH:
+		health += healAmount
+	if health > MAX_HEALTH:
+		health = MAX_HEALTH
 	heal.emit()
 
 func _on_sword_swing_area_entered(area):

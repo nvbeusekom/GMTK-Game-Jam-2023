@@ -13,7 +13,7 @@ signal died
 var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0
 var health = MAX_HEALTH
-var power = 1
+var power = 5
 var swingReady = true
 var swingUp = false
 var swingDown = false
@@ -23,7 +23,7 @@ var movement_speed = 60.0
 var movement_delta
 var lookingleft = false
 
-var goal
+var goal = Vector2(0,0)
 
 
 func _ready():
@@ -136,6 +136,12 @@ func damaged(origin, damage, KBbool):
 		died.emit()
 	var tween: Tween = create_tween()
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
+
+func healed(healAmount):
+	if health < MAX_HEALTH:
+		health += healAmount
+	if health > MAX_HEALTH:
+		health = MAX_HEALTH
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)

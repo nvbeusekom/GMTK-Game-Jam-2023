@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_56t5q"]
 radius = 8.0
 
-[node name="HealingBerries" type="Node"]
+[node name="HealingBerries" type="Node2D"]
 script = ExtResource("1_6ghrb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

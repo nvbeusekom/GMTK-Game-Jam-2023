@@ -16,21 +16,27 @@ script = ExtResource("1_jh1jq")
 [node name="Dungeon" parent="." instance=ExtResource("2_y8fk5")]
 
 [node name="Player" parent="." instance=ExtResource("2_vocb1")]
+position = Vector2(32, 25)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+position = Vector2(15, 33)
 zoom = Vector2(2, 2)
 
 [node name="crawl_HUD" parent="." instance=ExtResource("3_ddwv3")]
 
 [node name="RangedSkeleton" parent="." instance=ExtResource("4_kxmc3")]
+position = Vector2(49, 44)
 
 [node name="DungeonBuilderInterface" parent="." instance=ExtResource("5_qm66m")]
+position = Vector2(56, 20)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(72, -9)
 stream = ExtResource("6_ttdx4")
 autoplay = true
 
 [node name="MeleeSkeleton" parent="." instance=ExtResource("7_r13ah")]
+position = Vector2(98, 25)
 
 [node name="HealingBerries" parent="." instance=ExtResource("9_ujvqi")]
 
