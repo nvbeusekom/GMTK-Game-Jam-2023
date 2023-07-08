@@ -19,7 +19,6 @@ func _ready():
 	$DungeonBuilderInterface/CanvasLayer.visible = buildMode
 	$crawl_HUD.set_health($Player.health)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# Move camera

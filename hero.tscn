@@ -1,0 +1,98 @@
+[gd_scene load_steps=17 format=3 uid="uid://vp1bnn2ub3xv"]
+
+[ext_resource type="Script" path="res://hero.gd" id="1_rwfyv"]
+[ext_resource type="Texture2D" uid="uid://0iby0t2hi17d" path="res://art/KnightIdle1.png" id="2_62bf0"]
+[ext_resource type="Texture2D" uid="uid://y4kvne84j5au" path="res://art/KnightIdle2.png" id="3_jeaud"]
+[ext_resource type="Texture2D" uid="uid://dwy5ljuqlhy4o" path="res://art/KnightWalk1.png" id="4_tyoya"]
+[ext_resource type="Texture2D" uid="uid://bm0a85e8air02" path="res://art/KnightWalk2.png" id="5_lgbc6"]
+[ext_resource type="Texture2D" uid="uid://dv16aotxg7i43" path="res://art/KnightWalk3.png" id="6_tu7v8"]
+[ext_resource type="Texture2D" uid="uid://chan4gvfvgad0" path="res://art/KnightWalk4.png" id="7_4xk4h"]
+[ext_resource type="Texture2D" uid="uid://cn0rkqk4oulgs" path="res://art/Sword1.png" id="8_82xjj"]
+[ext_resource type="Texture2D" uid="uid://d0nsm78ccpdwk" path="res://art/Sword2.png" id="9_8427o"]
+[ext_resource type="Texture2D" uid="uid://dexrvaf2l13fi" path="res://art/Sword3.png" id="10_fggdn"]
+[ext_resource type="Texture2D" uid="uid://c1wn02ugqtibn" path="res://art/Sword4.png" id="11_vk11s"]
+[ext_resource type="Texture2D" uid="uid://bfykcwxsvb7v8" path="res://art/Sword5.png" id="12_co1pm"]
+[ext_resource type="Texture2D" uid="uid://doj3gbwijfhik" path="res://art/Sword6.png" id="13_387sw"]
+[ext_resource type="Texture2D" uid="uid://dbneatgfonvf" path="res://art/Sword.png" id="14_rquqk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wvoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_62bf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jeaud")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tyoya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lgbc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tu7v8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4xk4h")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wxcic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_82xjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8427o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fggdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vk11s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_co1pm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_387sw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rquqk")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 60.0
+}]
+
+[node name="Hero" type="CharacterBody2D"]
+script = ExtResource("1_rwfyv")
+
+[node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8wvoj")
+animation = &"idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
+
+[node name="SwordSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, 0)
+sprite_frames = SubResource("SpriteFrames_wxcic")
+animation = &"swing"
+
+[node name="SwordSwing" type="Area2D" parent="."]
+
+[node name="SwordCollision" type="CollisionPolygon2D" parent="SwordSwing"]
+polygon = PackedVector2Array(6, -33, 6, 7, 21, 12, 27, 12, 31, 9, 33, 3, 33, -3, 29, -13, 24, -22, 17, -30, 13, -33)
+
+[connection signal="area_entered" from="SwordSwing" to="." method="_on_sword_swing_area_entered"]
