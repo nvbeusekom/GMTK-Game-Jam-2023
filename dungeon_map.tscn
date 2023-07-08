@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://n33baihu2dpu"]
 
-[ext_resource type="Texture2D" uid="uid://b0rxgol5w8mki" path="res://art/Tileset.png" id="1_voajq"]
+[ext_resource type="Texture2D" uid="uid://dfchodt72kqo0" path="res://art/Tileset.png" id="1_voajq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dtliq"]
 resource_name = "Dungeon Tiles"

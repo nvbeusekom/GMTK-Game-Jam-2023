@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cr14f7qf18prp" path="res://crawl_hud.tscn" id="3_ddwv3"]
 [ext_resource type="PackedScene" uid="uid://bloethnkcb15e" path="res://ranged_skeleton.tscn" id="4_kxmc3"]
 [ext_resource type="PackedScene" uid="uid://c2sdjcj3pyl2q" path="res://DungeonBuilderInterface.tscn" id="5_qm66m"]
-[ext_resource type="AudioStream" uid="uid://v366huvtoj4n" path="res://art/JulesNathanGameMusic.wav" id="6_ttdx4"]
+[ext_resource type="AudioStream" uid="uid://mbt475m0iery" path="res://art/JulesNathanGameMusic.wav" id="6_ttdx4"]
 [ext_resource type="PackedScene" uid="uid://drp1m2pevdam6" path="res://melee_skeleton.tscn" id="7_r13ah"]
-[ext_resource type="PackedScene" uid="uid://r01onskbhpaw" path="res://healing_berries.tscn" id="9_ujvqi"]
+[ext_resource type="PackedScene" path="res://healing_berries.tscn" id="9_ujvqi"]
 
 [node name="CrawlingState" type="Node"]
 script = ExtResource("1_jh1jq")

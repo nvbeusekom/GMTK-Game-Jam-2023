@@ -17,10 +17,10 @@ func setHeartHave(heart):
 	$CanvasLayer/HeartHaveLabel.text = "You have: " + str(heart)
 	
 func setPowerCost(cost):
-	$CanvasLayer/PowerCostLabel.text = "$" + str(cost)
+	$CanvasLayer/SwordCostLabel.text = "$" + str(cost)
 	
 func setHeartCost(cost):
 	$CanvasLayer/HeartCostLabel.text = "$" + str(cost)
 	
 func setMoney(money):
-	pass
+	$CanvasLayer/MoneyLabel.text = "You have: $" + str(money)

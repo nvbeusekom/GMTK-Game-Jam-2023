@@ -17,7 +17,7 @@ var cost = 0
 var lock = false
 var lockedPositions = []
 
-var hero_goal = Vector2(800,50)
+var hero_goal = Vector2(500,50)
 
 @export var cost_spike = 10
 @export var cost_printer = 1
