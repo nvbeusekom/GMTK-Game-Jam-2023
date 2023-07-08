@@ -18,6 +18,9 @@ var wall_collide = false
 
 var health = 5
 var power = 1
+
+var attacking = false
+var arrow = load("res://arrow.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -30,10 +33,11 @@ func _process(delta):
 	$BodySpriteAnimation.flip_h = get_node("/root/dungeoncrawl").playerpos.x < position.x
 	$BodySpriteAnimation.play()
 	
-		
 func _physics_process(delta):
-	if (get_node("/root/dungeoncrawl").playerpos - position).length() < 10:
-		$BodySpriteAnimation.animation = "attack"
+	if (get_node("/root/dungeoncrawl").playerpos - position).length() < 120:
+		if !attacking:
+			
+			$BodySpriteAnimation.animation = "attack"
 	elif (get_node("/root/dungeoncrawl").playerpos - position).length() < 200:
 		$BodySpriteAnimation.animation = "walk"
 		movement_delta = movement_speed * delta
@@ -55,8 +59,12 @@ func _physics_process(delta):
 				_on_velocity_computed(new_velocity)
 	else:
 		$BodySpriteAnimation.animation = "idle"
+
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
+	
+func shootArrow():
+	
 	
 func damaged(origin, damage):
 	print("damage")

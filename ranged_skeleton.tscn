@@ -66,10 +66,14 @@ animations = [{
 
 [node name="RangedSkeleton" type="Area2D" groups=["Enemy", "EnemyOfHero"]]
 script = ExtResource("1_qsjdr")
+SPEED = null
+KB_DIST = null
+KB_DURATION = null
+KB_REDUCTION = null
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bop5i")
-animation = &"walk"
+animation = &"attack"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-6, -14, 11, -14, 11, 11, -6, 11)
@@ -78,6 +82,9 @@ polygon = PackedVector2Array(-6, -14, 11, -14, 11, 11, -6, 11)
 avoidance_enabled = true
 radius = 15.0
 debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
