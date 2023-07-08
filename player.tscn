@@ -1,28 +1,27 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1b4p5ddswqy0"]
+[gd_scene load_steps=16 format=3 uid="uid://c1b4p5ddswqy0"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k4wsb"]
-[ext_resource type="Texture2D" uid="uid://0iby0t2hi17d" path="res://art/KnightIdle1.png" id="2_1kifn"]
-[ext_resource type="Texture2D" uid="uid://y4kvne84j5au" path="res://art/KnightIdle2.png" id="3_u4xnr"]
-[ext_resource type="Texture2D" uid="uid://dwy5ljuqlhy4o" path="res://art/KnightWalk1.png" id="4_jopfn"]
-[ext_resource type="Texture2D" uid="uid://bm0a85e8air02" path="res://art/KnightWalk2.png" id="5_mkc0g"]
-[ext_resource type="Texture2D" uid="uid://dv16aotxg7i43" path="res://art/KnightWalk3.png" id="6_pdwse"]
-[ext_resource type="Texture2D" uid="uid://chan4gvfvgad0" path="res://art/KnightWalk4.png" id="7_lcno7"]
-[ext_resource type="Texture2D" uid="uid://dbneatgfonvf" path="res://art/Sword.png" id="8_8bf3j"]
-[ext_resource type="Texture2D" uid="uid://cn0rkqk4oulgs" path="res://art/Sword1.png" id="8_wwhbk"]
-[ext_resource type="Texture2D" uid="uid://d0nsm78ccpdwk" path="res://art/Sword2.png" id="9_2y5j6"]
-[ext_resource type="Texture2D" uid="uid://dexrvaf2l13fi" path="res://art/Sword3.png" id="10_qhkoy"]
-[ext_resource type="Texture2D" uid="uid://c1wn02ugqtibn" path="res://art/Sword4.png" id="11_qpbqc"]
-[ext_resource type="Texture2D" uid="uid://bfykcwxsvb7v8" path="res://art/Sword5.png" id="12_vpvfv"]
-[ext_resource type="Texture2D" uid="uid://doj3gbwijfhik" path="res://art/Sword6.png" id="13_f1lv5"]
+[ext_resource type="Texture2D" uid="uid://cntbe1kukiogt" path="res://art/DarkKnightIdle1.png" id="2_mrfik"]
+[ext_resource type="Texture2D" uid="uid://c0s0abkjelbvu" path="res://art/DarkKnightIdle2.png" id="3_o0ngk"]
+[ext_resource type="Texture2D" uid="uid://jcfa1ttmdi1g" path="res://art/DarkKnightWalk1.png" id="4_365e8"]
+[ext_resource type="Texture2D" uid="uid://dkv0rmps7tp42" path="res://art/DarkKnightWalk2.png" id="5_6uqw0"]
+[ext_resource type="Texture2D" uid="uid://c1lb4f32seeck" path="res://art/DarkKnightWalk3.png" id="6_k0u0j"]
+[ext_resource type="Texture2D" uid="uid://candgxxowtnue" path="res://art/DarkKnightWalk4.png" id="7_3rv34"]
+[ext_resource type="Texture2D" uid="uid://c5nl7k4uci7o3" path="res://art/SwordDark1.png" id="8_a3wnr"]
+[ext_resource type="Texture2D" uid="uid://6mwdv4whg8k4" path="res://art/SwordDark2.png" id="9_7pawj"]
+[ext_resource type="Texture2D" uid="uid://dts7wmpcfygol" path="res://art/SwordDark3.png" id="10_p7e3i"]
+[ext_resource type="Texture2D" uid="uid://cioosaceo30lk" path="res://art/SwordDark4.png" id="11_8vi5a"]
+[ext_resource type="Texture2D" uid="uid://du8hc3ahvqjoy" path="res://art/SwordDark5.png" id="12_u32jj"]
+[ext_resource type="Texture2D" uid="uid://s0b33tl3yi0a" path="res://art/SwordDark6.png" id="13_ihrhs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wvoj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_1kifn")
+"texture": ExtResource("2_mrfik")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_u4xnr")
+"texture": ExtResource("3_o0ngk")
 }],
 "loop": true,
 "name": &"idle",
@@ -30,16 +29,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_jopfn")
+"texture": ExtResource("4_365e8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_mkc0g")
+"texture": ExtResource("5_6uqw0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_pdwse")
+"texture": ExtResource("6_k0u0j")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_lcno7")
+"texture": ExtResource("7_3rv34")
 }],
 "loop": true,
 "name": &"walk",
@@ -50,25 +49,25 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_wwhbk")
+"texture": ExtResource("8_a3wnr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_2y5j6")
+"texture": ExtResource("9_7pawj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_qhkoy")
+"texture": ExtResource("10_p7e3i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_qpbqc")
+"texture": ExtResource("11_8vi5a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_vpvfv")
+"texture": ExtResource("12_u32jj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_f1lv5")
+"texture": ExtResource("13_ihrhs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_8bf3j")
+"texture": ExtResource("8_a3wnr")
 }],
 "loop": false,
 "name": &"swing",

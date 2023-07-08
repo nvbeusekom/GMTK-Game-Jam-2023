@@ -26,7 +26,6 @@ func _ready():
 	$DungeonBuilderInterface/CanvasLayer/CostLabel3.text = "5"
 	$DungeonBuilderInterface/CanvasLayer/CostLabel4.text = "3"
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# Move camera
