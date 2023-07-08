@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d4fqvdsq5gp6n"]
 
 [ext_resource type="Script" path="res://crawl_HUD.gd" id="1_ec3ul"]
-[ext_resource type="Texture2D" uid="uid://db18xq8nq3ufq" path="res://art/Coin.png" id="2_vtdqn"]
+[ext_resource type="Texture2D" uid="uid://1j3mukxivt08" path="res://art/heart.png" id="2_o4scl"]
 [ext_resource type="Script" path="res://Heart.gd" id="3_wrolj"]
 
 [node name="crawl_HUD" type="CanvasLayer"]
@@ -9,5 +9,5 @@ script = ExtResource("1_ec3ul")
 
 [node name="Heart" type="Sprite2D" parent="."]
 position = Vector2(1064, 16)
-texture = ExtResource("2_vtdqn")
+texture = ExtResource("2_o4scl")
 script = ExtResource("3_wrolj")

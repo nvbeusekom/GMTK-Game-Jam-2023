@@ -12,34 +12,62 @@ var screen_size # Size of the game window.
 var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0
 
+var goal = Vector2(0,0)
+
 var colliding = false
 
 var wall_collide = false
 
-var health = 30
+var health = 10
 var power = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	$BodySpriteAnimation.animation = "idle"
+	position = Vector2(300,100)
+	$SpearAttack/SpearCollision.set_deferred("disabled",true)
 
 func _process(delta):
+	var playerpos = get_node("/root/dungeoncrawl").playerpos
+	var left_of_player = Vector2(playerpos.x-40,playerpos.y)
+	var right_of_player = Vector2(playerpos.x+40,playerpos.y)
 	
-	$NavigationAgent2D.set_target_position(get_node("/root/dungeoncrawl").playerpos)
+	if (left_of_player - position).length() < (right_of_player - position).length():
+		goal = left_of_player
+	else:
+		goal = right_of_player
 	
-	$BodySpriteAnimation.flip_h = get_node("/root/dungeoncrawl").playerpos.x < position.x
+	$NavigationAgent2D.set_target_position(goal)
+	
+	
+	$BodySpriteAnimation.flip_h = playerpos.x < position.x
+	if($BodySpriteAnimation.flip_h):
+		$SpearAttack/SpearCollision.scale.x = -1
+		$CollisionPolygon2D.scale.x = -1
+	else:
+		$SpearAttack/SpearCollision.scale.x = 1
+		$CollisionPolygon2D.scale.x = 1
 	$BodySpriteAnimation.play()
 	
 		
 func _physics_process(delta):
-	if (get_node("/root/dungeoncrawl").playerpos - position).length() < 10:
-		$BodySpriteAnimation.animation = "attack"            
-	elif (get_node("/root/dungeoncrawl").playerpos - position).length() < 200:
+	var playerpos = get_node("/root/dungeoncrawl").playerpos
+	if (goal - position).length() < 10 && knockback_counter == 0:
+		$BodySpriteAnimation.animation = "attack"
+		if $BodySpriteAnimation.frame == 3:
+			$SpearAttack/SpearCollision.set_deferred("disabled",false)
+		elif $BodySpriteAnimation.frame > 4:
+			$SpearAttack/SpearCollision.set_deferred("disabled",true)
+	elif (goal - position).length() < 200 || knockback_counter > 0:
+		$SpearAttack/SpearCollision.set_deferred("disabled",true)
 		$BodySpriteAnimation.animation = "walk"
 		movement_delta = movement_speed * delta
 		var next_path_position: Vector2 = $NavigationAgent2D.get_next_path_position()
 		var current_agent_position: Vector2 = global_position
 		var new_velocity: Vector2 = (next_path_position - current_agent_position).normalized() * movement_delta
+		
+		
+		
 		if knockback_counter > 0:
 			knockback_counter -= 1
 			var new_location = knockback_velocity
@@ -54,6 +82,7 @@ func _physics_process(delta):
 			else:
 				_on_velocity_computed(new_velocity)
 	else:
+		$SpearAttack/SpearCollision.set_deferred("disabled",true)
 		$BodySpriteAnimation.animation = "idle"
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
@@ -69,6 +98,21 @@ func damaged(origin, damage):
 		queue_free()
 	
 	
+func player_entered(body):
+	var player := body as CharacterBody2D
+	if not player:
+		return
+	if not colliding:
+		player.damaged(position,power, true)
+	colliding = true
+	
+func player_exited(body):
+	var player := body as CharacterBody2D
+	if not player:
+		return
+	colliding = false
+	
+	
 func _on_body_entered(body):
 	var player := body as CharacterBody2D
 	if not player:
@@ -77,17 +121,19 @@ func _on_body_entered(body):
 			return
 		wall_collide = true
 		return
-	if not colliding:
-		player.damaged(position,power,true)
-	colliding = true
-	
+	player_entered(player)
 	
 func _on_body_exited(body: PhysicsBody2D):
-	var player := body as CharacterBody2D
-	if not player:
-		return
-	colliding = false
+	player_exited(body)
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
+
+
+func _on_spear_attack_body_entered(body):
+	player_entered(body)
+
+
+func _on_spear_attack_body_exited(body):
+	player_exited(body)
