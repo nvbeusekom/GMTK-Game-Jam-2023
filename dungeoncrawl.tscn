@@ -37,10 +37,10 @@ navigation_polygon = SubResource("NavigationPolygon_n14ln")
 
 [node name="DungeonBuilderInterface" parent="." instance=ExtResource("7_7dg6l")]
 
-[node name="MeleeSkeleton" parent="." instance=ExtResource("9_a5mk1")]
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_eee1v")
 autoplay = true
+
+[node name="MeleeSkeleton" parent="." instance=ExtResource("9_a5mk1")]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
