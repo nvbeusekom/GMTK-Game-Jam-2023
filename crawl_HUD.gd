@@ -13,4 +13,12 @@ func _process(delta):
 
 
 func set_health(health):
-	pass
+	for n in get_children().size():
+		if n > 0:
+			get_children()[n].queue_free()
+	for n in range(health):
+		var heart = $Heart.duplicate()
+		heart.position.x -= 32 * n
+		heart.show()
+		add_child(heart)
+	

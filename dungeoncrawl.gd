@@ -56,7 +56,6 @@ func addCoin():
 	
 func updateCoins():
 	$DungeonBuilderInterface/CanvasLayer/CoinCountLabel.text = str(coins)
-	print(coins)
 
 
 func _on_player_hit():

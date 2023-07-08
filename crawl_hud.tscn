@@ -8,5 +8,6 @@
 script = ExtResource("1_ec3ul")
 
 [node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(1064, 16)
 texture = ExtResource("2_vtdqn")
 script = ExtResource("3_wrolj")
