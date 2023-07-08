@@ -20,15 +20,19 @@ var wall_collide = false
 
 var health = 10
 var power = 1
+
+var placed_by_player = false
+
+var playerpos = Vector2(0,0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	$BodySpriteAnimation.animation = "idle"
-	position = Vector2(300,100)
 	$SpearAttack/SpearCollision.set_deferred("disabled",true)
 
 func _process(delta):
-	var playerpos = get_parent().playerpos
+	playerpos = get_tree().get_root().get_child(0).playerpos
 	var left_of_player = Vector2(playerpos.x-40,playerpos.y)
 	var right_of_player = Vector2(playerpos.x+40,playerpos.y)
 	
@@ -51,7 +55,6 @@ func _process(delta):
 	
 		
 func _physics_process(delta):
-	var playerpos = get_parent().playerpos
 	if (goal - position).length() < 10 && knockback_counter == 0:
 		$BodySpriteAnimation.animation = "attack"
 		if $BodySpriteAnimation.frame == 3:

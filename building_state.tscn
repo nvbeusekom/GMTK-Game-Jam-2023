@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqfs863sxrfh0"]
+[gd_scene load_steps=5 format=3 uid="uid://cqfs863sxrfh0"]
 
-[ext_resource type="PackedScene" uid="uid://cxopgiwro68ow" path="res://dungeon.tscn" id="1_iupth"]
+[ext_resource type="Script" path="res://building_state.gd" id="1_x03jg"]
+[ext_resource type="Script" path="res://BuildingCamera.gd" id="2_voagr"]
+[ext_resource type="PackedScene" uid="uid://c2sdjcj3pyl2q" path="res://DungeonBuilderInterface.tscn" id="3_7lodv"]
+[ext_resource type="PackedScene" uid="uid://vp1bnn2ub3xv" path="res://hero.tscn" id="3_kyokx"]
 
 [node name="BuildingState" type="Node"]
+script = ExtResource("1_x03jg")
 
-[node name="Dungeon" parent="." instance=ExtResource("1_iupth")]
+[node name="DungeonBuilderInterface" parent="." instance=ExtResource("3_7lodv")]
+
+[node name="Hero" parent="." instance=ExtResource("3_kyokx")]
 
 [node name="BuildingCamera" type="Camera2D" parent="."]
+script = ExtResource("2_voagr")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+
+[connection signal="died" from="Hero" to="." method="_on_hero_died"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

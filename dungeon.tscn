@@ -1,7 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxopgiwro68ow"]
+[gd_scene load_steps=5 format=3 uid="uid://cxopgiwro68ow"]
 
 [ext_resource type="PackedScene" uid="uid://blwdek4my56mj" path="res://dungeon_map.tscn" id="1_6qhx6"]
+[ext_resource type="Script" path="res://dungeon.gd" id="1_m1qic"]
+[ext_resource type="Texture2D" uid="uid://db18xq8nq3ufq" path="res://art/Coin.png" id="3_a7ryb"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pcg7n"]
+vertices = PackedVector2Array(98, 62, 126, 2, 127, 64, 97, 99, 66, 2, 61, 61, 0, 29, 30, 2, 2, 128, 384, -1, 575, 0, 560, 240, 384, 64, -31, 29, -31, -31, 29, -31, 62, 99, 383, 125, 400, 272, 848, 272, 720, 240, 848, 16, 720, 16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 7, 4, 5, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(6, 13, 14, 15, 7), PackedInt32Array(8, 5, 16), PackedInt32Array(17, 8, 16, 3), PackedInt32Array(17, 3, 2, 12), PackedInt32Array(17, 12, 11, 18), PackedInt32Array(19, 18, 11, 20), PackedInt32Array(21, 19, 20, 22)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2, 128, 383, 125, 400, 272, 848, 272, 848, 16, 720, 16, 720, 240, 560, 240, 575, 0, 384, -1, 384, 64, 127, 64, 126, 2, 66, 2, 30, 2, 29, -31, -31, -31, -31, 29, 0, 29), PackedVector2Array(98, 62, 97, 99, 62, 99, 61, 61)])
 
 [node name="Dungeon" type="Node"]
+script = ExtResource("1_m1qic")
 
 [node name="DungeonMap" parent="." instance=ExtResource("1_6qhx6")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_pcg7n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(801, 56)
+texture = ExtResource("3_a7ryb")

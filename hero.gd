@@ -2,13 +2,17 @@ extends CharacterBody2D
 
 var screen_size # Size of the game window.
 
+signal died
+
 @export var SPEED = 80 # How fast the player will move (pixels/sec).
 @export var KB_DIST = 3
 @export var KB_DURATION = 16
 @export var KB_REDUCTION = 0.99
+@export var MAX_HEALTH = 3
+
 var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0
-var health = 300
+var health = MAX_HEALTH
 var power = 1
 var swingReady = true
 var swingUp = false
@@ -18,15 +22,20 @@ var lookingLeft = false
 var movement_speed = 60.0
 var movement_delta
 var lookingleft = false
+
+var goal
+
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	$SwordSwing/SwordCollision.set_deferred("disabled",true)
 	$BodySpriteAnimation.play()
 
 func _process(delta):
+	
 	var length = 1000000
 	velocity = Vector2.ZERO # The player's movement vector.
-	$NavigationAgent2D.set_target_position(Vector2(0,0))
+	$NavigationAgent2D.set_target_position(goal)
 	for enemy in get_tree().get_nodes_in_group("EnemyOfHero"):
 		if (enemy.position - position).length() < 100:
 			if length > (enemy.position - position).length():
@@ -124,7 +133,7 @@ func damaged(origin, damage, KBbool):
 		knockback_velocity = knockback.normalized() * KB_DIST * SPEED
 		knockback_counter = KB_DURATION
 	if(health <= 0):
-		queue_free()
+		died.emit()
 	var tween: Tween = create_tween()
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
 

@@ -14,7 +14,7 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	get_node("/root/dungeoncrawl").addCoin()
+	get_parent().get_parent().addCoin()
 
 
 func _on_money_printer_area_2d_hit(position, power):

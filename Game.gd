@@ -2,12 +2,26 @@ extends Node
 var states = ["main menu","building","crawling","shop"]
 var game_state = "building"
 
+const starting_coins = 10
+
 var dungeon_node = null
+
+var building_scene = preload("res://building_state.tscn")
+#var main_menu_scene = preload("res://main_menu.tscn")
+var crawling_scene = preload("res://crawling_state.tscn")
+#var shop_scene = preload("res://my_scene.tscn")
 
 var main_menu_node = null
 var building_node = null
 var crawling_node = null
 var shop_node = null
+
+var playerpos = Vector2(0,0)
+
+var dungeon_coins = starting_coins
+
+var crawling_coins = 0
+
 # (Minus cutscenes)
 # Game states: Main menu -> Building -> Crawling <-> Shop
 
@@ -33,10 +47,30 @@ func process_main_menu(delta):
 	
 func process_building(delta):
 	if building_node == null:
-		pass #init
+		building_node = building_scene.instantiate()
+		add_child(building_node)
+		updateCoins()
+		
+	playerpos = $BuildingState/Hero.position
+	if ($BuildingState/Hero.position - $BuildingState.hero_goal).length() < 10:
+		$BuildingState.queue_free()
+		building_node = null
+		game_state = "shop"
+		crawling_coins = dungeon_coins
+		dungeon_coins = starting_coins
+		
 
 func process_crawling(delta):
 	pass
 	
 func process_shop(delta):
 	pass
+
+
+func addCoin():
+	dungeon_coins += 1
+	updateCoins()
+	
+func updateCoins():
+	if building_node != null:
+		$BuildingState.updateCoins(dungeon_coins)
