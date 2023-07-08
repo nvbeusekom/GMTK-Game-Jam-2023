@@ -81,6 +81,8 @@ func damaged(origin, damage):
 	var knockback = (position - origin) 
 	knockback_velocity = knockback.normalized() * KB_DIST * SPEED
 	knockback_counter = KB_DURATION
+	var tween: Tween = create_tween()
+	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
 	if(health <= 0):
 		queue_free()
 	

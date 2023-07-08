@@ -125,6 +125,8 @@ func damaged(origin, damage, KBbool):
 		knockback_counter = KB_DURATION
 	if(health <= 0):
 		queue_free()
+	var tween: Tween = create_tween()
+	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
