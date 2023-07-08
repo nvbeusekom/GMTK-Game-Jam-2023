@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://blwdek4my56mj" path="res://dungeon.tscn" id="1_w785d"]
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_lytl7"]
 [ext_resource type="PackedScene" uid="uid://b32q3pi12wwcc" path="res://money_printer.tscn" id="5_ba7iu"]
-[ext_resource type="PackedScene" path="res://spike_trap.tscn" id="5_hk1lm"]
+[ext_resource type="PackedScene" uid="uid://dn3av3sw53fqt" path="res://spike_trap.tscn" id="5_hk1lm"]
 [ext_resource type="PackedScene" uid="uid://d4fqvdsq5gp6n" path="res://crawl_hud.tscn" id="6_74dqq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n14ln"]
