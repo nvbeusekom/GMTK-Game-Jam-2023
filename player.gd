@@ -3,18 +3,21 @@ extends CharacterBody2D
 signal hit
 signal died
 signal heal
+signal victory
 
 @export var SPEED = 80 # How fast the player will move (pixels/sec).
 @export var KB_DIST = 3
 @export var KB_DURATION = 16
 @export var KB_REDUCTION = 0.99
+
 var screen_size # Size of the game window.
 
 var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0
 
-var health = 30
-var power = 5
+var MAX_HEALTH = 0
+var health = MAX_HEALTH
+var power = 0
 var swingReady = true
 var swingUp = false
 var swingDown = false
@@ -135,6 +138,7 @@ func damaged(origin, damage, KBbool):
 		return
 	health -= damage
 	if health <= 0:
+		# But first do a nice animation
 		died.emit()
 		# Probably freeze the game here
 	if KBbool:
@@ -146,7 +150,10 @@ func damaged(origin, damage, KBbool):
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
 
 func healed(healAmount):
-	health += healAmount
+	if health < MAX_HEALTH:
+		health += healAmount
+	if health > MAX_HEALTH:
+		health = MAX_HEALTH
 	heal.emit()
 
 func _on_sword_swing_area_entered(area):

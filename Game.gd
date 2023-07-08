@@ -20,7 +20,7 @@ var playerpos = Vector2(0,0)
 
 var dungeon_coins = starting_coins
 
-var crawling_coins = 0
+var crawling_coins = 10
 
 var player_max_hp = 3
 var player_power = 1
@@ -67,14 +67,36 @@ func process_building(delta):
 		
 
 func process_crawling(delta):
-	print("lets a go")
+	if crawling_node == null:
+		crawling_node = crawling_scene.instantiate()
+		add_child(crawling_node)
+		#updateCoins()
+		$CrawlingState/Player.MAX_HEALTH = player_max_hp
+		$CrawlingState/Player.health = player_max_hp
+		$CrawlingState/Player.power = player_power
+		$CrawlingState/Player.died.connect(_on_player_died)
+		$CrawlingState/Player.victory.connect(_on_victory)
+		$CrawlingState/crawl_HUD.set_health($CrawlingState/Player.health)
+		$CrawlingState/crawl_HUD.set_strength($CrawlingState/Player.power)
+	playerpos = $CrawlingState/Player.position
+	
+func _on_player_died():
+	crawling_node.queue_free()
+	crawling_node = null
+	game_state = "shop"
+	reinit_shop()
+	
+func _on_victory():
+	pass
+	# Todo: cinematic -> destroy crawling and shop -> main menu
 	
 func reinit_shop():
 	updateCoins()
+	print('test')
 	$ShoppeScene/CanvasLayer/HeartBuyButton.pressed.connect(_on_heart_buy)
 	$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.connect(_on_sword_buy)
 	$ShoppeScene/CanvasLayer/ContinueButton.pressed.connect(_on_continue)
-	$ShoppeScene.show()
+	$ShoppeScene/CanvasLayer.show()
 	
 func process_shop(delta):
 	if shop_node == null:
@@ -101,7 +123,7 @@ func _on_continue():
 	$ShoppeScene/CanvasLayer/HeartBuyButton.pressed.disconnect(_on_heart_buy)
 	$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.disconnect(_on_sword_buy)
 	$ShoppeScene/CanvasLayer/ContinueButton.pressed.disconnect(_on_continue)
-	$ShoppeScene.hide()
+	$ShoppeScene/CanvasLayer.hide()
 	game_state = "crawling"
 
 func addCoin():

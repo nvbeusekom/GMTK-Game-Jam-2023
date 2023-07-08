@@ -25,6 +25,8 @@ var playerpos = Vector2(0,0)
 
 var attacking = false
 var arrow = load("res://arrow.tscn")
+var healBerries = load("res://healing_berries.tscn")
+var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -88,6 +90,11 @@ func damaged(origin, damage):
 	var tween: Tween = create_tween()
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
 	if(health <= 0):
+		rng.randomize()
+		if rng.randi_range(0,10) < 4:
+			var berry = healBerries.instantiate()
+			berry.position = position
+			add_sibling(berry)
 		queue_free()
 	
 func _on_body_entered(body):
