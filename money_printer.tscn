@@ -75,7 +75,7 @@ script = ExtResource("1_anogo")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3lshg")
 animation = &"print"
-frame_progress = 0.117939
+frame_progress = 0.581824
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
