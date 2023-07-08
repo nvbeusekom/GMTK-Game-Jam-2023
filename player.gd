@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal hit
+
 @export var SPEED = 80 # How fast the player will move (pixels/sec).
 @export var KB_DIST = 3
 @export var KB_DURATION = 16
@@ -118,11 +120,11 @@ func damaged(origin, damage, KBbool):
 		var knockback = (position - origin) 
 		knockback_velocity = knockback.normalized() * KB_DIST * SPEED
 		knockback_counter = KB_DURATION
-	
+	hit.emit()
 	
 	
 
 
 func _on_sword_swing_area_entered(area):
-	area.damaged(position, power)
+	area.damagssed(position, power)
 	$SwordSwing/SwordCollision.set_deferred("disabled",true)
