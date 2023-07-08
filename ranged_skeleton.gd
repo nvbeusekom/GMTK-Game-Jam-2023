@@ -69,8 +69,6 @@ func _physics_process(delta):
 				_on_velocity_computed(new_velocity)
 	elif !attacking:
 		$BodySpriteAnimation.animation = "idle"
-		
-	
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
