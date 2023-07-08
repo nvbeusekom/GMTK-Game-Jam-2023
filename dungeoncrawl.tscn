@@ -3,14 +3,12 @@
 [ext_resource type="Script" path="res://dungeoncrawl.gd" id="1_k525v"]
 [ext_resource type="PackedScene" uid="uid://blwdek4my56mj" path="res://dungeon.tscn" id="1_w785d"]
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_lytl7"]
-[ext_resource type="PackedScene" uid="uid://b32q3pi12wwcc" path="res://money_printer.tscn" id="5_ba7iu"]
 [ext_resource type="PackedScene" uid="uid://bioj0g8ubs3mr" path="res://spike_trap.tscn" id="5_hk1lm"]
-
-[ext_resource type="PackedScene" uid="uid://bahp6w83mspqm" path="res://melee_skeleton.tscn" id="9_a5mk1"]
 [ext_resource type="PackedScene" path="res://crawl_hud.tscn" id="6_74dqq"]
 [ext_resource type="PackedScene" uid="uid://c2sdjcj3pyl2q" path="res://DungeonBuilderInterface.tscn" id="7_7dg6l"]
 [ext_resource type="PackedScene" uid="uid://bloethnkcb15e" path="res://ranged_skeleton.tscn" id="7_xurb4"]
-[ext_resource type="PackedScene" uid="uid://vp1bnn2ub3xv" path="res://hero.tscn" id="9_lgjhr"]
+[ext_resource type="PackedScene" uid="uid://drp1m2pevdam6" path="res://melee_skeleton.tscn" id="9_a5mk1"]
+[ext_resource type="AudioStream" uid="uid://v366huvtoj4n" path="res://art/JulesNathanGameMusic.wav" id="11_eee1v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n14ln"]
 vertices = PackedVector2Array(1, 67, -29, -23, 66, 2, 61, 61, 98, 62, 126, 2, 127, 64, 97, 99, 62, 99, 2, 128, 387, 130, 383, 67)
@@ -33,9 +31,6 @@ zoom = Vector2(2, 2)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_n14ln")
 
-[node name="MoneyPrinter" parent="." instance=ExtResource("5_ba7iu")]
-position = Vector2(80, 74)
-
 [node name="crawl_HUD" parent="." instance=ExtResource("6_74dqq")]
 
 [node name="RangedSkeleton" parent="." instance=ExtResource("7_xurb4")]
@@ -43,7 +38,9 @@ position = Vector2(80, 74)
 [node name="DungeonBuilderInterface" parent="." instance=ExtResource("7_7dg6l")]
 
 [node name="MeleeSkeleton" parent="." instance=ExtResource("9_a5mk1")]
-[node name="Hero" parent="." instance=ExtResource("9_lgjhr")]
-position = Vector2(500, 100)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_eee1v")
+autoplay = true
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]

@@ -56,7 +56,6 @@ func _input(event):
 					objectToPlace = load("res://spike_trap.tscn")
 			else:
 				if objectToPlace != null:
-					print("Place")
 					var scene = objectToPlace.instantiate()
 					#scene.position = $Dungeon.get_global_mouse_position()
 					var mousePos = $Dungeon.get_global_mouse_position()#get_viewport().get_mouse_position()
