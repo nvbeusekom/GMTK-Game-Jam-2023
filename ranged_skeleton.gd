@@ -29,9 +29,10 @@ func _ready():
 
 func _process(delta):
 	
-	$NavigationAgent2D.set_target_position(get_node("/root/dungeoncrawl").playerpos)
+
+	$NavigationAgent2D.set_target_position(get_parent().playerpos)
 	
-	$BodySpriteAnimation.flip_h = get_node("/root/dungeoncrawl").playerpos.x < position.x
+	$BodySpriteAnimation.flip_h = get_parent().playerpos.x < position.x
 	
 	if($BodySpriteAnimation.flip_h):
 		$CollisionPolygon2D.scale.x = -1
@@ -42,13 +43,13 @@ func _process(delta):
 	
 func _physics_process(delta):
 	var new_velocity = Vector2(0,0)
-	if (get_node("/root/dungeoncrawl").playerpos - position).length() < 120 && knockback_counter == 0:
+	if (get_parent().playerpos - position).length() < 120 && knockback_counter == 0:
 		if !attacking:
 			attacking = true
 			$BodySpriteAnimation.animation = "attack"
 			$Timer.start()
 			
-	elif ((get_node("/root/dungeoncrawl").playerpos - position).length() < 200 and !attacking) or knockback_counter > 0:
+	elif ((get_parent().playerpos - position).length() < 200 and !attacking) or knockback_counter > 0:
 		$BodySpriteAnimation.animation = "walk"
 		movement_delta = movement_speed * delta
 		var next_path_position: Vector2 = $NavigationAgent2D.get_next_path_position()
@@ -109,7 +110,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 
 func _on_timer_timeout():
 	var arrowObject = arrow.instantiate()
-	arrowObject.destination = get_node("/root/dungeoncrawl").playerpos
+	arrowObject.destination = get_parent().playerpos
 	arrowObject.position = position
 	add_sibling(arrowObject)
 	attacking = false

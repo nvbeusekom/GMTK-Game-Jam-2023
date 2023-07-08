@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal hit
+signal died
 
 @export var SPEED = 80 # How fast the player will move (pixels/sec).
 @export var KB_DIST = 3
@@ -25,6 +26,14 @@ func _ready():
 	$SwordSwing/SwordCollision.set_deferred("disabled",true)
 
 func _process(delta):
+	if health <= 0:
+		$BodySpriteAnimation.play()
+		$BodySpriteAnimation.animation = "death"
+		if $BodySpriteAnimation.frame == 21:
+			hide()
+		return
+		
+	
 	
 	if(swingReady == true):
 		$SwordSwing/SwordCollision.set_deferred("disabled",true)
@@ -124,6 +133,9 @@ func damaged(origin, damage, KBbool):
 	if knockback_counter > 0:
 		return
 	health -= damage
+	if health <= 0:
+		died.emit()
+		# Probably freeze the game here
 	print(health)
 	if KBbool:
 		var knockback = (position - origin) 

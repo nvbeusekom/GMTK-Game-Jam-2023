@@ -28,7 +28,7 @@ func _ready():
 	$SpearAttack/SpearCollision.set_deferred("disabled",true)
 
 func _process(delta):
-	var playerpos = get_node("/root/dungeoncrawl").playerpos
+	var playerpos = get_parent().playerpos
 	var left_of_player = Vector2(playerpos.x-40,playerpos.y)
 	var right_of_player = Vector2(playerpos.x+40,playerpos.y)
 	
@@ -51,7 +51,7 @@ func _process(delta):
 	
 		
 func _physics_process(delta):
-	var playerpos = get_node("/root/dungeoncrawl").playerpos
+	var playerpos = get_parent().playerpos
 	if (goal - position).length() < 10 && knockback_counter == 0:
 		$BodySpriteAnimation.animation = "attack"
 		if $BodySpriteAnimation.frame == 3:
