@@ -22,12 +22,19 @@ var power = 1
 func _ready():
 	screen_size = get_viewport_rect().size
 	$BodySpriteAnimation.animation = "idle"
+	position = Vector2(100,100)
 
 func _process(delta):
 	
 	$NavigationAgent2D.set_target_position(get_node("/root/dungeoncrawl").playerpos)
 	
 	$BodySpriteAnimation.flip_h = get_node("/root/dungeoncrawl").playerpos.x < position.x
+	
+	if($BodySpriteAnimation.flip_h):
+		$CollisionPolygon2D.scale.x = -1
+	else:
+		$CollisionPolygon2D.scale.x = 1
+	
 	$BodySpriteAnimation.play()
 	
 		

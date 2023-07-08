@@ -1,35 +1,45 @@
-[gd_scene load_steps=14 format=3 uid="uid://bahp6w83mspqm"]
+[gd_scene load_steps=18 format=3 uid="uid://bahp6w83mspqm"]
 
 [ext_resource type="Script" path="res://melee_skeleton.gd" id="1_k7dtq"]
-[ext_resource type="Texture2D" uid="uid://de7tsl10almeu" path="res://art/SkeletonBowAttack1.png" id="2_dyv8q"]
-[ext_resource type="Texture2D" uid="uid://hcah330j5qjk" path="res://art/SkeletonBowAttack2.png" id="3_t7o6x"]
-[ext_resource type="Texture2D" uid="uid://deeeop00s5a28" path="res://art/SkeletonBowAttack3.png" id="4_vpj01"]
-[ext_resource type="Texture2D" uid="uid://cl5jo3fpk0dsn" path="res://art/SkeletonBowAttack4.png" id="5_8b524"]
-[ext_resource type="Texture2D" uid="uid://dlus4rgfkegxu" path="res://art/SkeletonBowAttack5.png" id="6_n10iv"]
-[ext_resource type="Texture2D" uid="uid://s2fvbqk38hb" path="res://art/SkeletonBowIdle1.png" id="7_wq0cg"]
-[ext_resource type="Texture2D" uid="uid://b2ka30etbeteq" path="res://art/SkeletonBowIdle2.png" id="8_q3jhg"]
-[ext_resource type="Texture2D" uid="uid://cbnwsajjxei4x" path="res://art/SkeletonBowWalk2.png" id="9_43lhe"]
-[ext_resource type="Texture2D" uid="uid://blcpu3wuy1cw2" path="res://art/SkeletonBowWalk3.png" id="10_h2s1h"]
-[ext_resource type="Texture2D" uid="uid://t1jvbuavjdep" path="res://art/SkeletonBowWalk4.png" id="11_f4fi0"]
-[ext_resource type="Texture2D" uid="uid://11bohtbbi66d" path="res://art/SkeletonBowWalk5.png" id="12_mgt4l"]
+[ext_resource type="Texture2D" uid="uid://dffx6fb7f3k61" path="res://art/SkeletonSpearAttack1.png" id="2_m8svw"]
+[ext_resource type="Texture2D" uid="uid://6ywpg54x8h0j" path="res://art/SkeletonSpearAttack2.png" id="3_4ynok"]
+[ext_resource type="Texture2D" uid="uid://d3aob2sjbggre" path="res://art/SkeletonSpearAttack3.png" id="4_8i3xd"]
+[ext_resource type="Texture2D" uid="uid://bdvfb77a4mc0j" path="res://art/SkeletonSpearAttack4.png" id="5_fhs31"]
+[ext_resource type="Texture2D" uid="uid://bstuafaxvamup" path="res://art/SkeletonSpearAttack5.png" id="6_tiycx"]
+[ext_resource type="Texture2D" uid="uid://hqp3c2w8c8sp" path="res://art/SkeletonSpearAttack6.png" id="7_ihdn0"]
+[ext_resource type="Texture2D" uid="uid://brteeckpmgrsm" path="res://art/SkeletonSpearAttack7.png" id="8_aignk"]
+[ext_resource type="Texture2D" uid="uid://c6hqmw12wvkuk" path="res://art/SkeletonSpearIdle1.png" id="9_pm0y7"]
+[ext_resource type="Texture2D" uid="uid://ccb3fr2lf0yq6" path="res://art/SkeletonSpearIdle2.png" id="10_it7cu"]
+[ext_resource type="Texture2D" uid="uid://bvmx2bjrlqohi" path="res://art/SkeletonSpearWalk1.png" id="11_aa03a"]
+[ext_resource type="Texture2D" uid="uid://dx876les1b8wu" path="res://art/SkeletonSpearWalk2.png" id="12_633ve"]
+[ext_resource type="Texture2D" uid="uid://6w5u2p2u8b2v" path="res://art/SkeletonSpearWalk3.png" id="13_th2li"]
+[ext_resource type="Texture2D" uid="uid://c81mgvgr17dur" path="res://art/SkeletonSpearWalk4.png" id="14_3e7f2"]
+[ext_resource type="Texture2D" uid="uid://bsodwtfq8qpl5" path="res://art/SkeletonSpearWalk5.png" id="15_80f1j"]
+[ext_resource type="Script" path="res://SpearAttack.gd" id="16_wfcgk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h1li2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_dyv8q")
+"texture": ExtResource("2_m8svw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_t7o6x")
+"texture": ExtResource("3_4ynok")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_vpj01")
+"texture": ExtResource("4_8i3xd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_8b524")
+"texture": ExtResource("5_fhs31")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_n10iv")
+"texture": ExtResource("6_tiycx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ihdn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aignk")
 }],
 "loop": false,
 "name": &"attack",
@@ -37,10 +47,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_wq0cg")
+"texture": ExtResource("9_pm0y7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_q3jhg")
+"texture": ExtResource("10_it7cu")
 }],
 "loop": true,
 "name": &"idle",
@@ -48,16 +58,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_43lhe")
+"texture": ExtResource("11_aa03a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_h2s1h")
+"texture": ExtResource("12_633ve")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_f4fi0")
+"texture": ExtResource("13_th2li")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_mgt4l")
+"texture": ExtResource("14_3e7f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_80f1j")
 }],
 "loop": true,
 "name": &"walk",
@@ -68,16 +81,29 @@ animations = [{
 script = ExtResource("1_k7dtq")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_h1li2")
-animation = &"walk"
+animation = &"attack"
+frame = 6
+frame_progress = 1.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-6, -14, 11, -14, 11, 11, -6, 11)
+position = Vector2(0, -1)
+polygon = PackedVector2Array(-9, -4, 2, -15, 10, -15, 10, 11, -7, 11, -9, -2)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 radius = 15.0
 debug_enabled = true
 
+[node name="SpearAttack" type="Area2D" parent="."]
+script = ExtResource("16_wfcgk")
+
+[node name="SpearCollision" type="CollisionPolygon2D" parent="SpearAttack"]
+polygon = PackedVector2Array(47, -1, 47, 0, 40, 4, 29, 7, 10, 7, 10, -9, 29, -9, 44, -3, 46, -2)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="body_entered" from="SpearAttack" to="." method="_on_spear_attack_body_entered"]
+[connection signal="body_exited" from="SpearAttack" to="." method="_on_spear_attack_body_exited"]

@@ -121,6 +121,8 @@ func swordSwingCollision(delta):
 	$SwordSwing/SwordCollision.set_deferred("disabled",false)
 
 func damaged(origin, damage, KBbool):
+	if knockback_counter > 0:
+		return
 	health -= damage
 	print(health)
 	if KBbool:
