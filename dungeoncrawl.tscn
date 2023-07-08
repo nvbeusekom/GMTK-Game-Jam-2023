@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://ppiux8usd81l"]
+[gd_scene load_steps=9 format=3 uid="uid://ppiux8usd81l"]
 
 [ext_resource type="Script" path="res://dungeoncrawl.gd" id="1_k525v"]
 [ext_resource type="PackedScene" uid="uid://blwdek4my56mj" path="res://dungeon.tscn" id="1_w785d"]
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_lytl7"]
 [ext_resource type="PackedScene" uid="uid://b32q3pi12wwcc" path="res://money_printer.tscn" id="5_ba7iu"]
-[ext_resource type="PackedScene" uid="uid://dn3av3sw53fqt" path="res://spike_trap.tscn" id="5_hk1lm"]
 [ext_resource type="PackedScene" uid="uid://d4fqvdsq5gp6n" path="res://crawl_hud.tscn" id="6_74dqq"]
+[ext_resource type="PackedScene" uid="uid://bioj0g8ubs3mr" path="res://spike_trap.tscn" id="5_hk1lm"]
+[ext_resource type="PackedScene" path="res://crawl_hud.tscn" id="6_74dqq"]
+[ext_resource type="PackedScene" uid="uid://c2sdjcj3pyl2q" path="res://DungeonBuilderInterface.tscn" id="7_7dg6l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n14ln"]
 vertices = PackedVector2Array(1, 67, -29, -23, 66, 2, 61, 61, 98, 62, 126, 2, 127, 64, 97, 99, 62, 99, 2, 128, 387, 130, 383, 67)
@@ -32,5 +34,7 @@ navigation_polygon = SubResource("NavigationPolygon_n14ln")
 position = Vector2(80, 74)
 
 [node name="crawl_HUD" parent="." instance=ExtResource("6_74dqq")]
+
+[node name="DungeonBuilderInterface" parent="." instance=ExtResource("7_7dg6l")]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]

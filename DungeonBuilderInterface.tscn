@@ -1,0 +1,240 @@
+[gd_scene load_steps=30 format=3 uid="uid://c2sdjcj3pyl2q"]
+
+[ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://fonts/SHPinscher-Regular.otf" id="1_rb1ck"]
+[ext_resource type="Texture2D" uid="uid://d6dghwsiec0o" path="res://art/SpikeTrap1.png" id="2_gv6wx"]
+[ext_resource type="Texture2D" uid="uid://dhcrnd743bn1h" path="res://art/SpikeTrap2.png" id="3_0b6n5"]
+[ext_resource type="Texture2D" uid="uid://b0vkg5d13cvxt" path="res://art/SpikeTrap3.png" id="4_l8ywr"]
+[ext_resource type="Texture2D" uid="uid://cbimyh84w06n1" path="res://art/SpikeTrap4.png" id="5_7rsjb"]
+[ext_resource type="Texture2D" uid="uid://dys7osst0ibs5" path="res://art/SpikeTrap5.png" id="6_444ew"]
+[ext_resource type="Script" path="res://SpiketrapCanvas.gd" id="7_gx7v5"]
+[ext_resource type="Texture2D" uid="uid://ihe7ya5ky53d" path="res://art/MoneyPrinter1.png" id="8_cu8pb"]
+[ext_resource type="Texture2D" uid="uid://dry5ky8hdhfyf" path="res://art/MoneyPrinter2.png" id="9_6gmep"]
+[ext_resource type="Texture2D" uid="uid://cd1shjllh3ce" path="res://art/MoneyPrinter3.png" id="10_7od32"]
+[ext_resource type="Texture2D" uid="uid://5yctnltesedh" path="res://art/MoneyPrinter4.png" id="11_ws77s"]
+[ext_resource type="Texture2D" uid="uid://ck33ilbbt3k54" path="res://art/MoneyPrinter5.png" id="12_7nmyf"]
+[ext_resource type="Texture2D" uid="uid://cren01tibgn83" path="res://art/MoneyPrinter6.png" id="13_i3nrd"]
+[ext_resource type="Texture2D" uid="uid://bp6yobsul74e6" path="res://art/MoneyPrinter7.png" id="14_07u21"]
+[ext_resource type="Texture2D" uid="uid://cvb51pw4exwnp" path="res://art/MoneyPrinter8.png" id="15_5sqlq"]
+[ext_resource type="Texture2D" uid="uid://dd5jsctlxpw5y" path="res://art/MoneyPrinter9.png" id="16_xa85b"]
+[ext_resource type="Texture2D" uid="uid://d4eso42eufca0" path="res://art/MoneyPrinter10.png" id="17_bqr6i"]
+[ext_resource type="Texture2D" uid="uid://ce7m2kx31x5l4" path="res://art/MoneyPrinter11.png" id="18_g67ib"]
+[ext_resource type="Texture2D" uid="uid://byjvos3vs7fa6" path="res://art/MoneyPrinter12.png" id="19_h4hgr"]
+[ext_resource type="Texture2D" uid="uid://h7rx84ef4k6j" path="res://art/MoneyPrinter13.png" id="20_gneem"]
+[ext_resource type="Texture2D" uid="uid://cq6u6rn3emoah" path="res://art/MoneyPrinter14.png" id="21_6pv1v"]
+[ext_resource type="Texture2D" uid="uid://cyinmhy22uwsn" path="res://art/SkeletonBowIdle1.png" id="22_51o7x"]
+[ext_resource type="Texture2D" uid="uid://f2djj5pwkff" path="res://art/SkeletonBowIdle2.png" id="23_a6c2m"]
+[ext_resource type="Texture2D" uid="uid://d3ko834vmp0m8" path="res://art/SkeletonSpearIdle1.png" id="24_g1dlu"]
+[ext_resource type="Texture2D" uid="uid://dn18n6igqfwax" path="res://art/SkeletonSpearIdle2.png" id="25_25igd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kgeeu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gv6wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0b6n5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l8ywr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7rsjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_444ew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gv6wx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_thuya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cu8pb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6gmep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7od32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ws77s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7nmyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_i3nrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_07u21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5sqlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xa85b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_bqr6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_g67ib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_h4hgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_gneem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_6pv1v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbi6v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_51o7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_a6c2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uduo5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_g1dlu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_25igd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DungeonBuilderInterface" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 47.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("1_rb1ck")
+theme_override_font_sizes/font_size = 64
+text = "Coins:"
+
+[node name="CoinCountLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -398.0
+offset_top = -81.0
+offset_right = -230.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("1_rb1ck")
+theme_override_font_sizes/font_size = 64
+text = "0
+"
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 24.0
+offset_right = -49.0
+offset_bottom = 144.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 192.0
+offset_right = -49.0
+offset_bottom = 312.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Panel3" type="Panel" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -144.0
+offset_right = -49.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Panel4" type="Panel" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -312.0
+offset_right = -49.0
+offset_bottom = -192.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="SpiketrapCanvas" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(971, 108)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_kgeeu")
+script = ExtResource("7_gx7v5")
+
+[node name="MoneyPrinterCanvas" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(971, 276)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_thuya")
+script = ExtResource("7_gx7v5")
+
+[node name="SkeletonBowCanvas" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(971, 444)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_mbi6v")
+script = ExtResource("7_gx7v5")
+
+[node name="SkeletonSpearCanvas" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(971, 612)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_uduo5")
+script = ExtResource("7_gx7v5")
