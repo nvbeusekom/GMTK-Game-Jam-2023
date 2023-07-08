@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var SPEED = 80 # How fast the player will move (pixels/sec).
 @export var KB_DIST = 3
 @export var KB_DURATION = 16
-@export var KB_REDUCTION = 0.5
+@export var KB_REDUCTION = 0.99
 var screen_size # Size of the game window.
 
 var knockback_velocity = Vector2(0,0)
@@ -18,8 +18,12 @@ var lockDirection = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	$SwordSwing/SwordCollision.set_deferred("disabled",true)
 
 func _process(delta):
+	if(swingReady == true):
+		$SwordSwing/SwordCollision.set_deferred("disabled",true)
+	
 	velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -33,10 +37,13 @@ func _process(delta):
 		lockDirection = true
 		swingReady = false
 		swingUp = true
+		swordSwingCollision(delta)
 		
-	swordSwing(delta)
+	swordSwingAnimation(delta)
 	
 	$BodySpriteAnimation.play()
+	
+	
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
@@ -57,13 +64,13 @@ func _process(delta):
 	if knockback_counter > 0:
 		knockback_counter -= 1
 		velocity += knockback_velocity
-		knockback_velocity *= 1
+		knockback_velocity *= KB_REDUCTION
 			
 	move_and_slide()
 	
 	
 	
-func swordSwing(delta):
+func swordSwingAnimation(delta):
 	var swingSpeed = 1
 	if $BodySpriteAnimation.flip_h:
 		if swingUp:
@@ -97,8 +104,15 @@ func swordSwing(delta):
 				lockDirection = false
 	
 
-func damaged(origin):
-	health -= 1
+func swordSwingCollision(delta):
+	if(velocity.x < 0):
+		$SwordSwing/SwordCollision.scale.x=-1
+	else:
+		$SwordSwing/SwordCollision.scale.x=1
+	$SwordSwing/SwordCollision.set_deferred("disabled",false)
+
+func damaged(origin, damage):
+	health -= damage
 	print(health)
 	var knockback = (position - origin) 
 	knockback_velocity = knockback.normalized() * KB_DIST * SPEED
@@ -106,3 +120,8 @@ func damaged(origin):
 	
 	
 	
+
+
+func _on_sword_swing_area_entered(area):
+	area.damaged(position, power)
+	$SwordSwing/SwordCollision.set_deferred("disabled",true)
