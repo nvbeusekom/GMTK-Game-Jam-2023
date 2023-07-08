@@ -60,4 +60,4 @@ func updateCoins():
 
 
 func _on_player_hit():
-	$crawl_HUD.set_health($Player.healths)
+	$crawl_HUD.set_health($Player.health)

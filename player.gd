@@ -126,5 +126,6 @@ func damaged(origin, damage, KBbool):
 
 
 func _on_sword_swing_area_entered(area):
-	area.damagssed(position, power)
-	$SwordSwing/SwordCollision.set_deferred("disabled",true)
+	if area.is_in_group("Enemy"):
+		area.damaged(position, power)
+		$SwordSwing/SwordCollision.set_deferred("disabled",true)
