@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn3av3sw53fqt"]
+[gd_scene load_steps=9 format=3 uid="uid://bioj0g8ubs3mr"]
 
 [ext_resource type="Script" path="res://spike_trap.gd" id="1_35eff"]
-[ext_resource type="Texture2D" uid="uid://dndsa0xkkls2p" path="res://art/SpikeTrap1.png" id="1_ug3kl"]
-[ext_resource type="Texture2D" uid="uid://cv5p8qhg1m4ft" path="res://art/SpikeTrap2.png" id="2_c0cxh"]
-[ext_resource type="Texture2D" uid="uid://dgx3rseybdd06" path="res://art/SpikeTrap3.png" id="3_gmemv"]
-[ext_resource type="Texture2D" uid="uid://bekaklqavn88n" path="res://art/SpikeTrap4.png" id="4_phaau"]
-[ext_resource type="Texture2D" uid="uid://c4rxyd2jjie13" path="res://art/SpikeTrap5.png" id="5_pbhty"]
+[ext_resource type="Texture2D" uid="uid://d6dghwsiec0o" path="res://art/SpikeTrap1.png" id="1_ug3kl"]
+[ext_resource type="Texture2D" uid="uid://dhcrnd743bn1h" path="res://art/SpikeTrap2.png" id="2_c0cxh"]
+[ext_resource type="Texture2D" uid="uid://b0vkg5d13cvxt" path="res://art/SpikeTrap3.png" id="3_gmemv"]
+[ext_resource type="Texture2D" uid="uid://cbimyh84w06n1" path="res://art/SpikeTrap4.png" id="4_phaau"]
+[ext_resource type="Texture2D" uid="uid://dys7osst0ibs5" path="res://art/SpikeTrap5.png" id="5_pbhty"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_58b6l"]
 animations = [{

@@ -26,7 +26,6 @@ func _on_area_2d_body_exited(body):
 	if bodiesList.has(body):
 		bodiesList.erase(body)
 
-
 func _on_timer_timeout():
 	$AnimatedSprite2D.play()
 	for body in bodiesList:

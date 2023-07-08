@@ -1,17 +1,17 @@
 [gd_scene load_steps=14 format=3 uid="uid://dwjvssl5pwhqm"]
 
 [ext_resource type="Script" path="res://melee_skeleton.gd" id="1_k7dtq"]
-[ext_resource type="Texture2D" uid="uid://de7tsl10almeu" path="res://art/SkeletonBowAttack1.png" id="2_dyv8q"]
-[ext_resource type="Texture2D" uid="uid://hcah330j5qjk" path="res://art/SkeletonBowAttack2.png" id="3_t7o6x"]
-[ext_resource type="Texture2D" uid="uid://deeeop00s5a28" path="res://art/SkeletonBowAttack3.png" id="4_vpj01"]
-[ext_resource type="Texture2D" uid="uid://cl5jo3fpk0dsn" path="res://art/SkeletonBowAttack4.png" id="5_8b524"]
-[ext_resource type="Texture2D" uid="uid://dlus4rgfkegxu" path="res://art/SkeletonBowAttack5.png" id="6_n10iv"]
-[ext_resource type="Texture2D" uid="uid://s2fvbqk38hb" path="res://art/SkeletonBowIdle1.png" id="7_wq0cg"]
-[ext_resource type="Texture2D" uid="uid://b2ka30etbeteq" path="res://art/SkeletonBowIdle2.png" id="8_q3jhg"]
-[ext_resource type="Texture2D" uid="uid://cbnwsajjxei4x" path="res://art/SkeletonBowWalk2.png" id="9_43lhe"]
-[ext_resource type="Texture2D" uid="uid://blcpu3wuy1cw2" path="res://art/SkeletonBowWalk3.png" id="10_h2s1h"]
-[ext_resource type="Texture2D" uid="uid://t1jvbuavjdep" path="res://art/SkeletonBowWalk4.png" id="11_f4fi0"]
-[ext_resource type="Texture2D" uid="uid://11bohtbbi66d" path="res://art/SkeletonBowWalk5.png" id="12_mgt4l"]
+[ext_resource type="Texture2D" uid="uid://dsywjntr0enx6" path="res://art/SkeletonBowAttack1.png" id="2_dyv8q"]
+[ext_resource type="Texture2D" uid="uid://seyxdbtmd85f" path="res://art/SkeletonBowAttack2.png" id="3_t7o6x"]
+[ext_resource type="Texture2D" uid="uid://bfdc2oejwsr01" path="res://art/SkeletonBowAttack3.png" id="4_vpj01"]
+[ext_resource type="Texture2D" uid="uid://dooel0w04b4oa" path="res://art/SkeletonBowAttack4.png" id="5_8b524"]
+[ext_resource type="Texture2D" uid="uid://dgan7gwcuyalo" path="res://art/SkeletonBowAttack5.png" id="6_n10iv"]
+[ext_resource type="Texture2D" uid="uid://cyinmhy22uwsn" path="res://art/SkeletonBowIdle1.png" id="7_wq0cg"]
+[ext_resource type="Texture2D" uid="uid://f2djj5pwkff" path="res://art/SkeletonBowIdle2.png" id="8_q3jhg"]
+[ext_resource type="Texture2D" uid="uid://bto2j2567xxif" path="res://art/SkeletonBowWalk2.png" id="9_43lhe"]
+[ext_resource type="Texture2D" uid="uid://nukrd5cc3j1o" path="res://art/SkeletonBowWalk3.png" id="10_h2s1h"]
+[ext_resource type="Texture2D" uid="uid://fy1hmivpw3im" path="res://art/SkeletonBowWalk4.png" id="11_f4fi0"]
+[ext_resource type="Texture2D" uid="uid://b5xramla1grcg" path="res://art/SkeletonBowWalk5.png" id="12_mgt4l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h1li2"]
 animations = [{
@@ -64,7 +64,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="MeleeSkeleton" type="Area2D"]
+[node name="MeleeSkeleton" type="Area2D" groups=["Enemy"]]
 script = ExtResource("1_k7dtq")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
