@@ -111,12 +111,13 @@ func swordSwingCollision(delta):
 		$SwordSwing/SwordCollision.scale.x=1
 	$SwordSwing/SwordCollision.set_deferred("disabled",false)
 
-func damaged(origin, damage):
+func damaged(origin, damage, KBbool):
 	health -= damage
 	print(health)
-	var knockback = (position - origin) 
-	knockback_velocity = knockback.normalized() * KB_DIST * SPEED
-	knockback_counter = KB_DURATION
+	if KBbool:
+		var knockback = (position - origin) 
+		knockback_velocity = knockback.normalized() * KB_DIST * SPEED
+		knockback_counter = KB_DURATION
 	
 	
 	

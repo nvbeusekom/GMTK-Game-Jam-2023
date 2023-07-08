@@ -4,16 +4,28 @@
 [ext_resource type="PackedScene" uid="uid://blwdek4my56mj" path="res://dungeon.tscn" id="1_w785d"]
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_lytl7"]
 [ext_resource type="PackedScene" uid="uid://b32q3pi12wwcc" path="res://money_printer.tscn" id="5_ba7iu"]
+[ext_resource type="PackedScene" uid="uid://bioj0g8ubs3mr" path="res://spike_trap.tscn" id="5_hk1lm"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_n14ln"]
+vertices = PackedVector2Array(1, 67, -29, -23, 66, 2, 61, 61, 98, 62, 126, 2, 127, 64, 97, 99, 62, 99, 2, 128, 387, 130, 383, 67)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(2, 5, 4, 3), PackedInt32Array(0, 3, 8, 9), PackedInt32Array(10, 9, 8, 7), PackedInt32Array(11, 10, 7, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2, 128, 387, 130, 383, 67, 127, 64, 126, 2, 66, 2, -29, -23, 1, 67), PackedVector2Array(98, 62, 97, 99, 62, 99, 61, 61)])
 
 [node name="dungeoncrawl" type="Node"]
 script = ExtResource("1_k525v")
 
 [node name="Dungeon" parent="." instance=ExtResource("1_w785d")]
 
+[node name="spikeTrap" parent="." instance=ExtResource("5_hk1lm")]
+position = Vector2(144, 80)
+
 [node name="Player" parent="." instance=ExtResource("2_lytl7")]
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_n14ln")
 
 [node name="MoneyPrinter" parent="." instance=ExtResource("5_ba7iu")]
 position = Vector2(80, 74)

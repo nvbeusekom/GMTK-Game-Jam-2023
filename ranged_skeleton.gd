@@ -77,7 +77,7 @@ func _on_body_entered(body):
 		wall_collide = true
 		return
 	if not colliding:
-		player.damaged(position,power)
+		player.damaged(position,power, true)
 	colliding = true
 	
 	

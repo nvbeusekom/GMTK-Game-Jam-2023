@@ -75,7 +75,7 @@ script = ExtResource("1_anogo")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3lshg")
 animation = &"print"
-frame_progress = 0.150822
+frame_progress = 0.117939
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -83,6 +83,8 @@ frame_progress = 0.150822
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_q8l3j")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="StaticBody2D"]
-estimate_radius = false
-radius = 10.0
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.6
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

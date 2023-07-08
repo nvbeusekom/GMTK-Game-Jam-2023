@@ -34,7 +34,7 @@ func _process(delta):
 		
 func _physics_process(delta):
 	if (get_node("/root/dungeoncrawl").playerpos - position).length() < 10:
-		$BodySpriteAnimation.animation = "attack"
+		$BodySpriteAnimation.animation = "attack"            
 	elif (get_node("/root/dungeoncrawl").playerpos - position).length() < 200:
 		$BodySpriteAnimation.animation = "walk"
 		movement_delta = movement_speed * delta
@@ -77,7 +77,7 @@ func _on_body_entered(body):
 		wall_collide = true
 		return
 	if not colliding:
-		player.damaged(position,power)
+		player.damaged(position,power,true)
 	colliding = true
 	
 	
