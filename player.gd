@@ -142,6 +142,8 @@ func damaged(origin, damage, KBbool):
 		knockback_velocity = knockback.normalized() * KB_DIST * SPEED
 		knockback_counter = KB_DURATION
 	hit.emit()
+	var tween: Tween = create_tween()
+	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
 
 func _on_sword_swing_area_entered(area):
 	if area.is_in_group("Enemy"):
