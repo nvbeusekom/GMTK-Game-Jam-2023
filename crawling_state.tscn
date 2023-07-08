@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://pmpbiaw8oc3q"]
+[gd_scene load_steps=9 format=3 uid="uid://pmpbiaw8oc3q"]
 
 [ext_resource type="Script" path="res://crawling_state.gd" id="1_jh1jq"]
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_vocb1"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c2sdjcj3pyl2q" path="res://DungeonBuilderInterface.tscn" id="5_qm66m"]
 [ext_resource type="AudioStream" uid="uid://v366huvtoj4n" path="res://art/JulesNathanGameMusic.wav" id="6_ttdx4"]
 [ext_resource type="PackedScene" uid="uid://drp1m2pevdam6" path="res://melee_skeleton.tscn" id="7_r13ah"]
-[ext_resource type="PackedScene" uid="uid://r01onskbhpaw" path="res://healing_berries.tscn" id="9_ujvqi"]
 
 [node name="CrawlingState" type="Node"]
 script = ExtResource("1_jh1jq")
@@ -37,7 +36,5 @@ autoplay = true
 
 [node name="MeleeSkeleton" parent="." instance=ExtResource("7_r13ah")]
 position = Vector2(98, 25)
-
-[node name="HealingBerries" parent="." instance=ExtResource("9_ujvqi")]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
