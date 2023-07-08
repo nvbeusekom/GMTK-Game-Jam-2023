@@ -1,13 +1,13 @@
 extends Node 
 var states = ["main menu","building","crawling","shop"]
-var game_state = "building"
+var game_state = "main menu"
 
 const starting_coins = 10
 
 var dungeon_node = null
 
 var building_scene = preload("res://building_state.tscn")
-#var main_menu_scene = preload("res://main_menu.tscn")
+var main_menu_scene = preload("res://main_menu.tscn")
 var crawling_scene = preload("res://crawling_state.tscn")
 var shop_scene = preload("res://shoppe_scene.tscn")
 
@@ -49,7 +49,15 @@ func _process(delta):
 			process_shop(delta)
 
 func process_main_menu(delta):
-	pass
+	if main_menu_node == null:
+		main_menu_node = main_menu_scene.instantiate()
+		add_child(main_menu_node)
+		$MainMenu/CanvasLayer/NewGameButton.pressed.connect(_new_game)
+	
+func _new_game():
+	$MainMenu.queue_free()
+	main_menu_node = null
+	game_state = "building"
 	
 func process_building(delta):
 	if building_node == null:
