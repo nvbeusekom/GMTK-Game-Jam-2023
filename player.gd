@@ -128,9 +128,6 @@ func damaged(origin, damage, KBbool):
 		knockback_velocity = knockback.normalized() * KB_DIST * SPEED
 		knockback_counter = KB_DURATION
 	hit.emit()
-	
-	
-
 
 func _on_sword_swing_area_entered(area):
 	if area.is_in_group("Enemy"):

@@ -16,7 +16,7 @@ var colliding = false
 
 var wall_collide = false
 
-var health = 1
+var health = 5
 var power = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,6 +59,7 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
 	
 func damaged(origin, damage):
+	print("damage")
 	if knockback_counter > 0:
 		return
 	health -= damage
@@ -67,7 +68,6 @@ func damaged(origin, damage):
 	knockback_counter = KB_DURATION
 	if(health <= 0):
 		queue_free()
-	
 	
 func _on_body_entered(body):
 	var player := body as CharacterBody2D

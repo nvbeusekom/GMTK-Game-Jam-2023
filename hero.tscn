@@ -95,4 +95,7 @@ animation = &"swing"
 [node name="SwordCollision" type="CollisionPolygon2D" parent="SwordSwing"]
 polygon = PackedVector2Array(6, -33, 6, 7, 21, 12, 27, 12, 31, 9, 33, 3, 33, -3, 29, -13, 24, -22, 17, -30, 13, -33)
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
 [connection signal="area_entered" from="SwordSwing" to="." method="_on_sword_swing_area_entered"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
