@@ -24,3 +24,6 @@ func _process(delta):
 
 func _on_player_hit():
 	$crawl_HUD.set_health($Player.health)
+	
+func _on_player_heal():
+	$crawl_HUD.set_health($Player.health)

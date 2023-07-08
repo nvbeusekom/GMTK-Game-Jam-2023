@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal hit
 signal died
+signal heal
 
 @export var SPEED = 80 # How fast the player will move (pixels/sec).
 @export var KB_DIST = 3
@@ -136,7 +137,6 @@ func damaged(origin, damage, KBbool):
 	if health <= 0:
 		died.emit()
 		# Probably freeze the game here
-	print(health)
 	if KBbool:
 		var knockback = (position - origin) 
 		knockback_velocity = knockback.normalized() * KB_DIST * SPEED
@@ -144,6 +144,10 @@ func damaged(origin, damage, KBbool):
 	hit.emit()
 	var tween: Tween = create_tween()
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
+
+func healed(healAmount):
+	health += healAmount
+	heal.emit()
 
 func _on_sword_swing_area_entered(area):
 	if area.is_in_group("Enemy"):

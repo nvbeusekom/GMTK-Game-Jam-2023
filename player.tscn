@@ -95,4 +95,5 @@ frame_progress = 1.0
 [node name="SwordCollision" type="CollisionPolygon2D" parent="SwordSwing"]
 polygon = PackedVector2Array(5, -33, 5, 7, 19, 14, 27, 13, 31, 9, 33, 3, 33, -3, 33, -13, 28, -26, 20, -33, 13, -34)
 
+[connection signal="heal" from="." to="." method="_on_heal"]
 [connection signal="area_entered" from="SwordSwing" to="." method="_on_sword_swing_area_entered"]
