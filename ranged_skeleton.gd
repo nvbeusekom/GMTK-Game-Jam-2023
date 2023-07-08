@@ -21,7 +21,6 @@ var power = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	position = Vector2(100,100)
 	$BodySpriteAnimation.animation = "idle"
 
 func _process(delta):
