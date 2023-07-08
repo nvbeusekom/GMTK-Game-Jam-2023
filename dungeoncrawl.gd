@@ -2,6 +2,7 @@ extends Node
 
 var playerpos
 var mousepos
+#                     var outline = $NavigationRegion2D.get_outline()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mousepos = get_viewport().get_mouse_position() / 10

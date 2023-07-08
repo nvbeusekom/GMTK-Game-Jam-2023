@@ -97,12 +97,13 @@ func swordSwing(delta):
 				lockDirection = false
 	
 
-func damaged(origin):
+func damaged(origin, KBbool):
 	health -= 1
 	print(health)
-	var knockback = (position - origin) 
-	knockback_velocity = knockback.normalized() * KB_DIST * SPEED
-	knockback_counter = KB_DURATION
+	if KBbool:
+		var knockback = (position - origin) 
+		knockback_velocity = knockback.normalized() * KB_DIST * SPEED
+		knockback_counter = KB_DURATION
 	
 	
 	
