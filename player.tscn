@@ -1,114 +1,21 @@
-[gd_scene load_steps=38 format=3 uid="uid://c1b4p5ddswqy0"]
+[gd_scene load_steps=16 format=3 uid="uid://c1b4p5ddswqy0"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k4wsb"]
-[ext_resource type="Texture2D" uid="uid://cqaovgxemf247" path="res://art/DarkKnightIdle1.png" id="2_mrfik"]
-[ext_resource type="Texture2D" uid="uid://bkt8dnn6bhbas" path="res://art/deathanimation1.png" id="2_vrx67"]
-[ext_resource type="Texture2D" uid="uid://4gjoraajiu8k" path="res://art/DarkKnightIdle2.png" id="3_o0ngk"]
-[ext_resource type="Texture2D" uid="uid://b71c6e3hrykjx" path="res://art/deathanimation2.png" id="3_oavo0"]
-[ext_resource type="Texture2D" uid="uid://b5ovc7f25yxn" path="res://art/DarkKnightWalk1.png" id="4_365e8"]
-[ext_resource type="Texture2D" uid="uid://khaa41lway5p" path="res://art/deathanimation3.png" id="4_g7u5s"]
-[ext_resource type="Texture2D" uid="uid://b7t74ypyfod0p" path="res://art/DarkKnightWalk2.png" id="5_6uqw0"]
-[ext_resource type="Texture2D" uid="uid://buqx2rtmyc7k1" path="res://art/deathanimation4.png" id="5_h2wwh"]
-[ext_resource type="Texture2D" uid="uid://dyf4x8evtni8y" path="res://art/deathanimation5.png" id="6_etcod"]
-[ext_resource type="Texture2D" uid="uid://dq6ohm2dkf8tt" path="res://art/DarkKnightWalk3.png" id="6_k0u0j"]
-[ext_resource type="Texture2D" uid="uid://bgqjvyky7yevj" path="res://art/DarkKnightWalk4.png" id="7_3rv34"]
-[ext_resource type="Texture2D" uid="uid://d2i76vfgxov87" path="res://art/deathanimation6.png" id="7_aqc76"]
-[ext_resource type="Texture2D" uid="uid://dh180o45fvlj3" path="res://art/SwordDark1.png" id="8_a3wnr"]
-[ext_resource type="Texture2D" uid="uid://bp1304hd73qrl" path="res://art/deathanimation7.png" id="8_j24vd"]
-[ext_resource type="Texture2D" uid="uid://cd70dgewynkhv" path="res://art/SwordDark2.png" id="9_7pawj"]
-[ext_resource type="Texture2D" uid="uid://wqnsgmgnhfqt" path="res://art/deathanimation8.png" id="9_jfmpg"]
-[ext_resource type="Texture2D" uid="uid://dx0hqdu0urfxr" path="res://art/SwordDark3.png" id="10_p7e3i"]
-[ext_resource type="Texture2D" uid="uid://bawu74m2shxrt" path="res://art/deathanimation9.png" id="10_yqhwc"]
-[ext_resource type="Texture2D" uid="uid://de7a1x5t08h87" path="res://art/SwordDark4.png" id="11_8vi5a"]
-[ext_resource type="Texture2D" uid="uid://bue43yd7efx8r" path="res://art/deathanimation10.png" id="11_hm4p0"]
-[ext_resource type="Texture2D" uid="uid://pae7ugw32rsm" path="res://art/deathanimation11.png" id="12_sj2yg"]
-[ext_resource type="Texture2D" uid="uid://duj5lptf0xumk" path="res://art/SwordDark5.png" id="12_u32jj"]
-[ext_resource type="Texture2D" uid="uid://b346g0lyqobd3" path="res://art/deathanimation12.png" id="13_biwog"]
-[ext_resource type="Texture2D" uid="uid://uhg6kjnncbqu" path="res://art/SwordDark6.png" id="13_ihrhs"]
-[ext_resource type="Texture2D" uid="uid://dxgjvovrejrhi" path="res://art/deathanimation13.png" id="14_naqfj"]
-[ext_resource type="Texture2D" uid="uid://pk5w6rfa421o" path="res://art/deathanimation14.png" id="15_a0xvm"]
-[ext_resource type="Texture2D" uid="uid://dtqhioy5pth71" path="res://art/deathanimation15.png" id="16_l0jf8"]
-[ext_resource type="Texture2D" uid="uid://v4aj31g54yvx" path="res://art/deathanimation16.png" id="17_j21q8"]
-[ext_resource type="Texture2D" uid="uid://cnt7hixef7oko" path="res://art/deathanimation17.png" id="18_6wk4o"]
-[ext_resource type="Texture2D" uid="uid://bgn6c3do6v4yo" path="res://art/deathanimation18.png" id="19_cha0i"]
-[ext_resource type="Texture2D" uid="uid://cfx7xa53amr8q" path="res://art/deathanimation19.png" id="20_e57m0"]
-[ext_resource type="Texture2D" uid="uid://ddgoajd73g0q7" path="res://art/deathanimation20.png" id="21_yqy4b"]
-[ext_resource type="Texture2D" uid="uid://3c5ym2xq8qi2" path="res://art/deathanimation21.png" id="22_nn2nm"]
-[ext_resource type="Texture2D" uid="uid://d307podsedxs7" path="res://art/deathanimation22.png" id="23_s3fl3"]
+[ext_resource type="Texture2D" uid="uid://cntbe1kukiogt" path="res://art/DarkKnightIdle1.png" id="2_mrfik"]
+[ext_resource type="Texture2D" uid="uid://c0s0abkjelbvu" path="res://art/DarkKnightIdle2.png" id="3_o0ngk"]
+[ext_resource type="Texture2D" uid="uid://jcfa1ttmdi1g" path="res://art/DarkKnightWalk1.png" id="4_365e8"]
+[ext_resource type="Texture2D" uid="uid://dkv0rmps7tp42" path="res://art/DarkKnightWalk2.png" id="5_6uqw0"]
+[ext_resource type="Texture2D" uid="uid://c1lb4f32seeck" path="res://art/DarkKnightWalk3.png" id="6_k0u0j"]
+[ext_resource type="Texture2D" uid="uid://candgxxowtnue" path="res://art/DarkKnightWalk4.png" id="7_3rv34"]
+[ext_resource type="Texture2D" uid="uid://c5nl7k4uci7o3" path="res://art/SwordDark1.png" id="8_a3wnr"]
+[ext_resource type="Texture2D" uid="uid://6mwdv4whg8k4" path="res://art/SwordDark2.png" id="9_7pawj"]
+[ext_resource type="Texture2D" uid="uid://dts7wmpcfygol" path="res://art/SwordDark3.png" id="10_p7e3i"]
+[ext_resource type="Texture2D" uid="uid://cioosaceo30lk" path="res://art/SwordDark4.png" id="11_8vi5a"]
+[ext_resource type="Texture2D" uid="uid://du8hc3ahvqjoy" path="res://art/SwordDark5.png" id="12_u32jj"]
+[ext_resource type="Texture2D" uid="uid://s0b33tl3yi0a" path="res://art/SwordDark6.png" id="13_ihrhs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wvoj"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_vrx67")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_oavo0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_g7u5s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_h2wwh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_etcod")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_aqc76")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_j24vd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_jfmpg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_yqhwc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_hm4p0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_sj2yg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_biwog")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_naqfj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_a0xvm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_l0jf8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_j21q8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_6wk4o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_cha0i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_e57m0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_yqy4b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_nn2nm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_s3fl3")
-}],
-"loop": true,
-"name": &"death",
-"speed": 10.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_mrfik")
@@ -172,8 +79,7 @@ script = ExtResource("1_k4wsb")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8wvoj")
-animation = &"death"
-frame_progress = 0.93944
+animation = &"idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
