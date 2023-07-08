@@ -1,13 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ppiux8usd81l"]
+[gd_scene load_steps=10 format=3 uid="uid://pmpbiaw8oc3q"]
 
 [ext_resource type="Script" path="res://crawling_state.gd" id="1_jh1jq"]
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_vocb1"]
-[ext_resource type="PackedScene" uid="uid://blwdek4my56mj" path="res://dungeon_map.tscn" id="2_y8fk5"]
-[ext_resource type="PackedScene" uid="uid://d4fqvdsq5gp6n" path="res://crawl_hud.tscn" id="3_ddwv3"]
+[ext_resource type="PackedScene" uid="uid://blwdek4my56mj" path="res://dungeon.tscn" id="2_y8fk5"]
+[ext_resource type="PackedScene" uid="uid://cr14f7qf18prp" path="res://crawl_hud.tscn" id="3_ddwv3"]
 [ext_resource type="PackedScene" uid="uid://bloethnkcb15e" path="res://ranged_skeleton.tscn" id="4_kxmc3"]
 [ext_resource type="PackedScene" uid="uid://c2sdjcj3pyl2q" path="res://DungeonBuilderInterface.tscn" id="5_qm66m"]
-[ext_resource type="AudioStream" uid="uid://mbt475m0iery" path="res://art/JulesNathanGameMusic.wav" id="6_ttdx4"]
-[ext_resource type="PackedScene" uid="uid://bahp6w83mspqm" path="res://melee_skeleton.tscn" id="7_r13ah"]
+[ext_resource type="AudioStream" uid="uid://v366huvtoj4n" path="res://art/JulesNathanGameMusic.wav" id="6_ttdx4"]
+[ext_resource type="PackedScene" uid="uid://drp1m2pevdam6" path="res://melee_skeleton.tscn" id="7_r13ah"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n14ln"]
 vertices = PackedVector2Array(1, 67, -29, -23, 66, 2, 61, 61, 98, 62, 126, 2, 127, 64, 97, 99, 62, 99, 2, 128, 387, 130, 383, 67)

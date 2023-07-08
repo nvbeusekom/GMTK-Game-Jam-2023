@@ -18,6 +18,7 @@ func _ready():
 	$DungeonBuilderInterface/CanvasLayer.set_process(buildMode)
 	$DungeonBuilderInterface/CanvasLayer.visible = buildMode
 	$crawl_HUD.set_health($Player.health)
+	$crawl_HUD.set_strength($Player.power)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

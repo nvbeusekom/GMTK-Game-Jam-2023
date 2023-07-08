@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://cca1mwuwxl6m6"]
+
+[ext_resource type="Texture2D" uid="uid://cm55cs5otsbyr" path="res://art/YeOldeShoppe.png" id="1_wl6mu"]
+[ext_resource type="Texture2D" uid="uid://cybhrxbrjemhj" path="res://art/heart.png" id="2_rhnqj"]
+[ext_resource type="Texture2D" uid="uid://s7ok76emd2kh" path="res://art/SwordIcon.png" id="3_b6u0b"]
+[ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://fonts/SHPinscher-Regular.otf" id="4_0o8qx"]
+
+[node name="ShoppeScene" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ShopSprite" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(540, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("1_wl6mu")
+
+[node name="HeartSprite" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(180, 232)
+scale = Vector2(4, 4)
+texture = ExtResource("2_rhnqj")
+
+[node name="SwordSprite" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(360, 240)
+scale = Vector2(4, 4)
+texture = ExtResource("3_b6u0b")
+
+[node name="HeartHaveLabel" type="Label" parent="CanvasLayer"]
+offset_left = 115.0
+offset_top = 140.0
+offset_right = 245.0
+offset_bottom = 182.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("4_0o8qx")
+theme_override_font_sizes/font_size = 32
+text = "You have: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwordHaveLabel" type="Label" parent="CanvasLayer"]
+offset_left = 295.0
+offset_top = 140.0
+offset_right = 425.0
+offset_bottom = 182.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("4_0o8qx")
+theme_override_font_sizes/font_size = 32
+text = "You have: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeartCostLabel" type="Label" parent="CanvasLayer"]
+offset_left = 160.0
+offset_top = 300.0
+offset_right = 200.0
+offset_bottom = 362.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("4_0o8qx")
+theme_override_font_sizes/font_size = 48
+text = "$5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwordCostLabel" type="Label" parent="CanvasLayer"]
+offset_left = 340.0
+offset_top = 300.0
+offset_right = 380.0
+offset_bottom = 342.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("4_0o8qx")
+theme_override_font_sizes/font_size = 48
+text = "$5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer"]
+offset_left = 170.0
+offset_top = 550.0
+offset_right = 370.0
+offset_bottom = 636.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("4_0o8qx")
+theme_override_font_sizes/font_size = 64
+text = "Continue"
+
+[node name="HeartBuyButton" type="Button" parent="CanvasLayer"]
+offset_left = 120.0
+offset_top = 370.0
+offset_right = 240.0
+offset_bottom = 456.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("4_0o8qx")
+theme_override_font_sizes/font_size = 64
+text = "Buy"
+
+[node name="SwordBuyButton" type="Button" parent="CanvasLayer"]
+offset_left = 300.0
+offset_top = 370.0
+offset_right = 420.0
+offset_bottom = 456.0
+theme_override_colors/font_color = Color(0.921569, 0.87451, 0.258824, 1)
+theme_override_fonts/font = ExtResource("4_0o8qx")
+theme_override_font_sizes/font_size = 64
+text = "Buy"
