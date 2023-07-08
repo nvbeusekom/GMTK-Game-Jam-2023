@@ -59,6 +59,8 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
 	
 func damaged(origin, damage):
+	if knockback_counter > 0:
+		return
 	health -= damage
 	var knockback = (position - origin) 
 	knockback_velocity = knockback.normalized() * KB_DIST * SPEED

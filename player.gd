@@ -17,20 +17,28 @@ var swingReady = true
 var swingUp = false
 var swingDown = false
 var lockDirection = false
+var lookingLeft = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	$SwordSwing/SwordCollision.set_deferred("disabled",true)
 
 func _process(delta):
+	
 	if(swingReady == true):
 		$SwordSwing/SwordCollision.set_deferred("disabled",true)
+	
 	
 	velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
+		if not lockDirection:
+			lookingLeft = false
 	if Input.is_action_pressed("move_left"):
 		velocity.x -= 1
+		if not lockDirection:
+			lookingLeft = true
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
@@ -39,13 +47,10 @@ func _process(delta):
 		lockDirection = true
 		swingReady = false
 		swingUp = true
-		swordSwingCollision(delta)
 		
 	swordSwingAnimation(delta)
 	
 	$BodySpriteAnimation.play()
-	
-	
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
@@ -89,6 +94,7 @@ func swordSwingAnimation(delta):
 				swingDown = false
 				swingReady = true
 				lockDirection = false
+			swordSwingCollision(delta)
 	else:
 		if swingUp:
 			$SwordSprite.rotation -= delta * 20 * swingSpeed
@@ -104,10 +110,11 @@ func swordSwingAnimation(delta):
 				swingDown = false
 				swingReady = true
 				lockDirection = false
+			swordSwingCollision(delta)
 	
 
 func swordSwingCollision(delta):
-	if(velocity.x < 0):
+	if(lookingLeft):
 		$SwordSwing/SwordCollision.scale.x=-1
 	else:
 		$SwordSwing/SwordCollision.scale.x=1
