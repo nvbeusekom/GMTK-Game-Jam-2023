@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b32q3pi12wwcc"]
+[gd_scene load_steps=19 format=3 uid="uid://b32q3pi12wwcc"]
 
 [ext_resource type="Texture2D" uid="uid://ihe7ya5ky53d" path="res://art/MoneyPrinter1.png" id="1_3v6nj"]
 [ext_resource type="Script" path="res://money_printer.gd" id="1_anogo"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://byjvos3vs7fa6" path="res://art/MoneyPrinter12.png" id="12_g273t"]
 [ext_resource type="Texture2D" uid="uid://h7rx84ef4k6j" path="res://art/MoneyPrinter13.png" id="13_fh4p1"]
 [ext_resource type="Texture2D" uid="uid://cq6u6rn3emoah" path="res://art/MoneyPrinter14.png" id="14_ef8xk"]
+[ext_resource type="Script" path="res://MoneyPrinterArea2D.gd" id="16_fsskb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3lshg"]
 animations = [{
@@ -87,4 +88,12 @@ shape = SubResource("RectangleShape2D_q8l3j")
 wait_time = 2.6
 autostart = true
 
+[node name="MoneyPrinterArea2D" type="Area2D" parent="." groups=["Enemy"]]
+script = ExtResource("16_fsskb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoneyPrinterArea2D"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_q8l3j")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="hit" from="MoneyPrinterArea2D" to="." method="_on_money_printer_area_2d_hit"]
