@@ -1,0 +1,88 @@
+[gd_scene load_steps=18 format=3 uid="uid://b32q3pi12wwcc"]
+
+[ext_resource type="Texture2D" uid="uid://ihe7ya5ky53d" path="res://art/MoneyPrinter1.png" id="1_3v6nj"]
+[ext_resource type="Script" path="res://money_printer.gd" id="1_anogo"]
+[ext_resource type="Texture2D" uid="uid://dry5ky8hdhfyf" path="res://art/MoneyPrinter2.png" id="2_dr1iw"]
+[ext_resource type="Texture2D" uid="uid://cd1shjllh3ce" path="res://art/MoneyPrinter3.png" id="3_el5oa"]
+[ext_resource type="Texture2D" uid="uid://5yctnltesedh" path="res://art/MoneyPrinter4.png" id="4_fq51t"]
+[ext_resource type="Texture2D" uid="uid://ck33ilbbt3k54" path="res://art/MoneyPrinter5.png" id="5_8vji2"]
+[ext_resource type="Texture2D" uid="uid://cren01tibgn83" path="res://art/MoneyPrinter6.png" id="6_x7pvn"]
+[ext_resource type="Texture2D" uid="uid://bp6yobsul74e6" path="res://art/MoneyPrinter7.png" id="7_k3edv"]
+[ext_resource type="Texture2D" uid="uid://cvb51pw4exwnp" path="res://art/MoneyPrinter8.png" id="8_q1074"]
+[ext_resource type="Texture2D" uid="uid://dd5jsctlxpw5y" path="res://art/MoneyPrinter9.png" id="9_uq37y"]
+[ext_resource type="Texture2D" uid="uid://d4eso42eufca0" path="res://art/MoneyPrinter10.png" id="10_pdsso"]
+[ext_resource type="Texture2D" uid="uid://ce7m2kx31x5l4" path="res://art/MoneyPrinter11.png" id="11_lf2p1"]
+[ext_resource type="Texture2D" uid="uid://byjvos3vs7fa6" path="res://art/MoneyPrinter12.png" id="12_g273t"]
+[ext_resource type="Texture2D" uid="uid://h7rx84ef4k6j" path="res://art/MoneyPrinter13.png" id="13_fh4p1"]
+[ext_resource type="Texture2D" uid="uid://cq6u6rn3emoah" path="res://art/MoneyPrinter14.png" id="14_ef8xk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3lshg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3v6nj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dr1iw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_el5oa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fq51t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8vji2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_x7pvn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k3edv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_q1074")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uq37y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pdsso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lf2p1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_g273t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fh4p1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ef8xk")
+}],
+"loop": true,
+"name": &"print",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8l3j"]
+size = Vector2(16, 14)
+
+[node name="MoneyPrinter" type="Node2D"]
+script = ExtResource("1_anogo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3lshg")
+animation = &"print"
+frame_progress = 0.150822
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_q8l3j")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="StaticBody2D"]
+estimate_radius = false
+radius = 10.0

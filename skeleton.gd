@@ -23,7 +23,7 @@ func _process(delta):
 	
 		
 func _physics_process(delta):
-	if (get_node("/root/dungeoncrawl").playerpos - position).length() < 120:
+	if (get_node("/root/dungeoncrawl").playerpos - position).length() < 10:
 		$BodySpriteAnimation.animation = "attack"
 	elif (get_node("/root/dungeoncrawl").playerpos - position).length() < 200:
 		$BodySpriteAnimation.animation = "walk"
@@ -53,3 +53,7 @@ func _on_body_exited(body: PhysicsBody2D):
 	if not player:
 		return
 	colliding = false
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)

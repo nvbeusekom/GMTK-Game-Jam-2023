@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bloethnkcb15e"]
+[gd_scene load_steps=14 format=3 uid="uid://bloethnkcb15e"]
 
 [ext_resource type="Script" path="res://skeleton.gd" id="1_fxo8b"]
 [ext_resource type="Texture2D" uid="uid://dsywjntr0enx6" path="res://art/SkeletonBowAttack1.png" id="2_m3xdt"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://dgan7gwcuyalo" path="res://art/SkeletonBowAttack5.png" id="6_thubc"]
 [ext_resource type="Texture2D" uid="uid://cyinmhy22uwsn" path="res://art/SkeletonBowIdle1.png" id="7_3xjp0"]
 [ext_resource type="Texture2D" uid="uid://f2djj5pwkff" path="res://art/SkeletonBowIdle2.png" id="8_3lskg"]
-[ext_resource type="Texture2D" uid="uid://bybmuv4krp22c" path="res://art/SkeletonBowWalk1.png" id="9_7k83b"]
 [ext_resource type="Texture2D" uid="uid://bto2j2567xxif" path="res://art/SkeletonBowWalk2.png" id="10_71qlh"]
 [ext_resource type="Texture2D" uid="uid://nukrd5cc3j1o" path="res://art/SkeletonBowWalk3.png" id="11_4k0e3"]
 [ext_resource type="Texture2D" uid="uid://fy1hmivpw3im" path="res://art/SkeletonBowWalk4.png" id="12_u8ix4"]
@@ -49,9 +48,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_7k83b")
-}, {
-"duration": 1.0,
 "texture": ExtResource("10_71qlh")
 }, {
 "duration": 1.0,
@@ -73,13 +69,16 @@ script = ExtResource("1_fxo8b")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bop5i")
-animation = &"attack"
+animation = &"walk"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 15.0
 debug_enabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
