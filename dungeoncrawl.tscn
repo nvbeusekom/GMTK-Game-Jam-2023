@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bloethnkcb15e" path="res://skeleton.tscn" id="4_01umc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_n14ln"]
-vertices = PackedVector2Array(1, 67, 383, 67, 387, 130, 2, 128)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(2, 128, 387, 130, 383, 67, 1, 67)])
+vertices = PackedVector2Array(127, 64, 383, 67, 387, 130, 2, 128, 1, 67, 65, 65, 66, 2, 126, 2)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(0, 5, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2, 128, 387, 130, 383, 67, 127, 64, 126, 2, 66, 2, 65, 65, 1, 67)])
 
 [node name="dungeoncrawl" type="Node"]
 script = ExtResource("1_k525v")
