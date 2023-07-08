@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://cqfs863sxrfh0"]
+[gd_scene load_steps=2 format=3 uid="uid://cqfs863sxrfh0"]
+
+[ext_resource type="PackedScene" uid="uid://cxopgiwro68ow" path="res://dungeon.tscn" id="1_iupth"]
 
 [node name="BuildingState" type="Node"]
+
+[node name="Dungeon" parent="." instance=ExtResource("1_iupth")]
+
+[node name="BuildingCamera" type="Camera2D" parent="."]
