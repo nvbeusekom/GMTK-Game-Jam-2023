@@ -9,6 +9,9 @@ var skeletonSpear = load("res://art/SkeletonSpearIdle1.png")
 var spikeTrap = load("res://art/SpikeTrap1.png")
 var moneyPrinter = load("res://art/MoneyPrinter1.png")
 var objectToPlace = null
+var lockedPositions = []
+var cost = 0
+var lock = false
 #                     var outline = $NavigationRegion2D.get_outline()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +21,10 @@ func _ready():
 	$DungeonBuilderInterface/CanvasLayer.set_process(buildMode)
 	$DungeonBuilderInterface/CanvasLayer.visible = buildMode
 	$crawl_HUD.set_health($Player.health)
+	$DungeonBuilderInterface/CanvasLayer/CostLabel.text = "10"
+	$DungeonBuilderInterface/CanvasLayer/CostLabel2.text = "1"
+	$DungeonBuilderInterface/CanvasLayer/CostLabel3.text = "5"
+	$DungeonBuilderInterface/CanvasLayer/CostLabel4.text = "3"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,28 +50,43 @@ func _input(event):
 				if rect.has_point(event.position):
 					Input.set_custom_mouse_cursor(skeletonBow)
 					objectToPlace = load("res://ranged_skeleton.tscn")
+					cost = 5
+					lock = false
+					$DungeonBuilderInterface/CanvasLayer/CostLabel3.text = str(cost)
 				rect = $DungeonBuilderInterface/CanvasLayer/Panel2.get_rect()
 				if rect.has_point(event.position):
 					Input.set_custom_mouse_cursor(skeletonSpear)
 					objectToPlace = load("res://melee_skeleton.tscn")
+					cost = 3
+					lock = false
+					$DungeonBuilderInterface/CanvasLayer/CostLabel4.text = str(cost)
 				rect = $DungeonBuilderInterface/CanvasLayer/Panel3.get_rect()
 				if rect.has_point(event.position):
 					Input.set_custom_mouse_cursor(moneyPrinter)
 					objectToPlace = load("res://money_printer.tscn")
+					cost = 1
+					lock = true
+					$DungeonBuilderInterface/CanvasLayer/CostLabel2.text = str(cost)
 				rect = $DungeonBuilderInterface/CanvasLayer/Panel4.get_rect()
 				if rect.has_point(event.position):
 					Input.set_custom_mouse_cursor(spikeTrap)
 					objectToPlace = load("res://spike_trap.tscn")
+					cost = 10
+					lock = true
+					$DungeonBuilderInterface/CanvasLayer/CostLabel.text = str(cost)
 			else:
-				if objectToPlace != null:
-					print("Place")
+				if objectToPlace != null and cost <= coins:
 					var scene = objectToPlace.instantiate()
 					#scene.position = $Dungeon.get_global_mouse_position()
 					var mousePos = $Dungeon.get_global_mouse_position()#get_viewport().get_mouse_position()
 					var tile_pos = $Dungeon.local_to_map(mousePos)
 					scene.position = $Dungeon.map_to_local(tile_pos)
-					if $Dungeon.get_cell_atlas_coords(0,tile_pos) == Vector2i(0,1):
+					if $Dungeon.get_cell_atlas_coords(0,tile_pos) == Vector2i(0,1) and (!lockedPositions.has(tile_pos) or !lock):
 						add_child(scene)
+						coins -= cost
+						updateCoins()
+						if lock:
+							lockedPositions.append(tile_pos)
 
 func addCoin():
 	coins += 1
