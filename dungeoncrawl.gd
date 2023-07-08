@@ -9,6 +9,7 @@ var skeletonSpear = load("res://art/SkeletonSpearIdle1.png")
 var spikeTrap = load("res://art/SpikeTrap1.png")
 var moneyPrinter = load("res://art/MoneyPrinter1.png")
 var objectToPlace = null
+var lockedPositions = []
 #                     var outline = $NavigationRegion2D.get_outline()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,14 +58,14 @@ func _input(event):
 					objectToPlace = load("res://spike_trap.tscn")
 			else:
 				if objectToPlace != null:
-					print("Place")
 					var scene = objectToPlace.instantiate()
 					#scene.position = $Dungeon.get_global_mouse_position()
 					var mousePos = $Dungeon.get_global_mouse_position()#get_viewport().get_mouse_position()
 					var tile_pos = $Dungeon.local_to_map(mousePos)
 					scene.position = $Dungeon.map_to_local(tile_pos)
-					if $Dungeon.get_cell_atlas_coords(0,tile_pos) == Vector2i(0,1):
+					if $Dungeon.get_cell_atlas_coords(0,tile_pos) == Vector2i(0,1) and !lockedPositions.has(tile_pos):
 						add_child(scene)
+						lockedPositions.append(tile_pos)
 
 func addCoin():
 	coins += 1
