@@ -59,7 +59,6 @@ func process_main_menu(delta):
 		main_menu_node = main_menu_scene.instantiate()
 		add_child(main_menu_node)
 		$MainMenu/CanvasLayer/NewGameButton.pressed.connect(_new_game)
-		dialogueID = 0
 	
 func _new_game():
 	$MainMenu.queue_free()
@@ -74,7 +73,7 @@ func process_building(delta):
 		
 	playerpos = $BuildingState/Hero.position
 	if ($BuildingState/Hero.position - $BuildingState.hero_goal).length() < 10:
-		start_dialogue(0)
+		start_dialogue(2)
 		playerpos = Vector2(10000,10000)
 		$BuildingState.queue_free()
 		building_node = null
