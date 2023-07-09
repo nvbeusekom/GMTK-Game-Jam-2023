@@ -22,7 +22,7 @@ var messages = [
 		["Hahaha! Take that HERO!",1],
 		["I have been defeated...",0],
 		["But a HERO never gives up!",0],
-		["I will be back!",0],
+		["I will be back! Stronger than before!",0],
 		["Hahahaha! Good luck, HERO!",1]
 	],
 	[#ID 2

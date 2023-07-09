@@ -151,6 +151,7 @@ func damaged(origin, damage, KBbool):
 		return
 	health -= damage
 	if(health <= 0):
+		$HealthbarFront.scale.x = 0
 		victory.emit()
 		return
 	if KBbool:
@@ -160,7 +161,9 @@ func damaged(origin, damage, KBbool):
 	
 	var tween: Tween = create_tween()
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
+	
 	$HealthbarFront.scale.x = 30 * health/MAX_HEALTH
+	
 
 func healed(healAmount):
 	if health < MAX_HEALTH:

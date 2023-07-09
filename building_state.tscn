@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://BuildingCamera.gd" id="2_voagr"]
 [ext_resource type="PackedScene" uid="uid://c2sdjcj3pyl2q" path="res://DungeonBuilderInterface.tscn" id="3_7lodv"]
 [ext_resource type="PackedScene" uid="uid://vp1bnn2ub3xv" path="res://hero.tscn" id="3_kyokx"]
-[ext_resource type="AudioStream" uid="uid://v366huvtoj4n" path="res://art/JulesNathanGameMusic.wav" id="5_dd43d"]
-[ext_resource type="Texture2D" uid="uid://dvmisfruog0mo" path="res://art/DarkKnightStanding.png" id="7_bstfm"]
+[ext_resource type="AudioStream" uid="uid://mbt475m0iery" path="res://art/JulesNathanGameMusic.wav" id="5_dd43d"]
+[ext_resource type="Texture2D" uid="uid://dtwx1pfutu5p3" path="res://art/DarkKnightStanding.png" id="7_bstfm"]
 
 [node name="BuildingState" type="Node"]
 script = ExtResource("1_x03jg")
