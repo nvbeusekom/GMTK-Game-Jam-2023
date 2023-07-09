@@ -40,6 +40,7 @@ var lockedPositions = []
 var first_hero_death = true
 
 var first_encounter = true
+var playerdied = false
 
 var building_over = false
 var victory = false
@@ -139,6 +140,8 @@ func process_crawling(delta):
 		$CrawlingState/crawl_HUD.set_strength($CrawlingState/Player.power)
 		$CrawlingState/HeroCrawling.victory.connect(_on_victory)
 		$CrawlingState/HeroCrawling.firstencounter.connect(_on_encounter)
+		first_encounter = true
+		playerdied = false
 		
 	if victory and dialogue_node == null:
 		crawling_node.queue_free()
@@ -146,15 +149,19 @@ func process_crawling(delta):
 			shop_node.queue_free()
 		game_state = "main menu"
 		$Dungeon.clear_all()
+	
+	if playerdied and dialogue_node == null:
+		crawling_node.queue_free()
+		crawling_node = null
+		game_state = "shop"
+		reinit_shop()
 		
 	playerpos = $CrawlingState/Player.position
 	
 func _on_player_died():
+	start_dialogue(3)
+	playerdied = true
 	playerpos = Vector2(10000,10000)
-	crawling_node.queue_free()
-	crawling_node = null
-	game_state = "shop"
-	reinit_shop()
 	
 func _on_encounter():
 	if first_encounter:
