@@ -89,7 +89,7 @@ func process_building(delta):
 
 func _on_hero_death():
 	if first_hero_death:
-		start_dialogue(0)
+		start_dialogue(1)
 
 func start_dialogue(id):
 	if dialogue_node == null:
@@ -105,6 +105,7 @@ func _on_finishDialogue():
 	
 func process_crawling(delta):
 	if crawling_node == null:
+		start_dialogue(3)
 		crawling_node = crawling_scene.instantiate()
 		add_child(crawling_node)
 		#updateCoins()
@@ -118,6 +119,7 @@ func process_crawling(delta):
 	playerpos = $CrawlingState/Player.position
 	
 func _on_player_died():
+	start_dialogue(4)
 	playerpos = Vector2(10000,10000)
 	crawling_node.queue_free()
 	crawling_node = null
@@ -125,18 +127,22 @@ func _on_player_died():
 	reinit_shop()
 	
 func _on_victory():
+	start_dialogue(5)
+	start_dialogue(6)
 	pass
 	# Todo: cinematic -> destroy crawling and shop -> main menu
 	
 func reinit_shop():
+	
 	updateCoins()
 	$ShoppeScene/CanvasLayer/HeartBuyButton.pressed.connect(_on_heart_buy)
 	$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.connect(_on_sword_buy)
 	$ShoppeScene/CanvasLayer/ContinueButton.pressed.connect(_on_continue)
 	$ShoppeScene/CanvasLayer.show()
+	$ShoppeScene/AudioStreamPlayer2D.play()
 	
 func process_shop(delta):
-	if shop_node == null:
+	if shop_node == null and dialogue_node == null:
 		shop_node = shop_scene.instantiate()
 		add_child(shop_node)
 		reinit_shop()
@@ -163,6 +169,7 @@ func _on_continue():
 	$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.disconnect(_on_sword_buy)
 	$ShoppeScene/CanvasLayer/ContinueButton.pressed.disconnect(_on_continue)
 	$ShoppeScene/CanvasLayer.hide()
+	$ShoppeScene/AudioStreamPlayer2D.stop()
 	game_state = "crawling"
 
 func addCoin():
@@ -180,7 +187,7 @@ func pause(node):
 		pause(child) 
 		
 func unpause(node):
-	if game_state == "shop":
+	if game_state == "shop" and dialogue_node == null:
 		$ShoppeScene/CanvasLayer/HeartBuyButton.pressed.connect(_on_heart_buy)
 		$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.connect(_on_sword_buy)
 		$ShoppeScene/CanvasLayer/ContinueButton.pressed.connect(_on_continue)
