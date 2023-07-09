@@ -74,11 +74,8 @@ func _on_place_timer_timeout():
 	if eligibleList.size() <= 0:
 		return
 	var tile = eligibleList[randi() % eligibleList.size()]
-	print(tile)
 	# place object
 	var scene = objectToPlace.instantiate()
-	print(scene.position)
-	print($"../Dungeon/DungeonMap".map_to_local(tile))
 	scene.position = $"../Dungeon/DungeonMap".map_to_local(tile)
 	if randomInt <= 1:
 		#skellyboi

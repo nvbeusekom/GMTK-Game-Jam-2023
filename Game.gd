@@ -1,7 +1,7 @@
 extends Node 
 var states = ["main menu","building","crawling","shop"]
 
-var game_state = "building"
+var game_state = "main menu"
 
 const starting_coins = 40
 
