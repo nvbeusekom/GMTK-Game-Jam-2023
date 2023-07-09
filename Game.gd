@@ -58,6 +58,7 @@ func process_main_menu(delta):
 		main_menu_node = main_menu_scene.instantiate()
 		add_child(main_menu_node)
 		$MainMenu/CanvasLayer/NewGameButton.pressed.connect(_new_game)
+		dialogueID = 0
 	
 func _new_game():
 	$MainMenu.queue_free()

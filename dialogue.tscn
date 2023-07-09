@@ -15,25 +15,27 @@ script = ExtResource("1_xvffr")
 wait_time = 0.5
 one_shot = true
 
-[node name="knightHead" type="Sprite2D" parent="."]
-position = Vector2(195, 378)
-rotation = -0.205785
-scale = Vector2(20, 20)
-texture = ExtResource("2_li347")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="darkKnightHead" type="Sprite2D" parent="."]
+[node name="darkKnightHead" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(885, 378)
 rotation = 0.205949
 scale = Vector2(20, 20)
 texture = ExtResource("3_usjes")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="knightHead" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(195, 378)
+rotation = -0.205785
+scale = Vector2(20, 20)
+texture = ExtResource("2_li347")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
 offset_top = 446.0
 offset_right = 40.0
 offset_bottom = 486.0
 scale = Vector2(27, 6.84)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 57.0
 offset_top = 473.0
 offset_right = 97.0
@@ -41,7 +43,7 @@ offset_bottom = 551.0
 theme_override_fonts/font = ExtResource("2_7kchr")
 theme_override_font_sizes/font_size = 32
 
-[node name="SpaceBarIcon" type="Sprite2D" parent="."]
+[node name="SpaceBarIcon" type="Sprite2D" parent="CanvasLayer"]
 visible = false
 position = Vector2(540, 650)
 scale = Vector2(5, 5)

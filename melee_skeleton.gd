@@ -60,7 +60,7 @@ func _process(delta):
 	
 		
 func _physics_process(delta):
-	if (goal - position).length() < 10 && knockback_counter == 0:
+	if (goal - position).length() < 42 && abs(goal.y - position.y) < 30 && knockback_counter == 0:
 		$walk.stop()
 		$BodySpriteAnimation.animation = "attack"
 		if $BodySpriteAnimation.frame == 1:
