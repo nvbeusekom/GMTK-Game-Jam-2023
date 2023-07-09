@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxopgiwro68ow"]
+[gd_scene load_steps=5 format=3 uid="uid://cxopgiwro68ow"]
 
 [ext_resource type="PackedScene" uid="uid://n33baihu2dpu" path="res://dungeon_map.tscn" id="1_6qhx6"]
 [ext_resource type="Script" path="res://dungeon.gd" id="1_m1qic"]
+[ext_resource type="Texture2D" uid="uid://dgf8kwyb1qy21" path="res://art/Console.png" id="3_ur32a"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pcg7n"]
 vertices = PackedVector2Array(296, -248, 304, 112, 272, 48, 272, -80, 752, 240, 816, 272, 592, 272, 624, 240, 592, 80, 624, 112, 624, 80, 816, 112, 752, 112, 784, 80, 176, 112, 208, 48, 176, 16, 208, -80, 904, -216, 912, -144, 848, -144, 80, 16, 80, 48, -16, 48, -16, -48, 80, -48, 80, -16, 176, -16, 176, -112, 240, -112, 240, -272, 432, -272, 432, -240, 432, -336, 592, -336, 592, -208, 560, -208, 528, -176, 560, -176, 528, -144, 496, -144, 432, 16, 496, -48, 528, 16, 528, -16, 656, -48, 624, -16, 656, 80, 784, -144, 720, -144, 720, -336, 912, -336, 912, -272, 1104, -272, 1104, -336, 1264, -336, 1264, -144, 1104, -144, 1104, -208, 848, 112)
@@ -16,3 +17,7 @@ layer_0/tile_data = PackedInt32Array(2, 0, 1, 3, 0, 1, 196611, 65536, 0, 196610,
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_pcg7n")
+
+[node name="Console" type="Sprite2D" parent="."]
+position = Vector2(1264, -243)
+texture = ExtResource("3_ur32a")
