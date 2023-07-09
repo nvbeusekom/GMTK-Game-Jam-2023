@@ -15,3 +15,8 @@ func clear_skeletons():
 		if child.name.contains("Skeleton"):
 			if child.placed_by_player:
 				child.queue_free()
+				
+func clear_all():
+	for child in get_children():
+		if not child.name == "DungeonMap" and not child.name == "NavigationRegion2D":
+			child.queue_free()

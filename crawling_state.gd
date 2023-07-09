@@ -9,6 +9,18 @@ var spikeTrap = load("res://spike_trap.tscn")
 var moneyPrinter = load("res://money_printer.tscn")
 var costs = [5,3,10,1]
 var objectArray
+
+var paused = false
+var respawing = false
+func pause():
+	paused = true
+	respawing = not $PlaceTimer.is_stopped()
+	$PlaceTimer.stop()
+func unpause():
+	paused = false
+	if respawing:
+		$PlaceTimer.start()
+
 #                     var outline = $NavigationRegion2D.get_outline()
 # Called when the node enters the scene tree for the first time.
 func _ready():

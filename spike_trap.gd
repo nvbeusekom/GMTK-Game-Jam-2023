@@ -6,12 +6,18 @@ var power = 1
 
 var paused = false
 
+var spike_playing = false
+
 func pause():
 	paused = true
 	$Timer.stop()
+	spike_playing = $AudioStreamPlayer2D.playing
+	$AudioStreamPlayer2D.stop()
 func unpause():
 	paused = false
 	$Timer.start()
+	if spike_playing:
+		$AudioStreamPlayer2D.play()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

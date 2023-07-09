@@ -32,11 +32,22 @@ var coinScene = load("res://coin.tscn")
 var rng = RandomNumberGenerator.new()
 
 var paused = false
+var walk_playing = false
+var stab_playing = false
 
 func pause():
 	paused = true
+	walk_playing = $walk.playing
+	stab_playing = $AudioStreamPlayer2D.playing
+	$walk.stop()
+	$AudioStreamPlayer2D.stop()
+	
 func unpause():
 	paused = false
+	if walk_playing:
+		$walk.play()
+	if stab_playing:
+		$AudioStreamPlayer2D.play()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
