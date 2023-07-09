@@ -24,12 +24,21 @@ var swingDown = false
 var lockDirection = false
 var lookingLeft = false
 
+var paused = false
+
+func pause():
+	paused = true
+func unpause():
+	paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	$SwordSwing/SwordCollision.set_deferred("disabled",true)
 
 func _process(delta):
+	if paused:
+		return
 	if health <= 0:
 		$BodySpriteAnimation.play()
 		$BodySpriteAnimation.animation = "death"

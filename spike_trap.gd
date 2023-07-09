@@ -4,6 +4,15 @@ var bodiesList = []
 
 var power = 1
 
+var paused = false
+
+func pause():
+	paused = true
+	$Timer.stop()
+func unpause():
+	paused = false
+	$Timer.start()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

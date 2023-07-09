@@ -2,6 +2,15 @@ extends Node2D
 
 var health = 3
 
+var paused = false
+
+func pause():
+	paused = true
+	$Timer.stop()
+func unpause():
+	paused = false
+	$Timer.start()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play()

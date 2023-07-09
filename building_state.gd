@@ -24,6 +24,17 @@ var hero_goal = Vector2(500,50)
 @export var cost_bow = 5
 @export var cost_spear = 3
 
+var paused = false
+var respawing = false
+func pause():
+	paused = true
+	respawing = not $RespawnTimer.is_stopped()
+	$RespawnTimer.stop()
+func unpause():
+	paused = false
+	if respawing:
+		$RespawnTimer.start()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$DungeonBuilderInterface/CanvasLayer/CostSpike.text = str(cost_spike)
@@ -39,7 +50,8 @@ func _process(delta):
 	pass
 	
 func _input(event):
-	
+	if paused:
+		return
 	if event is InputEventMouseButton:
 		if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 			if event.position.x > 900:
