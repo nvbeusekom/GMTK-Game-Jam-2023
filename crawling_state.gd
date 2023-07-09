@@ -8,6 +8,18 @@ var spikeTrap = load("res://spike_trap.tscn")
 var moneyPrinter = load("res://money_printer.tscn")
 var costs = [5,5,5,8]
 var objectArray
+
+var paused = false
+var respawing = false
+func pause():
+	paused = true
+	respawing = not $PlaceTimer.is_stopped()
+	$PlaceTimer.stop()
+func unpause():
+	paused = false
+	if respawing:
+		$PlaceTimer.start()
+
 #                     var outline = $NavigationRegion2D.get_outline()
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,11 +73,8 @@ func _on_place_timer_timeout():
 	if eligibleList.size() <= 0:
 		return
 	var tile = eligibleList[randi() % eligibleList.size()]
-	print(tile)
 	# place object
 	var scene = objectToPlace.instantiate()
-	print(scene.position)
-	print($"../Dungeon/DungeonMap".map_to_local(tile))
 	scene.position = $"../Dungeon/DungeonMap".map_to_local(tile)
 	if randomInt <= 1:
 		#skellyboi

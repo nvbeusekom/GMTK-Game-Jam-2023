@@ -9,12 +9,12 @@ signal firstencounter
 @export var KB_DIST = 3
 @export var KB_DURATION = 16
 @export var KB_REDUCTION = 0.99
-@export var MAX_HEALTH = 3
+@export var MAX_HEALTH = 10
 
 var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0
 var health = MAX_HEALTH
-var power = 1
+var power = 2
 var swingReady = true
 var swingUp = false
 var swingDown = false
@@ -147,8 +147,9 @@ func swordSwingCollision(delta):
 
 
 func damaged(origin, damage, KBbool):
+	if knockback_counter > 0:
+		return
 	health -= damage
-	print(health)
 	if(health <= 0):
 		victory.emit()
 		return

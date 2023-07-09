@@ -1,7 +1,7 @@
 extends Node 
 var states = ["main menu","building","crawling","shop"]
 
-var game_state = "building"
+var game_state = "main menu"
 
 const starting_coins = 25
 
@@ -38,8 +38,11 @@ var shoppe_power_cost = 3
 var lockedPositions = []
 
 var first_hero_death = true
-var first_shop_visit = true
+
 var first_encounter = true
+
+var building_over = false
+var victory = false
 
 # (Minus cutscenes)
 # Game states: Main menu -> Building -> Crawling <-> Shop
@@ -63,6 +66,7 @@ func _process(delta):
 
 func process_main_menu(delta):
 	if main_menu_node == null:
+		print("making main menu")
 		main_menu_node = main_menu_scene.instantiate()
 		add_child(main_menu_node)
 		$MainMenu/CanvasLayer/NewGameButton.pressed.connect(_new_game)
@@ -86,15 +90,18 @@ func process_building(delta):
 		
 	playerpos = $BuildingState/Hero.position
 	if ($BuildingState/Hero.position - $BuildingState.hero_goal).length() < 10:
-		start_dialogue(2)
+		if not building_over:
+			start_dialogue(2)
+			building_over = true
 		playerpos = Vector2(10000,10000)
-		$BuildingState.queue_free()
-		building_node = null
-		game_state = "shop"
-		crawling_coins = dungeon_coins
-		dungeon_coins = starting_coins
-		Input.set_custom_mouse_cursor(null) #ja, dit moet er 2 keer staan...
-		Input.set_custom_mouse_cursor(null)
+		if dialogue_node == null:
+			$BuildingState.queue_free()
+			building_node = null
+			game_state = "shop"
+			crawling_coins = dungeon_coins
+			dungeon_coins = starting_coins
+			Input.set_custom_mouse_cursor(null) #ja, dit moet er 2 keer staan...
+			Input.set_custom_mouse_cursor(null)
 		
 
 func _on_hero_death():
@@ -132,6 +139,14 @@ func process_crawling(delta):
 		$CrawlingState/crawl_HUD.set_strength($CrawlingState/Player.power)
 		$CrawlingState/HeroCrawling.victory.connect(_on_victory)
 		$CrawlingState/HeroCrawling.firstencounter.connect(_on_encounter)
+		
+	if victory and dialogue_node == null:
+		crawling_node.queue_free()
+		if shop_node != null:
+			shop_node.queue_free()
+		game_state = "main menu"
+		$Dungeon.clear_all()
+		
 	playerpos = $CrawlingState/Player.position
 	
 func _on_player_died():
@@ -147,12 +162,9 @@ func _on_encounter():
 		first_encounter = false
 	
 func _on_victory():
-	start_dialogue(6)
-	crawling_node.queue_free()
-	if shop_node != null:
-		shop_node.queue_free()
-	game_state = "main_menu"
-	# Todo: cinematic -> destroy crawling and shop -> main menu
+	if not victory:
+		start_dialogue(6)
+	victory = true
 	
 func reinit_shop():
 	updateCoins()
