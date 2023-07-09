@@ -10,11 +10,13 @@ var building_scene = preload("res://building_state.tscn")
 var main_menu_scene = preload("res://main_menu.tscn")
 var crawling_scene = preload("res://crawling_state.tscn")
 var shop_scene = preload("res://shoppe_scene.tscn")
+var dialogue_scene = preload("res://dialogue.tscn")
 
 var main_menu_node = null
 var building_node = null
 var crawling_node = null
 var shop_node = null
+var dialogue_node = null
 
 var playerpos = Vector2(0,0)
 
@@ -28,6 +30,7 @@ var player_power = 1
 var shoppe_heart_cost = 3
 var shoppe_power_cost = 3
 
+var dialogueID = 0
 # (Minus cutscenes)
 # Game states: Main menu -> Building -> Crawling <-> Shop
 
@@ -47,6 +50,8 @@ func _process(delta):
 			process_crawling(delta)
 		"shop":
 			process_shop(delta)
+		"dialogue":
+			process_dialogue(delta)
 
 func process_main_menu(delta):
 	if main_menu_node == null:
@@ -57,7 +62,7 @@ func process_main_menu(delta):
 func _new_game():
 	$MainMenu.queue_free()
 	main_menu_node = null
-	game_state = "building"
+	game_state = "dialogue"
 	
 func process_building(delta):
 	if building_node == null:
@@ -75,6 +80,19 @@ func process_building(delta):
 		dungeon_coins = starting_coins
 		
 
+func process_dialogue(delta):
+	if dialogue_node == null:
+		dialogue_node = dialogue_scene.instantiate()
+		dialogue_node.activeMessagesID = dialogueID
+		add_child(dialogue_node)
+		$Dialogue.dialogueFinished.connect(_on_finishDialogue)
+
+func _on_finishDialogue():
+	$Dialogue.queue_free()
+	match dialogueID:
+		0:
+			game_state = "building"
+	
 func process_crawling(delta):
 	if crawling_node == null:
 		crawling_node = crawling_scene.instantiate()

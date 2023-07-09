@@ -7,6 +7,8 @@ var messages = [
 ]
 ]
 
+signal dialogueFinished
+
 var activeMessagesID = 0
 
 var typing_speed = .1
@@ -28,6 +30,8 @@ func _process(delta):
 		readyForNext = false
 		if current_message < len(messages[activeMessagesID]):
 			start_dialogue(current_message)
+		else:
+			dialogueFinished.emit()
 		
 func start_dialogue(cm):
 	$SpaceBarIcon.hide()

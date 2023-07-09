@@ -22,4 +22,5 @@ autoplay = true
 
 [node name="HealingBerries" parent="." instance=ExtResource("9_ujvqi")]
 
+[connection signal="heal" from="Player" to="." method="_on_player_heal"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
