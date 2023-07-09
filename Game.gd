@@ -159,7 +159,7 @@ func process_crawling(delta):
 	playerpos = $CrawlingState/Player.position
 	
 func _on_player_died():
-	start_dialogue(3)
+	start_dialogue(4)
 	playerdied = true
 	playerpos = Vector2(10000,10000)
 	
