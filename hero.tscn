@@ -85,7 +85,7 @@ script = ExtResource("1_rwfyv")
 
 [node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8wvoj")
-animation = &"idle"
+animation = &"walk"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-9, -9, -1, -8, 2, -4, 4, 11, -6, 11)

@@ -59,6 +59,7 @@ func process_main_menu(delta):
 		main_menu_node = main_menu_scene.instantiate()
 		add_child(main_menu_node)
 		$MainMenu/CanvasLayer/NewGameButton.pressed.connect(_new_game)
+		dialogueID = 0
 	
 func _new_game():
 	$MainMenu.queue_free()
@@ -138,7 +139,7 @@ func _on_heart_buy():
 		crawling_coins -= shoppe_heart_cost
 		player_max_hp += 1
 		shoppe_heart_cost += 1
-		$ShoppeScen/buySound.play()
+		$ShoppeScene/buySound.play()
 		updateCoins()
 	
 func _on_sword_buy():
