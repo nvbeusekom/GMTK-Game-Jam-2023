@@ -90,6 +90,9 @@ func process_building(delta):
 func _on_hero_death():
 	if first_hero_death:
 		start_dialogue(1)
+	$BuildingState/Hero.MAX_HEALTH += 2 + 0.2 * $BuildingState/Hero.MAX_HEALTH
+	$BuildingState/Hero.health = $BuildingState/Hero.MAX_HEALTH
+	$BuildingState/Hero.power += 1 + 0.5 * $BuildingState/Hero.power
 
 func start_dialogue(id):
 	if dialogue_node == null:
