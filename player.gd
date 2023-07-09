@@ -167,11 +167,11 @@ func healed(healAmount):
 		health += healAmount
 	if health > MAX_HEALTH:
 		health = MAX_HEALTH
-	heal.emit()
+	hit.emit()
 	$heal.play()
 
 func gainCoin(coinAmount):
-	get_parent().get_parent().crawling_coins += 1
+	get_parent().get_parent().crawling_coins += 3
 	get_parent().get_parent().updateCoins()
 	$coin.play()
 

@@ -93,9 +93,11 @@ func _input(event):
 						get_parent().dungeon_coins -= cost
 						get_parent().updateCoins()
 						if lock:
+							$"../Dungeon".move_child(scene,2)
 							get_parent().lockedPositions.append(tile_pos)
 						else: #it must be a skeleton
 							scene.placed_by_player = true
+							$"../Dungeon".add_child(scene)
 						print(printer)
 						if printer:
 							get_parent().moneyPrinterCount += 1

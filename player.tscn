@@ -110,3 +110,4 @@ stream = ExtResource("16_10e4m")
 [connection signal="heal" from="." to="." method="_on_heal"]
 [connection signal="area_entered" from="SwordSwing" to="." method="_on_sword_swing_area_entered"]
 [connection signal="area_shape_exited" from="SwordSwing" to="." method="_on_sword_swing_area_shape_exited"]
+[connection signal="body_entered" from="SwordSwing" to="." method="_on_sword_swing_body_entered"]

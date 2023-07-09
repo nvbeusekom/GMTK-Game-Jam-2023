@@ -13,8 +13,7 @@ func _process(delta):
 func clear_skeletons():	
 	for child in get_children():
 		if child.name.contains("Skeleton"):
-			if child.placed_by_player:
-				child.queue_free()
+			child.queue_free()
 				
 func clear_all():
 	for child in get_children():
