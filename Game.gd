@@ -3,7 +3,7 @@ var states = ["main menu","building","crawling","shop"]
 
 var game_state = "building"
 
-const starting_coins = 40
+const starting_coins = 25
 
 var dungeon_node = null
 

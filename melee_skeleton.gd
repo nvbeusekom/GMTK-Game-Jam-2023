@@ -8,7 +8,7 @@ var screen_size # Size of the game window.
 @export var KB_DIST = 3
 @export var KB_DURATION = 32
 @export var KB_REDUCTION = 1
-@export var MAX_HEALTH = 10
+@export var MAX_HEALTH = 15
 
 var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0

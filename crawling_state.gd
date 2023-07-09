@@ -2,12 +2,11 @@ extends Node
 
 var playerpos
 var mousepos
-var coins
 var skeletonBow = load("res://ranged_skeleton.tscn")
 var skeletonSpear = load("res://melee_skeleton.tscn")
 var spikeTrap = load("res://spike_trap.tscn")
 var moneyPrinter = load("res://money_printer.tscn")
-var costs = [5,5,5,10]
+var costs = [5,5,5,8]
 var objectArray
 #                     var outline = $NavigationRegion2D.get_outline()
 # Called when the node enters the scene tree for the first time.
@@ -15,7 +14,7 @@ func _ready():
 	objectArray = [skeletonBow, skeletonSpear, spikeTrap, moneyPrinter]
 	mousepos = get_viewport().get_mouse_position() / 10
 	playerpos = $Player.position
-	coins = 0
+	get_tree().get_root().get_child(0).dungeon_coins = get_tree().get_root().get_child(0).starting_coins
 	$crawl_HUD.set_health($Player.health)
 	$crawl_HUD.set_strength($Player.power)
 

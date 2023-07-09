@@ -17,7 +17,7 @@ var lock = false
 var hero_goal = Vector2(1168,-240)
 
 @export var cost_spike = 5
-@export var cost_printer = 10
+@export var cost_printer = 8
 @export var cost_bow = 5
 @export var cost_spear = 5
 
