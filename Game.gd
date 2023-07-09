@@ -11,12 +11,14 @@ var main_menu_scene = preload("res://main_menu.tscn")
 var crawling_scene = preload("res://crawling_state.tscn")
 var shop_scene = preload("res://shoppe_scene.tscn")
 var dialogue_scene = preload("res://dialogue.tscn")
+var pause_scene = preload("res://pause_screen.tscn")
 
 var main_menu_node = null
 var building_node = null
 var crawling_node = null
 var shop_node = null
 var dialogue_node = null
+var pause_node = null
 
 var playerpos = Vector2(0,0)
 
@@ -59,7 +61,6 @@ func process_main_menu(delta):
 		main_menu_node = main_menu_scene.instantiate()
 		add_child(main_menu_node)
 		$MainMenu/CanvasLayer/NewGameButton.pressed.connect(_new_game)
-		dialogueID = 0
 	
 func _new_game():
 	$MainMenu.queue_free()
@@ -71,6 +72,7 @@ func process_building(delta):
 		add_child(building_node)
 		updateCoins()
 		start_dialogue(0)
+		$BuildingState/Hero.died.connect(_on_hero_death )
 		
 	playerpos = $BuildingState/Hero.position
 	if ($BuildingState/Hero.position - $BuildingState.hero_goal).length() < 10:
@@ -81,7 +83,13 @@ func process_building(delta):
 		game_state = "shop"
 		crawling_coins = dungeon_coins
 		dungeon_coins = starting_coins
+		Input.set_custom_mouse_cursor(null) #ja, dit moet er 2 keer staan...
+		Input.set_custom_mouse_cursor(null)
 		
+
+func _on_hero_death():
+	if first_hero_death:
+		start_dialogue(0)
 
 func start_dialogue(id):
 	if dialogue_node == null:
@@ -180,7 +188,18 @@ func unpause(node):
 		if child.has_method("unpause"):
 			child.unpause()
 		unpause(child) 
-		
+
+func _input(event):
+	if Input.is_action_pressed("pause") and dialogue_node == null:
+		if pause_node == null:
+			pause(self)
+			pause_node = pause_scene.instantiate()
+			add_child(pause_node)
+		else:
+			unpause(self)
+			pause_node.queue_free()
+			
+
 func updateCoins():
 	if building_node != null:
 		$BuildingState.updateCoins(dungeon_coins)

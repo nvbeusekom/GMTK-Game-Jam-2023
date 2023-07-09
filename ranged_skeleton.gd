@@ -31,11 +31,15 @@ var coinScene = load("res://coin.tscn")
 var rng = RandomNumberGenerator.new()
 
 var paused = false
-
+var timer_running = false
 func pause():
 	paused = true
+	timer_running = not $Timer.is_stopped()
+	$Timer.stop()
 func unpause():
 	paused = false
+	if timer_running:
+		$Timer.start()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,6 +63,8 @@ func _process(delta):
 	$BodySpriteAnimation.play()
 	
 func _physics_process(delta):
+	if paused:
+		return
 	var new_velocity = Vector2(0,0)
 	if (playerpos - position).length() < 120 && knockback_counter == 0:
 		$walk.stop()

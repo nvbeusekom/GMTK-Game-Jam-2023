@@ -27,7 +27,7 @@ func _physics_process(delta):
 		not is_equal_approx(zoom.x, _target_zoom)
 	)
 
-func _unhandled_input(event: InputEvent):
+func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		if event.button_mask == MOUSE_BUTTON_MASK_RIGHT:
 			position -= event.relative

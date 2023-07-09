@@ -1,7 +1,5 @@
 extends Node
 
-var hero_goal_reached = false
-
 var buildMode = false
 var skeletonBow = load("res://art/SkeletonBowIdle1.png")
 var skeletonSpear = load("res://art/SkeletonSpearIdle1.png")
@@ -50,6 +48,7 @@ func _process(delta):
 	pass
 	
 func _input(event):
+	
 	if paused:
 		return
 	if event is InputEventMouseButton:
