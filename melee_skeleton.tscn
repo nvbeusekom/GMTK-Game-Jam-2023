@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://drp1m2pevdam6"]
+[gd_scene load_steps=22 format=3 uid="uid://drp1m2pevdam6"]
 
 [ext_resource type="Script" path="res://melee_skeleton.gd" id="1_k7dtq"]
 [ext_resource type="Texture2D" uid="uid://cl564j4bxpxqm" path="res://art/SkeletonSpearAttack1.png" id="2_m8svw"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://bm1ws8frvr8ua" path="res://art/SkeletonSpearWalk4.png" id="14_3e7f2"]
 [ext_resource type="Texture2D" uid="uid://cstc75i2ai5qo" path="res://art/SkeletonSpearWalk5.png" id="15_80f1j"]
 [ext_resource type="Script" path="res://SpearAttack.gd" id="16_wfcgk"]
+[ext_resource type="AudioStream" uid="uid://dqkwcu2tkkjl" path="res://art/202102__spookymodem__rattling-bones.wav" id="17_tw0i4"]
+[ext_resource type="AudioStream" uid="uid://chx2nf4axq0eg" path="res://art/585257__lesaucisson__swoosh-1.mp3" id="18_4g8ve"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h1li2"]
 animations = [{
@@ -77,6 +79,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_b73g0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6vc31"]
+
 [node name="MeleeSkeleton" type="Area2D" groups=["Enemy", "EnemyOfHero"]]
 script = ExtResource("1_k7dtq")
 
@@ -101,6 +107,25 @@ script = ExtResource("16_wfcgk")
 
 [node name="SpearCollision" type="CollisionPolygon2D" parent="SpearAttack"]
 polygon = PackedVector2Array(47, -1, 47, 0, 40, 4, 29, 7, 10, 7, 10, -9, 29, -9, 44, -3, 46, -2)
+
+[node name="HealthbarBack" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -20)
+scale = Vector2(30, 5)
+texture = SubResource("CanvasTexture_b73g0")
+
+[node name="HealthbarFront" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(-15, -20)
+scale = Vector2(30, 5)
+texture = SubResource("CanvasTexture_6vc31")
+offset = Vector2(0.5, 0)
+
+[node name="walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_tw0i4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_4g8ve")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

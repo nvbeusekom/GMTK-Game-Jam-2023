@@ -2,7 +2,7 @@ extends Node
 var states = ["main menu","building","crawling","shop"]
 var game_state = "main menu"
 
-const starting_coins = 10
+const starting_coins = 40
 
 var dungeon_node = null
 
@@ -67,6 +67,7 @@ func process_building(delta):
 		
 	playerpos = $BuildingState/Hero.position
 	if ($BuildingState/Hero.position - $BuildingState.hero_goal).length() < 10:
+		playerpos = Vector2(10000,10000)
 		$BuildingState.queue_free()
 		building_node = null
 		game_state = "shop"
@@ -89,6 +90,7 @@ func process_crawling(delta):
 	playerpos = $CrawlingState/Player.position
 	
 func _on_player_died():
+	playerpos = Vector2(10000,10000)
 	crawling_node.queue_free()
 	crawling_node = null
 	game_state = "shop"
@@ -118,6 +120,7 @@ func _on_heart_buy():
 		crawling_coins -= shoppe_heart_cost
 		player_max_hp += 1
 		shoppe_heart_cost += 1
+		$buySound.play()
 		updateCoins()
 	
 func _on_sword_buy():
@@ -125,6 +128,7 @@ func _on_sword_buy():
 		crawling_coins -= shoppe_power_cost
 		player_power += 1
 		shoppe_power_cost += 1
+		$buySound.play()
 		updateCoins()
 	
 func _on_continue():

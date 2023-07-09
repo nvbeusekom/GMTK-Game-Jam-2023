@@ -92,7 +92,7 @@ func updateCoins(amount):
 
 
 func _on_hero_died():
-	print("Hero dead")
+	print("Hero dead!")
 	$Hero.hide()
 	$Hero.position = Vector2(-10000,-10000)
 	$"../Dungeon".clear_skeletons()
@@ -103,6 +103,7 @@ func _on_hero_died():
 func _on_respawn_timer_timeout():
 	print("Hero respawned")
 	$Hero.health = $Hero.MAX_HEALTH
+	$Hero/HealthbarFront.scale.x = 30
 	$Hero.position = Vector2(0,0)
 	$Hero.show()
 	$RespawnTimer.stop()

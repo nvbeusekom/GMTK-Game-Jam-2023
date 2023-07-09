@@ -8,6 +8,7 @@ var screen_size # Size of the game window.
 @export var KB_DIST = 3
 @export var KB_DURATION = 32
 @export var KB_REDUCTION = 1
+@export var MAX_HEALTH = 10
 
 var knockback_velocity = Vector2(0,0)
 var knockback_counter = 0
@@ -18,7 +19,7 @@ var colliding = false
 
 var wall_collide = false
 
-var health = 10
+var health = MAX_HEALTH
 var power = 1
 
 var placed_by_player = false
@@ -26,6 +27,7 @@ var placed_by_player = false
 var playerpos = Vector2(0,0)
 
 var healBerries = load("res://healing_berries.tscn")
+var coinScene = load("res://coin.tscn")
 
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
@@ -59,13 +61,21 @@ func _process(delta):
 		
 func _physics_process(delta):
 	if (goal - position).length() < 10 && knockback_counter == 0:
+		$walk.stop()
 		$BodySpriteAnimation.animation = "attack"
+		if $BodySpriteAnimation.frame == 1:
+			if !$AudioStreamPlayer2D.playing:
+				$AudioStreamPlayer2D.play()
 		if $BodySpriteAnimation.frame == 3:
 			$SpearAttack/SpearCollision.set_deferred("disabled",false)
 		elif $BodySpriteAnimation.frame > 4:
 			$SpearAttack/SpearCollision.set_deferred("disabled",true)
 	elif (goal - position).length() < 200 || knockback_counter > 0:
+		$AudioStreamPlayer2D.stop()
+		if !$walk.playing:
+			$walk.play()
 		$SpearAttack/SpearCollision.set_deferred("disabled",true)
+		
 		$BodySpriteAnimation.animation = "walk"
 		movement_delta = movement_speed * delta
 		var next_path_position: Vector2 = $NavigationAgent2D.get_next_path_position()
@@ -80,14 +90,17 @@ func _physics_process(delta):
 			if not wall_collide:
 				_on_velocity_computed(new_location)
 		else:
+			$AudioStreamPlayer2D.stop()
 			wall_collide = false
 			if $NavigationAgent2D.avoidance_enabled:
 				$NavigationAgent2D.set_velocity(new_velocity)
 			else:
 				_on_velocity_computed(new_velocity)
 	else:
+		$walk.stop()
 		$SpearAttack/SpearCollision.set_deferred("disabled",true)
 		$BodySpriteAnimation.animation = "idle"
+		
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
 	
@@ -104,9 +117,17 @@ func damaged(origin, damage):
 		rng.randomize()
 		if rng.randi_range(0,10) < 4:
 			var berry = healBerries.instantiate()
-			berry.position = position
+			berry.position.x = position.x + randf_range(-2,2)
+			berry.position.y = position.y + randf_range(-2,2)
 			add_sibling(berry)
+		if rng.randi_range(0,10) < 4:
+			var coin = coinScene.instantiate()
+			coin.position.x = position.x + randf_range(-2,2)
+			coin.position.y = position.y + randf_range(-2,2)
+			add_sibling(coin)
 		queue_free()
+	else:
+		$HealthbarFront.scale.x = 30 * health/MAX_HEALTH
 	
 	
 func player_entered(body):

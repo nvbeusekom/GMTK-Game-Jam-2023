@@ -28,5 +28,6 @@ func _on_area_2d_body_exited(body):
 
 func _on_timer_timeout():
 	$AnimatedSprite2D.play()
+	$AudioStreamPlayer2D.play()
 	for body in bodiesList:
 		body.damaged(position,power,false)

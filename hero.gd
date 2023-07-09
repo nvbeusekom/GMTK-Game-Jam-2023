@@ -83,11 +83,14 @@ func swordSwingAnimation(delta):
 	var swingSpeed = 1
 	if $BodySpriteAnimation.flip_h:
 		if swingUp:
+			if !$AudioStreamPlayer2D.playing:
+				$AudioStreamPlayer2D.play()
 			$SwordSprite.rotation += delta * 20 * swingSpeed
 			if $SwordSprite.rotation > .75 * PI:
 				swingUp = false
 				swingDown = true
 		if swingDown:
+			
 			$SwordSprite.play()
 			$SwordSprite.animation = "swing"
 			$SwordSprite.rotation -= delta * 30 * swingSpeed
@@ -99,11 +102,14 @@ func swordSwingAnimation(delta):
 			swordSwingCollision(delta)
 	else:
 		if swingUp:
+			if !$AudioStreamPlayer2D.playing:
+				$AudioStreamPlayer2D.play()
 			$SwordSprite.rotation -= delta * 20 * swingSpeed
 			if $SwordSprite.rotation < -.75 * PI:
 				swingUp = false
 				swingDown = true
 		if swingDown:
+			
 			$SwordSprite.play()
 			$SwordSprite.animation = "swing"
 			$SwordSprite.rotation += delta * 30 * swingSpeed
@@ -136,6 +142,7 @@ func damaged(origin, damage, KBbool):
 		died.emit()
 	var tween: Tween = create_tween()
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
+	$HealthbarFront.scale.x = 30 * health/MAX_HEALTH
 
 func healed(healAmount):
 	if health < MAX_HEALTH:

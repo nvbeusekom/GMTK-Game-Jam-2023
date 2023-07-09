@@ -78,12 +78,6 @@ sprite_frames = SubResource("SpriteFrames_3lshg")
 animation = &"print"
 frame_progress = 0.919606
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_q8l3j")
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.6
 autostart = true

@@ -1,19 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://vp1bnn2ub3xv"]
+[gd_scene load_steps=20 format=3 uid="uid://vp1bnn2ub3xv"]
 
 [ext_resource type="Script" path="res://hero.gd" id="1_rwfyv"]
-[ext_resource type="Texture2D" uid="uid://cjuusuaqo07ql" path="res://art/KnightIdle1.png" id="2_62bf0"]
-[ext_resource type="Texture2D" uid="uid://7pnl3aygs1no" path="res://art/KnightIdle2.png" id="3_jeaud"]
-[ext_resource type="Texture2D" uid="uid://lp1j06afijh4" path="res://art/KnightWalk1.png" id="4_tyoya"]
-[ext_resource type="Texture2D" uid="uid://djc1pdopuy3m8" path="res://art/KnightWalk2.png" id="5_lgbc6"]
-[ext_resource type="Texture2D" uid="uid://cimi0sb7bg2mf" path="res://art/KnightWalk3.png" id="6_tu7v8"]
-[ext_resource type="Texture2D" uid="uid://biyiyb0os5qdm" path="res://art/KnightWalk4.png" id="7_4xk4h"]
-[ext_resource type="Texture2D" uid="uid://dbky517g12pq3" path="res://art/Sword1.png" id="8_82xjj"]
-[ext_resource type="Texture2D" uid="uid://ceacxntqr18ms" path="res://art/Sword2.png" id="9_8427o"]
-[ext_resource type="Texture2D" uid="uid://og0avk1xy4sa" path="res://art/Sword3.png" id="10_fggdn"]
-[ext_resource type="Texture2D" uid="uid://dfk3ly5074ve3" path="res://art/Sword4.png" id="11_vk11s"]
-[ext_resource type="Texture2D" uid="uid://dsfscq4pk1quo" path="res://art/Sword5.png" id="12_co1pm"]
-[ext_resource type="Texture2D" uid="uid://b46ei2jfw8h0s" path="res://art/Sword6.png" id="13_387sw"]
-[ext_resource type="Texture2D" uid="uid://b4fc0fdwk24lf" path="res://art/Sword.png" id="14_rquqk"]
+[ext_resource type="Texture2D" uid="uid://0iby0t2hi17d" path="res://art/KnightIdle1.png" id="2_62bf0"]
+[ext_resource type="Texture2D" uid="uid://y4kvne84j5au" path="res://art/KnightIdle2.png" id="3_jeaud"]
+[ext_resource type="Texture2D" uid="uid://dwy5ljuqlhy4o" path="res://art/KnightWalk1.png" id="4_tyoya"]
+[ext_resource type="Texture2D" uid="uid://bm0a85e8air02" path="res://art/KnightWalk2.png" id="5_lgbc6"]
+[ext_resource type="Texture2D" uid="uid://dv16aotxg7i43" path="res://art/KnightWalk3.png" id="6_tu7v8"]
+[ext_resource type="Texture2D" uid="uid://chan4gvfvgad0" path="res://art/KnightWalk4.png" id="7_4xk4h"]
+[ext_resource type="Texture2D" uid="uid://cn0rkqk4oulgs" path="res://art/Sword1.png" id="8_82xjj"]
+[ext_resource type="Texture2D" uid="uid://d0nsm78ccpdwk" path="res://art/Sword2.png" id="9_8427o"]
+[ext_resource type="Texture2D" uid="uid://dexrvaf2l13fi" path="res://art/Sword3.png" id="10_fggdn"]
+[ext_resource type="Texture2D" uid="uid://c1wn02ugqtibn" path="res://art/Sword4.png" id="11_vk11s"]
+[ext_resource type="Texture2D" uid="uid://bfykcwxsvb7v8" path="res://art/Sword5.png" id="12_co1pm"]
+[ext_resource type="Texture2D" uid="uid://doj3gbwijfhik" path="res://art/Sword6.png" id="13_387sw"]
+[ext_resource type="Texture2D" uid="uid://dbneatgfonvf" path="res://art/Sword.png" id="14_rquqk"]
+[ext_resource type="AudioStream" uid="uid://chx2nf4axq0eg" path="res://art/585257__lesaucisson__swoosh-1.mp3" id="15_ufohd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wvoj"]
 animations = [{
@@ -75,6 +76,10 @@ animations = [{
 "speed": 60.0
 }]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_dot62"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jydrc"]
+
 [node name="Hero" type="CharacterBody2D"]
 script = ExtResource("1_rwfyv")
 
@@ -83,7 +88,7 @@ sprite_frames = SubResource("SpriteFrames_8wvoj")
 animation = &"idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-9, -9, 7, -9, 7, 11, -9, 11)
+polygon = PackedVector2Array(-9, -9, -1, -8, 2, -4, 4, 11, -6, 11)
 
 [node name="SwordSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-6, 0)
@@ -96,6 +101,22 @@ animation = &"swing"
 polygon = PackedVector2Array(6, -33, 6, 7, 21, 12, 27, 12, 31, 9, 33, 3, 33, -3, 29, -13, 24, -22, 17, -30, 13, -33)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="HealthbarBack" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -20)
+scale = Vector2(30, 5)
+texture = SubResource("CanvasTexture_dot62")
+
+[node name="HealthbarFront" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(-15, -20)
+scale = Vector2(30, 5)
+texture = SubResource("CanvasTexture_jydrc")
+offset = Vector2(0.5, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_ufohd")
 
 [connection signal="area_entered" from="SwordSwing" to="." method="_on_sword_swing_area_entered"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

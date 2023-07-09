@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://n33baihu2dpu"]
 
-[ext_resource type="Texture2D" uid="uid://dfchodt72kqo0" path="res://art/Tileset.png" id="1_voajq"]
+[ext_resource type="Texture2D" uid="uid://b0rxgol5w8mki" path="res://art/Tileset.png" id="1_voajq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dtliq"]
 resource_name = "Dungeon Tiles"
@@ -9,7 +9,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 3.5, -16, 3.5)
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -20,7 +20,7 @@ texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 3, -16, 3)
 0:2/animation_columns = 3
 0:2/animation_speed = 5.0
 0:2/animation_frame_0/duration = 1.0
@@ -29,7 +29,7 @@ texture_region_size = Vector2i(32, 32)
 0:2/0 = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 3, -16, 3)
 0:3/animation_columns = 4
 0:3/animation_speed = 2.0
 0:3/animation_frame_0/duration = 1.0

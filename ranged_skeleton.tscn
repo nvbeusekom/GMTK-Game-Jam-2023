@@ -1,17 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://bloethnkcb15e"]
+[gd_scene load_steps=18 format=3 uid="uid://bloethnkcb15e"]
 
 [ext_resource type="Script" path="res://ranged_skeleton.gd" id="1_qsjdr"]
-[ext_resource type="Texture2D" uid="uid://de7tsl10almeu" path="res://art/SkeletonBowAttack1.png" id="2_m4jfd"]
-[ext_resource type="Texture2D" uid="uid://hcah330j5qjk" path="res://art/SkeletonBowAttack2.png" id="3_62vpk"]
-[ext_resource type="Texture2D" uid="uid://deeeop00s5a28" path="res://art/SkeletonBowAttack3.png" id="4_ob85h"]
-[ext_resource type="Texture2D" uid="uid://cl5jo3fpk0dsn" path="res://art/SkeletonBowAttack4.png" id="5_hnv0s"]
-[ext_resource type="Texture2D" uid="uid://dlus4rgfkegxu" path="res://art/SkeletonBowAttack5.png" id="6_5ppv0"]
-[ext_resource type="Texture2D" uid="uid://s2fvbqk38hb" path="res://art/SkeletonBowIdle1.png" id="7_myn55"]
-[ext_resource type="Texture2D" uid="uid://b2ka30etbeteq" path="res://art/SkeletonBowIdle2.png" id="8_6od7c"]
-[ext_resource type="Texture2D" uid="uid://cbnwsajjxei4x" path="res://art/SkeletonBowWalk2.png" id="9_2m3xf"]
-[ext_resource type="Texture2D" uid="uid://blcpu3wuy1cw2" path="res://art/SkeletonBowWalk3.png" id="10_mtwu4"]
-[ext_resource type="Texture2D" uid="uid://t1jvbuavjdep" path="res://art/SkeletonBowWalk4.png" id="11_wocgu"]
-[ext_resource type="Texture2D" uid="uid://11bohtbbi66d" path="res://art/SkeletonBowWalk5.png" id="12_igmd1"]
+[ext_resource type="Texture2D" uid="uid://dsywjntr0enx6" path="res://art/SkeletonBowAttack1.png" id="2_m4jfd"]
+[ext_resource type="Texture2D" uid="uid://seyxdbtmd85f" path="res://art/SkeletonBowAttack2.png" id="3_62vpk"]
+[ext_resource type="Texture2D" uid="uid://bfdc2oejwsr01" path="res://art/SkeletonBowAttack3.png" id="4_ob85h"]
+[ext_resource type="Texture2D" uid="uid://dooel0w04b4oa" path="res://art/SkeletonBowAttack4.png" id="5_hnv0s"]
+[ext_resource type="Texture2D" uid="uid://dgan7gwcuyalo" path="res://art/SkeletonBowAttack5.png" id="6_5ppv0"]
+[ext_resource type="Texture2D" uid="uid://cyinmhy22uwsn" path="res://art/SkeletonBowIdle1.png" id="7_myn55"]
+[ext_resource type="Texture2D" uid="uid://f2djj5pwkff" path="res://art/SkeletonBowIdle2.png" id="8_6od7c"]
+[ext_resource type="Texture2D" uid="uid://bto2j2567xxif" path="res://art/SkeletonBowWalk2.png" id="9_2m3xf"]
+[ext_resource type="Texture2D" uid="uid://nukrd5cc3j1o" path="res://art/SkeletonBowWalk3.png" id="10_mtwu4"]
+[ext_resource type="Texture2D" uid="uid://fy1hmivpw3im" path="res://art/SkeletonBowWalk4.png" id="11_wocgu"]
+[ext_resource type="Texture2D" uid="uid://b5xramla1grcg" path="res://art/SkeletonBowWalk5.png" id="12_igmd1"]
+[ext_resource type="AudioStream" uid="uid://crpc4rdthf3p1" path="res://art/178872__hanbaal__bow.wav" id="13_r77gq"]
+[ext_resource type="AudioStream" uid="uid://dqkwcu2tkkjl" path="res://art/202102__spookymodem__rattling-bones.wav" id="14_akbl4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bop5i"]
 animations = [{
@@ -64,6 +66,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_62dt5"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rdhdp"]
+
 [node name="RangedSkeleton" type="Area2D" groups=["Enemy", "EnemyOfHero"]]
 script = ExtResource("1_qsjdr")
 
@@ -81,6 +87,25 @@ debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HealthbarBack" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -20)
+scale = Vector2(30, 5)
+texture = SubResource("CanvasTexture_62dt5")
+
+[node name="HealthbarFront" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(-15, -20)
+scale = Vector2(30, 5)
+texture = SubResource("CanvasTexture_rdhdp")
+offset = Vector2(0.5, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_r77gq")
+
+[node name="walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_akbl4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

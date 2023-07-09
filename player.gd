@@ -94,6 +94,8 @@ func swordSwingAnimation(delta):
 	var swingSpeed = 1
 	if $BodySpriteAnimation.flip_h:
 		if swingUp:
+			if !$swordSlash.playing:
+				$swordSlash.play()
 			$SwordSprite.rotation += delta * 20 * swingSpeed
 			if $SwordSprite.rotation > .75 * PI:
 				swingUp = false
@@ -110,6 +112,8 @@ func swordSwingAnimation(delta):
 			swordSwingCollision(delta)
 	else:
 		if swingUp:
+			if !$swordSlash.playing:
+				$swordSlash.play()
 			$SwordSprite.rotation -= delta * 20 * swingSpeed
 			if $SwordSprite.rotation < -.75 * PI:
 				swingUp = false
@@ -155,6 +159,12 @@ func healed(healAmount):
 	if health > MAX_HEALTH:
 		health = MAX_HEALTH
 	heal.emit()
+	$heal.play()
+
+func gainCoin(coinAmount):
+	get_parent().get_parent().crawling_coins += 1
+	get_parent().get_parent().updateCoins()
+	$coin.play()
 
 func _on_sword_swing_area_entered(area):
 	if area.is_in_group("Enemy"):

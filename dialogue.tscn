@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkn0by6fo23tp"]
+
+[ext_resource type="Script" path="res://dialogue.gd" id="1_xvffr"]
+[ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://fonts/SHPinscher-Regular.otf" id="2_7kchr"]
+[ext_resource type="Texture2D" uid="uid://cl70glgx1ttnw" path="res://art/KnightHead.png" id="2_li347"]
+[ext_resource type="Texture2D" uid="uid://b6g40u7r6ja4t" path="res://art/DarkKnightHead.png" id="3_usjes"]
+[ext_resource type="Texture2D" uid="uid://ga2fgnmnef78" path="res://art/SpaceBarIcon.png" id="5_o7frl"]
+
+[node name="Dialogue" type="Node2D"]
+script = ExtResource("1_xvffr")
+
+[node name="next_char" type="Timer" parent="."]
+
+[node name="spacebartimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="knightHead" type="Sprite2D" parent="."]
+position = Vector2(195, 378)
+rotation = -0.205785
+scale = Vector2(20, 20)
+texture = ExtResource("2_li347")
+
+[node name="darkKnightHead" type="Sprite2D" parent="."]
+position = Vector2(885, 378)
+rotation = 0.205949
+scale = Vector2(20, 20)
+texture = ExtResource("3_usjes")
+
+[node name="Panel" type="Panel" parent="."]
+offset_top = 446.0
+offset_right = 40.0
+offset_bottom = 486.0
+scale = Vector2(27, 6.84)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 57.0
+offset_top = 473.0
+offset_right = 97.0
+offset_bottom = 551.0
+theme_override_fonts/font = ExtResource("2_7kchr")
+theme_override_font_sizes/font_size = 32
+
+[node name="SpaceBarIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(540, 650)
+scale = Vector2(5, 5)
+texture = ExtResource("5_o7frl")
+
+[connection signal="timeout" from="next_char" to="." method="_on_next_char_timeout"]
+[connection signal="timeout" from="spacebartimer" to="." method="_on_spacebartimer_timeout"]

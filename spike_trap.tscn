@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bioj0g8ubs3mr"]
+[gd_scene load_steps=10 format=3 uid="uid://bioj0g8ubs3mr"]
 
 [ext_resource type="Script" path="res://spike_trap.gd" id="1_35eff"]
 [ext_resource type="Texture2D" uid="uid://d6dghwsiec0o" path="res://art/SpikeTrap1.png" id="1_ug3kl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0vkg5d13cvxt" path="res://art/SpikeTrap3.png" id="3_gmemv"]
 [ext_resource type="Texture2D" uid="uid://cbimyh84w06n1" path="res://art/SpikeTrap4.png" id="4_phaau"]
 [ext_resource type="Texture2D" uid="uid://dys7osst0ibs5" path="res://art/SpikeTrap5.png" id="5_pbhty"]
+[ext_resource type="AudioStream" uid="uid://bfqfhsgoohn2x" path="res://art/spike trap.wav" id="7_psflu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_58b6l"]
 animations = [{
@@ -52,6 +53,9 @@ shape = SubResource("RectangleShape2D_itu27")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_psflu")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
