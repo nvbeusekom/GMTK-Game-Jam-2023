@@ -63,6 +63,8 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if paused:
+		return
 	movement_delta = movement_speed * delta
 	var next_path_position: Vector2 = $NavigationAgent2D.get_next_path_position()
 	var current_agent_position: Vector2 = global_position

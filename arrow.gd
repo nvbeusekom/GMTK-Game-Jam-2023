@@ -4,6 +4,14 @@ var power = 1
 var speed = 90.0
 var destination
 var direction
+
+var paused = false
+
+func pause():
+	paused = true
+func unpause():
+	paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	look_at(destination)
@@ -11,6 +19,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if paused:
+		return
 	var movement_delta = delta * speed
 	position += direction * movement_delta
 
