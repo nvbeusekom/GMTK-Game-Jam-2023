@@ -1,6 +1,6 @@
 extends Node 
 var states = ["main menu","building","crawling","shop"]
-var game_state = "building"
+var game_state = "main menu"
 
 const starting_coins = 40
 
@@ -32,6 +32,7 @@ var player_power = 1
 var shoppe_heart_cost = 3
 var shoppe_power_cost = 3
 
+var lockedPositions = []
 
 var first_hero_death = true
 var first_shop_visit = true
@@ -61,10 +62,15 @@ func process_main_menu(delta):
 		main_menu_node = main_menu_scene.instantiate()
 		add_child(main_menu_node)
 		$MainMenu/CanvasLayer/NewGameButton.pressed.connect(_new_game)
+		$MainMenu/CanvasLayer/ExitButton.pressed.connect(_Exit)
 	
+func _Exit():
+	get_tree().quit()
+
 func _new_game():
 	$MainMenu.queue_free()
 	main_menu_node = null
+	game_state = "building"
 	
 func process_building(delta):
 	if building_node == null:

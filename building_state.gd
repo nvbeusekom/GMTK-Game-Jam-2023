@@ -13,7 +13,6 @@ var hero_node
 
 var cost = 0
 var lock = false
-var lockedPositions = []
 
 var hero_goal = Vector2(500,50)
 
@@ -85,12 +84,12 @@ func _input(event):
 					var mousePos = $"../Dungeon/DungeonMap".get_global_mouse_position()#get_viewport().get_mouse_position()
 					var tile_pos = $"../Dungeon/DungeonMap".local_to_map(mousePos)
 					scene.position = $"../Dungeon/DungeonMap".map_to_local(tile_pos)
-					if $"../Dungeon/DungeonMap".get_cell_atlas_coords(0,tile_pos) == Vector2i(0,1) and (!lockedPositions.has(tile_pos) or !lock):
+					if $"../Dungeon/DungeonMap".get_cell_atlas_coords(0,tile_pos) == Vector2i(0,1) and (!get_parent().lockedPositions.has(tile_pos) or !lock):
 						$"../Dungeon".add_child(scene)
 						get_parent().dungeon_coins -= cost
 						get_parent().updateCoins()
 						if lock:
-							lockedPositions.append(tile_pos)
+							get_parent().lockedPositions.append(tile_pos)
 						else: #it must be a skeleton
 							scene.placed_by_player = true
 		elif event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:

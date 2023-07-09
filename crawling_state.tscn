@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://pmpbiaw8oc3q"]
+[gd_scene load_steps=5 format=3 uid="uid://pmpbiaw8oc3q"]
 
 [ext_resource type="Script" path="res://crawling_state.gd" id="1_jh1jq"]
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_vocb1"]
 [ext_resource type="PackedScene" uid="uid://cr14f7qf18prp" path="res://crawl_hud.tscn" id="3_ddwv3"]
 [ext_resource type="AudioStream" uid="uid://v366huvtoj4n" path="res://art/JulesNathanGameMusic.wav" id="6_ttdx4"]
-[ext_resource type="PackedScene" uid="uid://r01onskbhpaw" path="res://healing_berries.tscn" id="9_ujvqi"]
 
 [node name="CrawlingState" type="Node"]
 script = ExtResource("1_jh1jq")
@@ -20,6 +19,9 @@ zoom = Vector2(2, 2)
 stream = ExtResource("6_ttdx4")
 autoplay = true
 
-[node name="HealingBerries" parent="." instance=ExtResource("9_ujvqi")]
+[node name="PlaceTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="PlaceTimer" to="." method="_on_place_timer_timeout"]
