@@ -9,17 +9,17 @@ var objectToPlace = null
 
 var hero_scene = preload("res://hero.tscn")
 var hero_node
-
+var printer = false
 
 var cost = 0
 var lock = false
 
 var hero_goal = Vector2(1168,-240)
 
-@export var cost_spike = 10
-@export var cost_printer = 1
+@export var cost_spike = 5
+@export var cost_printer = 10
 @export var cost_bow = 5
-@export var cost_spear = 3
+@export var cost_spear = 5
 
 var paused = false
 var respawing = false
@@ -53,6 +53,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 			if event.position.x > 900:
+				printer = false
 				var rect = $DungeonBuilderInterface/CanvasLayer/Panel.get_rect()
 				if rect.has_point(event.position):
 					Input.set_custom_mouse_cursor(skeletonBow, 0 , Vector2(16,16))
@@ -71,6 +72,7 @@ func _input(event):
 					objectToPlace = load("res://money_printer.tscn")
 					cost = cost_printer
 					lock = true
+					printer = true
 				rect = $DungeonBuilderInterface/CanvasLayer/Panel4.get_rect()
 				if rect.has_point(event.position):
 					Input.set_custom_mouse_cursor(spikeTrap, 0 , Vector2(16,16))
@@ -78,6 +80,8 @@ func _input(event):
 					cost = cost_spike
 					lock = true
 			else:
+				if printer:
+					cost = cost_printer + get_parent().moneyPrinterCount
 				if objectToPlace != null and cost <= get_parent().dungeon_coins:
 					var scene = objectToPlace.instantiate()
 					#scene.position = $Dungeon.get_global_mouse_position()
@@ -92,6 +96,10 @@ func _input(event):
 							get_parent().lockedPositions.append(tile_pos)
 						else: #it must be a skeleton
 							scene.placed_by_player = true
+						print(printer)
+						if printer:
+							get_parent().moneyPrinterCount += 1
+							$DungeonBuilderInterface/CanvasLayer/CostPrinter.text = str(cost_printer + get_parent().moneyPrinterCount)
 		elif event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
 			objectToPlace = null
 			Input.set_custom_mouse_cursor(null) #ja, dit moet er 2 keer staan...

@@ -21,6 +21,8 @@ var shop_node = null
 var dialogue_node = null
 var pause_node = null
 
+var moneyPrinterCount = 0
+
 var playerpos = Vector2(0,0)
 
 var dungeon_coins = starting_coins
@@ -171,7 +173,7 @@ func _on_heart_buy():
 	if crawling_coins >= shoppe_heart_cost:
 		crawling_coins -= shoppe_heart_cost
 		player_max_hp += 1
-		shoppe_heart_cost += 1
+		shoppe_heart_cost += 2
 		$ShoppeScene/buySound.play()
 		updateCoins()
 	
@@ -179,7 +181,7 @@ func _on_sword_buy():
 	if crawling_coins >= shoppe_power_cost:
 		crawling_coins -= shoppe_power_cost
 		player_power += 1
-		shoppe_power_cost += 1
+		shoppe_power_cost += 2
 		$ShoppeScene/buySound.play()
 		updateCoins()
 	

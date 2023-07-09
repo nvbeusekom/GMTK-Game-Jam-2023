@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://crawling_state.gd" id="1_jh1jq"]
 [ext_resource type="PackedScene" uid="uid://c1b4p5ddswqy0" path="res://player.tscn" id="2_vocb1"]
 [ext_resource type="PackedScene" uid="uid://cr14f7qf18prp" path="res://crawl_hud.tscn" id="3_ddwv3"]
-[ext_resource type="PackedScene" uid="uid://cf6hmcqkq82bd" path="res://hero_crawling.tscn" id="6_dtu5n"]
-[ext_resource type="AudioStream" uid="uid://mbt475m0iery" path="res://art/JulesNathanGameMusic.wav" id="6_ttdx4"]
+[ext_resource type="PackedScene" uid="uid://cf6hmcqkq82bd" path="res://hero_crawling.tscn" id="5_ovn41"]
+[ext_resource type="AudioStream" uid="uid://v366huvtoj4n" path="res://art/JulesNathanGameMusic.wav" id="6_ttdx4"]
 
 [node name="CrawlingState" type="Node"]
 script = ExtResource("1_jh1jq")
@@ -24,7 +24,7 @@ autoplay = true
 wait_time = 3.0
 autostart = true
 
-[node name="HeroCrawling" parent="." instance=ExtResource("6_dtu5n")]
+[node name="HeroCrawling" parent="." instance=ExtResource("5_ovn41")]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="PlaceTimer" to="." method="_on_place_timer_timeout"]

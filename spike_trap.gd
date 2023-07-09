@@ -2,7 +2,7 @@ extends Node2D
 
 var bodiesList = []
 
-var power = 1
+var power = 3
 
 var paused = false
 
