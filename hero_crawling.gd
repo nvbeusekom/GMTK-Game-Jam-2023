@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 var screen_size # Size of the game window.
 
-signal died
+signal victory
+signal firstencounter
 
 @export var SPEED = 80 # How fast the player will move (pixels/sec).
 @export var KB_DIST = 3
@@ -27,6 +28,8 @@ var goal = Vector2(0,0)
 
 var paused = false
 
+var playerpos = Vector2(0,0)
+
 func pause():
 	paused = true
 func unpause():
@@ -38,15 +41,17 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	$SwordSwing/SwordCollision.set_deferred("disabled",true)
 	$BodySpriteAnimation.play()
+	position = Vector2(1168,-240)
 
 func _process(delta):
 	if paused:
 		return
 	var length = 1000000
 	velocity = Vector2.ZERO # The player's movement vector.
-	$NavigationAgent2D.set_target_position(goal)
-	for enemy in get_tree().get_nodes_in_group("EnemyOfHero"):
+	
+	for enemy in get_tree().get_nodes_in_group("Player"):
 		if (enemy.position - position).length() < 100:
+			firstencounter.emit()
 			if length > (enemy.position - position).length():
 				length = (enemy.position - position).length()
 				$NavigationAgent2D.set_target_position(enemy.position)
@@ -67,10 +72,12 @@ func _process(delta):
 func _physics_process(delta):
 	if paused:
 		return
+	
 	movement_delta = movement_speed * delta
 	var next_path_position: Vector2 = $NavigationAgent2D.get_next_path_position()
 	var current_agent_position: Vector2 = global_position
 	var new_velocity: Vector2 = (next_path_position - current_agent_position).normalized() * movement_delta
+	
 	if new_velocity.length() > 0:
 		$BodySpriteAnimation.animation = "walk"
 	else:
@@ -138,15 +145,12 @@ func swordSwingCollision(delta):
 		$SwordSwing/SwordCollision.scale.x=1
 	$SwordSwing/SwordCollision.set_deferred("disabled",false)
 
-func _on_sword_swing_area_entered(area):
-	if area.is_in_group("EnemyOfHero"):
-		area.damaged(position, power)
-		$SwordSwing/SwordCollision.set_deferred("disabled",true)
 
 func damaged(origin, damage, KBbool):
 	health -= damage
+	print(health)
 	if(health <= 0):
-		died.emit()
+		victory.emit()
 		return
 	if KBbool:
 		var knockback = (position - origin) 
@@ -165,3 +169,9 @@ func healed(healAmount):
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	global_position = global_position.move_toward(global_position + safe_velocity, movement_delta)
+
+
+func _on_sword_swing_body_entered(body):
+	if body.is_in_group("Player"):
+		body.damaged(position, power,true)
+		$SwordSwing/SwordCollision.set_deferred("disabled",true)

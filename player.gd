@@ -179,3 +179,9 @@ func _on_sword_swing_area_entered(area):
 	if area.is_in_group("Enemy"):
 		area.damaged(position, power)
 		$SwordSwing/SwordCollision.set_deferred("disabled",true)
+
+
+func _on_sword_swing_body_entered(body):
+	if body.is_in_group("HeroCrawling"):
+		body.damaged(position, power,true)
+		$SwordSwing/SwordCollision.set_deferred("disabled",true)

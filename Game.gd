@@ -1,6 +1,6 @@
 extends Node 
 var states = ["main menu","building","crawling","shop"]
-var game_state = "building"
+var game_state = "shop"
 
 const starting_coins = 40
 
@@ -35,6 +35,7 @@ var shoppe_power_cost = 3
 
 var first_hero_death = true
 var first_shop_visit = true
+var first_encounter = true
 
 # (Minus cutscenes)
 # Game states: Main menu -> Building -> Crawling <-> Shop
@@ -65,7 +66,7 @@ func process_main_menu(delta):
 func _new_game():
 	$MainMenu.queue_free()
 	main_menu_node = null
-	
+
 func process_building(delta):
 	if building_node == null:
 		building_node = building_scene.instantiate()
@@ -112,6 +113,7 @@ func process_crawling(delta):
 		crawling_node = crawling_scene.instantiate()
 		add_child(crawling_node)
 		#updateCoins()
+		$Dungeon.clear_skeletons()
 		$CrawlingState/Player.MAX_HEALTH = player_max_hp
 		$CrawlingState/Player.health = player_max_hp
 		$CrawlingState/Player.power = player_power
@@ -119,24 +121,31 @@ func process_crawling(delta):
 		$CrawlingState/Player.victory.connect(_on_victory)
 		$CrawlingState/crawl_HUD.set_health($CrawlingState/Player.health)
 		$CrawlingState/crawl_HUD.set_strength($CrawlingState/Player.power)
+		$CrawlingState/HeroCrawling.victory.connect(_on_victory)
+		$CrawlingState/HeroCrawling.firstencounter.connect(_on_encounter)
 	playerpos = $CrawlingState/Player.position
 	
 func _on_player_died():
-	start_dialogue(4)
 	playerpos = Vector2(10000,10000)
 	crawling_node.queue_free()
 	crawling_node = null
 	game_state = "shop"
 	reinit_shop()
 	
+func _on_encounter():
+	if first_encounter:
+		start_dialogue(5)
+		first_encounter = false
+	
 func _on_victory():
-	start_dialogue(5)
 	start_dialogue(6)
-	pass
+	crawling_node.queue_free()
+	if shop_node != null:
+		shop_node.queue_free()
+	game_state = "main_menu"
 	# Todo: cinematic -> destroy crawling and shop -> main menu
 	
 func reinit_shop():
-	
 	updateCoins()
 	$ShoppeScene/CanvasLayer/HeartBuyButton.pressed.connect(_on_heart_buy)
 	$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.connect(_on_sword_buy)

@@ -1,0 +1,138 @@
+[gd_scene load_steps=21 format=3 uid="uid://cf6hmcqkq82bd"]
+
+[ext_resource type="Script" path="res://hero_crawling.gd" id="1_1m2l0"]
+[ext_resource type="Texture2D" uid="uid://cjuusuaqo07ql" path="res://art/KnightIdle1.png" id="2_4mc3y"]
+[ext_resource type="Texture2D" uid="uid://7pnl3aygs1no" path="res://art/KnightIdle2.png" id="3_j0uwt"]
+[ext_resource type="Texture2D" uid="uid://lp1j06afijh4" path="res://art/KnightWalk1.png" id="4_jxnc8"]
+[ext_resource type="Texture2D" uid="uid://djc1pdopuy3m8" path="res://art/KnightWalk2.png" id="5_dlvcb"]
+[ext_resource type="Texture2D" uid="uid://cimi0sb7bg2mf" path="res://art/KnightWalk3.png" id="6_grxj1"]
+[ext_resource type="Texture2D" uid="uid://biyiyb0os5qdm" path="res://art/KnightWalk4.png" id="7_wd6a2"]
+[ext_resource type="Texture2D" uid="uid://dbky517g12pq3" path="res://art/Sword1.png" id="8_ojhyp"]
+[ext_resource type="Texture2D" uid="uid://ceacxntqr18ms" path="res://art/Sword2.png" id="9_fokne"]
+[ext_resource type="Texture2D" uid="uid://og0avk1xy4sa" path="res://art/Sword3.png" id="10_fd83x"]
+[ext_resource type="Texture2D" uid="uid://dfk3ly5074ve3" path="res://art/Sword4.png" id="11_5nqpa"]
+[ext_resource type="Texture2D" uid="uid://dsfscq4pk1quo" path="res://art/Sword5.png" id="12_8ja4x"]
+[ext_resource type="Texture2D" uid="uid://b46ei2jfw8h0s" path="res://art/Sword6.png" id="13_7xg77"]
+[ext_resource type="Texture2D" uid="uid://b4fc0fdwk24lf" path="res://art/Sword.png" id="14_n03sn"]
+[ext_resource type="AudioStream" uid="uid://dfoes1to13md7" path="res://art/585257__lesaucisson__swoosh-1.mp3" id="15_pi2v0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wvoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4mc3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j0uwt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jxnc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dlvcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_grxj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wd6a2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wxcic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ojhyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fokne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fd83x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5nqpa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8ja4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7xg77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_n03sn")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 60.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_4hfkv"]
+script/source = "extends NavigationAgent2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dot62"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jydrc"]
+
+[node name="HeroCrawling" type="CharacterBody2D" groups=["HeroCrawling"]]
+script = ExtResource("1_1m2l0")
+
+[node name="BodySpriteAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8wvoj")
+animation = &"walk"
+frame_progress = 0.87901
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -5, -6, -7, -2, -7, 2, -4, 3, 9, 1, 11, -7, 11, -8, -2)
+
+[node name="SwordSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, 0)
+sprite_frames = SubResource("SpriteFrames_wxcic")
+animation = &"swing"
+
+[node name="SwordSwing" type="Area2D" parent="."]
+
+[node name="SwordCollision" type="CollisionPolygon2D" parent="SwordSwing"]
+polygon = PackedVector2Array(6, -33, 6, 7, 21, 12, 27, 12, 31, 9, 33, 3, 33, -3, 29, -13, 24, -22, 17, -30, 13, -33)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+script = SubResource("GDScript_4hfkv")
+
+[node name="HealthbarBack" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -20)
+scale = Vector2(30, 5)
+texture = SubResource("CanvasTexture_dot62")
+
+[node name="HealthbarFront" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(-15, -20)
+scale = Vector2(30, 5)
+texture = SubResource("CanvasTexture_jydrc")
+offset = Vector2(0.5, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_pi2v0")
+
+[connection signal="body_entered" from="SwordSwing" to="." method="_on_sword_swing_body_entered"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

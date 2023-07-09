@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://dslfhaacylysr"]
 
 [ext_resource type="Script" path="res://shoppe_scene.gd" id="1_5juds"]
-[ext_resource type="Texture2D" uid="uid://cm55cs5otsbyr" path="res://art/YeOldeShoppe.png" id="1_wl6mu"]
-[ext_resource type="Texture2D" uid="uid://cybhrxbrjemhj" path="res://art/heart.png" id="2_rhnqj"]
-[ext_resource type="Texture2D" uid="uid://s7ok76emd2kh" path="res://art/SwordIcon.png" id="3_b6u0b"]
+[ext_resource type="Texture2D" uid="uid://dvqojbbqiuei6" path="res://art/YeOldeShoppe.png" id="1_wl6mu"]
+[ext_resource type="Texture2D" uid="uid://1j3mukxivt08" path="res://art/heart.png" id="2_rhnqj"]
+[ext_resource type="Texture2D" uid="uid://bjlhf4crtterx" path="res://art/SwordIcon.png" id="3_b6u0b"]
 [ext_resource type="FontFile" uid="uid://bscrgmx88wnpd" path="res://fonts/SHPinscher-Regular.otf" id="4_0o8qx"]
-[ext_resource type="AudioStream" uid="uid://bul42gxnye64b" path="res://art/336474__faulkin__coinsslide_02.wav" id="6_ossfv"]
-[ext_resource type="AudioStream" uid="uid://hg1expuidtav" path="res://art/Airship Serenity.mp3" id="7_fghhv"]
+[ext_resource type="AudioStream" uid="uid://b2tosce0tmfkk" path="res://art/336474__faulkin__coinsslide_02.wav" id="6_ossfv"]
+[ext_resource type="AudioStream" uid="uid://c57kf5g1lt6as" path="res://art/Airship Serenity.mp3" id="7_fghhv"]
 
 [node name="ShoppeScene" type="Node"]
 script = ExtResource("1_5juds")

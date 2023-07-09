@@ -8,6 +8,7 @@ func pause():
 	paused = true
 	$Timer.stop()
 func unpause():
+	$AnimatedSprite2D.play()
 	paused = false
 	$Timer.start()
 

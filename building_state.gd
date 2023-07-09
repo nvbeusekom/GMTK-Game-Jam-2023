@@ -15,7 +15,7 @@ var cost = 0
 var lock = false
 var lockedPositions = []
 
-var hero_goal = Vector2(500,50)
+var hero_goal = Vector2(1168,-240)
 
 @export var cost_spike = 10
 @export var cost_printer = 1
@@ -115,6 +115,7 @@ func _on_respawn_timer_timeout():
 	print("Hero respawned")
 	$Hero.health = $Hero.MAX_HEALTH
 	$Hero/HealthbarFront.scale.x = 30
-	$Hero.position = Vector2(0,0)
+	
+	$Hero.position = Vector2(0,10)
 	$Hero.show()
 	$RespawnTimer.stop()
