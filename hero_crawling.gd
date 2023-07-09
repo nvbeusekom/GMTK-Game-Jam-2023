@@ -150,9 +150,7 @@ func damaged(origin, damage, KBbool):
 	if knockback_counter > 0:
 		return
 	health -= damage
-	if(health <= 0):
-		victory.emit()
-		return
+	
 	if KBbool:
 		var knockback = (position - origin) 
 		knockback_velocity = knockback.normalized() * KB_DIST * SPEED
@@ -161,6 +159,10 @@ func damaged(origin, damage, KBbool):
 	var tween: Tween = create_tween()
 	tween.tween_property($BodySpriteAnimation, "modulate:v", 1, 0.25).from(15)
 	$HealthbarFront.scale.x = 30 * health/MAX_HEALTH
+	
+	if(health <= 0):
+		victory.emit()
+		return
 
 func healed(healAmount):
 	if health < MAX_HEALTH:
