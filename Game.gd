@@ -30,7 +30,10 @@ var player_power = 1
 var shoppe_heart_cost = 3
 var shoppe_power_cost = 3
 
-var dialogueID = 0
+
+var first_hero_death = true
+var first_shop_visit = true
+
 # (Minus cutscenes)
 # Game states: Main menu -> Building -> Crawling <-> Shop
 
@@ -50,8 +53,6 @@ func _process(delta):
 			process_crawling(delta)
 		"shop":
 			process_shop(delta)
-		"dialogue":
-			process_dialogue(delta)
 
 func process_main_menu(delta):
 	if main_menu_node == null:
@@ -63,21 +64,17 @@ func process_main_menu(delta):
 func _new_game():
 	$MainMenu.queue_free()
 	main_menu_node = null
-	game_state = "dialogue"
 	
 func process_building(delta):
 	if building_node == null:
 		building_node = building_scene.instantiate()
 		add_child(building_node)
 		updateCoins()
-		pause(self)
-		dialogue_node = dialogue_scene.instantiate()
-		dialogue_node.activeMessagesID = dialogueID
-		add_child(dialogue_node)
-		$Dialogue.dialogueFinished.connect(_on_finishDialogue)
+		start_dialogue(0)
 		
 	playerpos = $BuildingState/Hero.position
 	if ($BuildingState/Hero.position - $BuildingState.hero_goal).length() < 10:
+		start_dialogue(0)
 		playerpos = Vector2(10000,10000)
 		$BuildingState.queue_free()
 		building_node = null
@@ -86,19 +83,17 @@ func process_building(delta):
 		dungeon_coins = starting_coins
 		
 
-func process_dialogue(delta):
+func start_dialogue(id):
 	if dialogue_node == null:
 		dialogue_node = dialogue_scene.instantiate()
-		dialogue_node.activeMessagesID = dialogueID
+		dialogue_node.activeMessagesID = id
 		add_child(dialogue_node)
-		$Dialogue.dialogueFinished.connect(_on_finishDialogue)
+	$Dialogue.dialogueFinished.connect(_on_finishDialogue)
+	pause(self)
 
 func _on_finishDialogue():
 	$Dialogue.queue_free()
 	unpause(self)
-	match dialogueID:
-		0:
-			game_state = "building"
 	
 func process_crawling(delta):
 	if crawling_node == null:
