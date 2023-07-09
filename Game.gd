@@ -1,6 +1,6 @@
 extends Node 
 var states = ["main menu","building","crawling","shop"]
-var game_state = "main menu"
+var game_state = "building"
 
 const starting_coins = 40
 
@@ -70,6 +70,11 @@ func process_building(delta):
 		building_node = building_scene.instantiate()
 		add_child(building_node)
 		updateCoins()
+		pause(self)
+		dialogue_node = dialogue_scene.instantiate()
+		dialogue_node.activeMessagesID = dialogueID
+		add_child(dialogue_node)
+		$Dialogue.dialogueFinished.connect(_on_finishDialogue)
 		
 	playerpos = $BuildingState/Hero.position
 	if ($BuildingState/Hero.position - $BuildingState.hero_goal).length() < 10:
@@ -90,6 +95,7 @@ func process_dialogue(delta):
 
 func _on_finishDialogue():
 	$Dialogue.queue_free()
+	unpause(self)
 	match dialogueID:
 		0:
 			game_state = "building"
@@ -121,7 +127,6 @@ func _on_victory():
 	
 func reinit_shop():
 	updateCoins()
-	print('test')
 	$ShoppeScene/CanvasLayer/HeartBuyButton.pressed.connect(_on_heart_buy)
 	$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.connect(_on_sword_buy)
 	$ShoppeScene/CanvasLayer/ContinueButton.pressed.connect(_on_continue)
@@ -139,7 +144,7 @@ func _on_heart_buy():
 		crawling_coins -= shoppe_heart_cost
 		player_max_hp += 1
 		shoppe_heart_cost += 1
-		$buySound.play()
+		$ShoppeScene/buySound.play()
 		updateCoins()
 	
 func _on_sword_buy():
@@ -147,7 +152,7 @@ func _on_sword_buy():
 		crawling_coins -= shoppe_power_cost
 		player_power += 1
 		shoppe_power_cost += 1
-		$buySound.play()
+		$ShoppeScene/buySound.play()
 		updateCoins()
 	
 func _on_continue():
@@ -161,6 +166,26 @@ func addCoin():
 	dungeon_coins += 1
 	updateCoins()
 	
+func pause(node):
+	if game_state == "shop":
+		$ShoppeScene/CanvasLayer/HeartBuyButton.pressed.disconnect(_on_heart_buy)
+		$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.disconnect(_on_sword_buy)
+		$ShoppeScene/CanvasLayer/ContinueButton.pressed.disconnect(_on_continue)
+	for child in node.get_children():
+		if child.has_method("pause"):
+			child.pause()
+		pause(child) 
+		
+func unpause(node):
+	if game_state == "shop":
+		$ShoppeScene/CanvasLayer/HeartBuyButton.pressed.connect(_on_heart_buy)
+		$ShoppeScene/CanvasLayer/SwordBuyButton.pressed.connect(_on_sword_buy)
+		$ShoppeScene/CanvasLayer/ContinueButton.pressed.connect(_on_continue)
+	for child in node.get_children():
+		if child.has_method("unpause"):
+			child.unpause()
+		unpause(child) 
+		
 func updateCoins():
 	if building_node != null:
 		$BuildingState.updateCoins(dungeon_coins)

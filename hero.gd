@@ -25,6 +25,12 @@ var lookingleft = false
 
 var goal = Vector2(0,0)
 
+var paused = false
+
+func pause():
+	paused = true
+func unpause():
+	paused = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -32,7 +38,8 @@ func _ready():
 	$BodySpriteAnimation.play()
 
 func _process(delta):
-	
+	if paused:
+		return
 	var length = 1000000
 	velocity = Vector2.ZERO # The player's movement vector.
 	$NavigationAgent2D.set_target_position(goal)

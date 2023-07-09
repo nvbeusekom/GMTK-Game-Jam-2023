@@ -30,6 +30,14 @@ var healBerries = load("res://healing_berries.tscn")
 var coinScene = load("res://coin.tscn")
 
 var rng = RandomNumberGenerator.new()
+
+var paused = false
+
+func pause():
+	paused = true
+func unpause():
+	paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -37,6 +45,8 @@ func _ready():
 	$SpearAttack/SpearCollision.set_deferred("disabled",true)
 
 func _process(delta):
+	if paused:
+		return
 	playerpos = get_tree().get_root().get_child(0).playerpos
 	var left_of_player = Vector2(playerpos.x-40,playerpos.y)
 	var right_of_player = Vector2(playerpos.x+40,playerpos.y)

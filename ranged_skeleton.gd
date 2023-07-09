@@ -29,13 +29,22 @@ var arrow = load("res://arrow.tscn")
 var healBerries = load("res://healing_berries.tscn")
 var coinScene = load("res://coin.tscn")
 var rng = RandomNumberGenerator.new()
+
+var paused = false
+
+func pause():
+	paused = true
+func unpause():
+	paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	$BodySpriteAnimation.animation = "idle"
 
 func _process(delta):
-	
+	if paused:
+		return
 	playerpos = get_tree().get_root().get_child(0).playerpos	
 
 	$NavigationAgent2D.set_target_position(playerpos)
