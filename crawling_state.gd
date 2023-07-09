@@ -7,7 +7,7 @@ var skeletonBow = load("res://ranged_skeleton.tscn")
 var skeletonSpear = load("res://melee_skeleton.tscn")
 var spikeTrap = load("res://spike_trap.tscn")
 var moneyPrinter = load("res://money_printer.tscn")
-var costs = [5,3,10,1]
+var costs = [5,5,5,10]
 var objectArray
 
 var paused = false
@@ -48,21 +48,26 @@ func _on_player_heal():
 func _on_place_timer_timeout():
 	# choose random placeable
 	var randomInt = randi() % objectArray.size()
+	if randomInt > 1:
+		randomInt = randi() % objectArray.size()
 	var objectToPlace = objectArray[randomInt]
-	print(objectToPlace)
 	# check if can afford
-	if costs[randomInt] > get_parent().dungeon_coins:
-		return
-	# find eligible tile
-	var eligibleList = []
 	var mindistance 
 	var maxdistance
+	var cost
 	if randomInt == 3:
 		mindistance = 500
 		maxdistance = 100000
+		cost = costs[randomInt] + get_parent().moneyPrinterCount
 	else:
 		mindistance = 100
 		maxdistance = 400
+		cost = costs[randomInt]
+	if cost > get_parent().dungeon_coins:
+		return
+	# find eligible tile
+	var eligibleList = []
+	
 	for cell in $"../Dungeon/DungeonMap".get_used_cells_by_id(0,-1,Vector2i(0,1)):
 		if ($"../Dungeon/DungeonMap".map_to_local(cell) - get_parent().playerpos).length() < maxdistance and ($"../Dungeon/DungeonMap".map_to_local(cell) - get_parent().playerpos).length() > mindistance:
 			eligibleList.append(cell)
@@ -83,4 +88,6 @@ func _on_place_timer_timeout():
 		if !get_parent().lockedPositions.has(tile):
 			get_parent().lockedPositions.append(tile)
 			$"../Dungeon".add_child(scene)
+			if randomInt == 3:
+				get_parent().moneyPrinterCount += 1
 	

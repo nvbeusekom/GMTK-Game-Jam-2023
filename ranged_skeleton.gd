@@ -126,11 +126,10 @@ func damaged(origin, damage):
 			var berry = healBerries.instantiate()
 			berry.position = position
 			add_sibling(berry)
-		if rng.randi_range(0,10) < 4:
-			var coin = coinScene.instantiate()
-			coin.position.x = position.x + randf_range(-2,2)
-			coin.position.y = position.y + randf_range(-2,2)
-			add_sibling(coin)
+		var coin = coinScene.instantiate()
+		coin.position.x = position.x + randf_range(-2,2)
+		coin.position.y = position.y + randf_range(-2,2)
+		add_sibling(coin)
 		queue_free()
 	else:
 		$HealthbarFront.scale.x = 30 * health/MAX_HEALTH
