@@ -171,7 +171,7 @@ func healed(healAmount):
 	$heal.play()
 
 func gainCoin(coinAmount):
-	get_parent().get_parent().crawling_coins += 3
+	get_parent().get_parent().crawling_coins += 5
 	get_parent().get_parent().updateCoins()
 	$coin.play()
 
